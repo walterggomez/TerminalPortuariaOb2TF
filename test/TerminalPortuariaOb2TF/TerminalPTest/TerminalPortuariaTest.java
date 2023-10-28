@@ -1,18 +1,21 @@
 package TerminalPortuariaOb2TF.TerminalPTest;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class TerminalPortuariaTest {
+class TerminalPortuariaTest
+{
 
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() throws Exception
+	{
+		
 	}
+	
 
 	@Test
-	void test() {
+	void test() 
+	{
 		fail("Not yet implemented");
 	}
 
