@@ -6,6 +6,7 @@ public class Buque
 {
 	private Point  posicionActual = new Point(0, 0);
 	private EstadoBuque estadoActual = new Outbound();
+	private Viaje viajeActual;
 	
 	/*
 	public Buque()
@@ -13,6 +14,18 @@ public class Buque
 		this.posicionActual =  new Point (0, 0);
 	}
 	*/
+
+	public Viaje getViajeActual()
+	{
+		return viajeActual;
+	}
+
+
+	public void setViajeActual(Viaje viajeActual)
+	{
+		this.viajeActual = viajeActual;
+	}
+
 
 	public Point getPosicionActual()
 	{
