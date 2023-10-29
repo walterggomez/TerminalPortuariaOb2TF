@@ -1,8 +1,8 @@
-package TerminalPortuariaOb2TF.EstrategiaMejorRuta;
+package TerminalPortuaria.Ob2TF.EstrategiaMejorRuta;
 
 import java.util.List;
 
-import TerminalPortuariaOb2TF.TerminalP.TerminalPortuaria;
+import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 public class MenorCantidadTerminal extends  MejorRuta {
 
