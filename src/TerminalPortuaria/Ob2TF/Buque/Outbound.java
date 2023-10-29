@@ -1,5 +1,6 @@
 package TerminalPortuaria.Ob2TF.Buque;
 import java.awt.Point;
+import TerminalPortuaria.Ob2TF.Circuito.*;
 
 public class Outbound implements EstadoBuque
 {
