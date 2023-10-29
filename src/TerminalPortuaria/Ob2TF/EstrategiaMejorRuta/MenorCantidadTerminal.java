@@ -4,7 +4,7 @@ import java.util.List;
 
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
-public class MenorCantidadTerminal extends  MejorRuta {
+public class MenorCantidadTerminal extends  MejorRuta{
 
 	@Override
 	public Circuito mejorCircuito(TerminalPortuaria puertoOrigen, TerminalPortuaria puertoDestino) {
