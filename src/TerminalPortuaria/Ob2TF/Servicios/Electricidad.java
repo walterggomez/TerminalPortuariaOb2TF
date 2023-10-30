@@ -7,7 +7,7 @@ public class Electricidad implements Servicios
 	
 	double costoServicio( Orden orden )
 	{
-		return costoKwHora * orden.getContainer.getConsumo() 
+		return costoKwHora * orden.getContainer.getConsumo() * 
 	}
 	
 
