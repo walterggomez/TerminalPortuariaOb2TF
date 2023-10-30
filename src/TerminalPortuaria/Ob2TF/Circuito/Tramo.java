@@ -7,7 +7,7 @@ import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 public class Tramo {
 	private TerminalPortuaria puertoOrigen;
 	private TerminalPortuaria puertoDestino;
-	private LocalDate fechaSalida;
+	private LocalDate fechaSalida; // Más la hora ...
 	private long duracionTramo;
 	private double costoDetramo;
 	
@@ -47,7 +47,7 @@ public class Tramo {
 	
 	public LocalDate fechaLlegada() {
 		return this.fechaSalida.plus(this.duracionTramo, ChronoUnit.HOURS);
-	}
+	} // Debería devolver la fecha + la hora
 	
 
 }
