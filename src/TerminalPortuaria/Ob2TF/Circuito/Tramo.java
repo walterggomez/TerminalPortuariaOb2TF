@@ -49,8 +49,5 @@ public class Tramo {
 		return this.fechaSalida.plus(this.duracionViaje, ChronoUnit.HOURS);
 	}
 	
-	public void main () {
-		System. out. println(this.fechaLlegada());
-	}
 
 }
