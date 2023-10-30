@@ -1,5 +1,6 @@
 package TerminalPortuaria.Ob2TF.Circuito;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
