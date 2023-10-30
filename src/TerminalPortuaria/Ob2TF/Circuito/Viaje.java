@@ -24,5 +24,8 @@ public class Viaje
 		this.fechaDeSalida = fechaDeSalida;
 	}
 	
-	
+	public Circuito getCircuito()
+	{
+		return this.circuitoViaje;
+	}
 }

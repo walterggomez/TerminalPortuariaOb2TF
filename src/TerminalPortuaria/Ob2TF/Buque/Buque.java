@@ -1,11 +1,12 @@
 package TerminalPortuaria.Ob2TF.Buque;
 import java.awt.Point;
+import TerminalPortuaria.Ob2TF.Circuito.*;
 
 
 public class Buque
 {
 	private Point  posicionActual = new Point(0, 0);
-	private EstadoBuque estadoActual = new Outbound();
+	EstadoBuque estadoActual = new Outbound();
 	private Viaje viajeActual;
 	
 	/*
