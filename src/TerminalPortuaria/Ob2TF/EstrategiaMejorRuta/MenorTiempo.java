@@ -23,7 +23,7 @@ public class MenorTiempo extends  MejorRuta{
 		return cirMenorTiempo;
 	}
 	public boolean tieneMenorTiempo(Circuito primerCircuito, Circuito segundoCircuito) {
-		return primerCircuito.getDuracion() < segundoCircuito.getDuracion();
+		return primerCircuito.duracionCircuito() < segundoCircuito.duracionCircuito();
 	}
 
 }

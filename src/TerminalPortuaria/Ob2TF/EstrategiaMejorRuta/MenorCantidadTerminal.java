@@ -20,7 +20,7 @@ public class MenorCantidadTerminal extends  MejorRuta{
 
 	}
 	public boolean tieneMenosEscalas(Circuito primerCircuito, Circuito segundoCircuito) {
-		return primerCircuito.getCantidadDeEscalas() < segundoCircuito.getCantidadDeEscalas();
+		return primerCircuito.cantidadDeEscalas() < segundoCircuito.cantidadDeEscalas();
 	}
 
 
