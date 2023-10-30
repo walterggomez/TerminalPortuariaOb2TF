@@ -11,8 +11,7 @@ public class Tramo {
 	private long duracionViaje;
 	private double costoDetramo;
 	
-	
-	
+
 	
 	public TerminalPortuaria getPuertoOrigen() {
 		return puertoOrigen;

@@ -15,5 +15,12 @@ public class Circuito {
 		this.listaDeTramo = listaDeTramo;
 	}
 	
-	
+	public void validarTramo(Tramo tramo) {
+		Tramo ultimoTramo = listaDeTramo.get(listaDeTramo.size() -1 );
+		if (ultimoTramo.getPuertoDestino() == tramo.getPuertoOrigen()) {
+			listaDeTramo.add(tramo);
+		}
+		else {
+		}
+	}
 }
