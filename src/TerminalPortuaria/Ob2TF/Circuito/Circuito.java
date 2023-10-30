@@ -21,6 +21,20 @@ public class Circuito {
 			listaDeTramo.add(tramo);
 		}
 		else {
+			//Agregar excepcion
 		}
 	}
+	
+//	public List<Tramo> agregarNuevoTramo(Tramo tramo) {
+//		
+//	}
+	
+	public double costoTotalDelCircuito() {
+		double costoTotal = 0;
+		for (Tramo tramo:this.listaDeTramo) {
+			costoTotal = costoTotal + tramo.getCostoDetramo();
+		}
+		return costoTotal;
+	}
+
 }
