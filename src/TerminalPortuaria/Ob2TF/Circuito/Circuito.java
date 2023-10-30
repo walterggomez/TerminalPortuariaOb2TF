@@ -3,6 +3,8 @@ package TerminalPortuaria.Ob2TF.Circuito;
 import java.util.ArrayList;
 import java.util.List;
 
+import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
+
 public class Circuito {
 
 	private List<Tramo> listaDeTramo = new ArrayList<Tramo>();
@@ -10,10 +12,19 @@ public class Circuito {
 	public List<Tramo> getListaDeTramo() {
 		return listaDeTramo;
 	}
-
+	
 	public void setListaDeTramo(List<Tramo> listaDeTramo) {
 		this.listaDeTramo = listaDeTramo;
 	}
+	
+	public TerminalPortuaria puertoDestinoCircuito() {
+		return listaDeTramo.get(listaDeTramo.size() -1 ).getPuertoDestino();
+	}
+	
+	public TerminalPortuaria puertoOrigenCircuito() {
+		return listaDeTramo.get(0).getPuertoOrigen();
+	}
+
 	
 	public void agregarNuevoTramo(Tramo tramo) throws Exception {
 	Tramo ultimoTramo = listaDeTramo.get(listaDeTramo.size() -1 );
@@ -33,6 +44,10 @@ public class Circuito {
 			costoTotal = costoTotal + tramo.getCostoDetramo();
 		}
 		return costoTotal;
+	}
+	
+	public boolean contieneA(TerminalPortuaria puertoDestino) {
+		return this.listaDeTramo.stream().anyMatch(t -> t.getPuertoDestino() == puertoDestino );
 	}
 
 }
