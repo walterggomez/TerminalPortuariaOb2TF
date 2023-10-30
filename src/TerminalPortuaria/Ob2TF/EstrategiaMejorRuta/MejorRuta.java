@@ -3,6 +3,7 @@ package TerminalPortuaria.Ob2TF.EstrategiaMejorRuta;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 public abstract class MejorRuta {
