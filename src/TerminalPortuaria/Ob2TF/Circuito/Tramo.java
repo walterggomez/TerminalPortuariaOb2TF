@@ -8,7 +8,7 @@ public class Tramo {
 	private TerminalPortuaria puertoOrigen;
 	private TerminalPortuaria puertoDestino;
 	private LocalDate fechaSalida;
-	private long duracionViaje;
+	private long duracionTramo;
 	private double costoDetramo;
 	
 
@@ -21,8 +21,8 @@ public class Tramo {
 		return puertoDestino;
 	}
 
-	public long getDuracionViaje() {
-		return duracionViaje;
+	public long getDuracionTramo() {
+		return duracionTramo;
 	}
 
 	public double getCostoDetramo() {
@@ -46,7 +46,7 @@ public class Tramo {
 	//SEGUNDA FORMA
 	
 	public LocalDate fechaLlegada() {
-		return this.fechaSalida.plus(this.duracionViaje, ChronoUnit.HOURS);
+		return this.fechaSalida.plus(this.duracionTramo, ChronoUnit.HOURS);
 	}
 	
 

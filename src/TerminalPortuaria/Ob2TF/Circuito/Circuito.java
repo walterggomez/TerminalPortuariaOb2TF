@@ -49,5 +49,17 @@ public class Circuito {
 	public boolean contieneA(TerminalPortuaria puertoDestino) {
 		return this.listaDeTramo.stream().anyMatch(t -> t.getPuertoDestino() == puertoDestino );
 	}
+	
+	public int cantidadDeEscalas () {
+		return listaDeTramo.size() - 1;
+	}
+	
+	public long duracionCircuito() {
+		long duracionCircuito = 0;
+		for (Tramo tramo:this.listaDeTramo) {
+			duracionCircuito = duracionCircuito + tramo.getDuracionTramo();
+		}
+		return duracionCircuito;
+	}
 
 }
