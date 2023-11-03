@@ -13,14 +13,13 @@ public abstract class MejorRuta {
 	
 	public List<Circuito> listaDeCircuitos(TerminalPortuaria puertoOrigen,TerminalPortuaria puertoDestino){
 		/* Le pido al puertoOrigen a travez de sus navieras todos los circuitos */
-		List<Circuito> listaCircuitos = puertoOrigen.getNavieras().getCircuitos();
+		List<Circuito> listaCircuitos = puertoOrigen.getMisNavieras().get;
 		/* Filtro los circuitos que contengan al puerto destino*/
 		List<Circuito> circuitosConDestino = listaCircuitos.stream().filter(cir->cir.contieneA(puertoDestino)).collect(Collectors.toList());
 		return circuitosConDestino;
 	}
 	
 
-	
 	
 	
 	
