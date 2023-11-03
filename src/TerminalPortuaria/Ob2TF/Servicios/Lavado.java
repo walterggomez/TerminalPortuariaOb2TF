@@ -13,4 +13,5 @@ public class Lavado implements Servicios
 			return precio2;
 		}
 	}
+
 }

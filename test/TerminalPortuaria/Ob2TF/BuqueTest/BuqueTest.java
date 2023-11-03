@@ -1,5 +1,8 @@
-package TerminalPortuaria.Ob2TF.Buque;
+package TerminalPortuaria.Ob2TF.BuqueTest;
 import java.awt.Point;
+
+import TerminalPortuaria.Ob2TF.Buque.Buque;
+import TerminalPortuaria.Ob2TF.Buque.GPS;
 
 public class BuqueTest
 {
