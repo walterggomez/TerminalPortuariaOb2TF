@@ -1,5 +1,4 @@
 package TerminalPortuaria.Ob2TF.TerminalP;
-
 import java.awt.Point;
 import java.util.List;
 
@@ -7,19 +6,24 @@ import TerminalPortuaria.Ob2TF.Naviera.Naviera;
 
 public class TerminalPortuaria
 {
-	
+	private Point  ubicacion;
 	private List<Naviera> misNavieras;
 	
-	Point  ubicacion = new Point(0, 0);
 	
-	
+	public TerminalPortuaria(Point ubicacion)
+	{
+		super();
+		this.ubicacion = ubicacion;
+	}
+
 	public Point getUbicacion()
 	{
 		return ubicacion;
 	}
 
 
-	public List<Naviera> getMisNavieras() {
+	public List<Naviera> getMisNavieras()
+	{
 		return misNavieras;
 	}
 	

@@ -1,4 +1,4 @@
-package TerminalPortuaria.Ob2TF.CircuitoTest;
+package TerminalPortuaria.Ob2TF.Circuito;
 
 import static org.junit.jupiter.api.Assertions.*;
 
