@@ -11,14 +11,17 @@ import org.junit.jupiter.api.Test;
 
 import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.Circuito.Tramo;
-import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MejorRuta;
+import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MenorCantidadTerminal;
 import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MenorPrecio;
+import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MenorTiempo;
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 class MejorRutaTest {
 	
-	MejorRuta mejorRuta1;
+	MenorPrecio mejorRuta1;
+	MenorCantidadTerminal mejorRuta2;
+	MenorTiempo mejorRuta3;
 
 	TerminalPortuaria bsAs;
 	TerminalPortuaria saoPablo;
@@ -33,8 +36,11 @@ class MejorRutaTest {
 	Naviera naviera2; // [circuito3]
 
 	Circuito circuito1; // [tramo1,tramo2,tramo3]-> bsAs - saoPablo - busan - hongKong
+						//                               1d         5d       2d        = 8d  
 	Circuito circuito2; // [tramo4,tramo5,tramo6]-> bsAs - cartagena - shanghai - singapur
+						//                               3d           5d         1d    = 9d   
 	Circuito circuito3; // [tramo7,tramo8,tramo9]-> bsAs - longBeach - saoPablo - cartagena
+						//                               5d          4d          1     = 10d    	
 	
 	Tramo tramo1; // bsAs-saoPablo
 	Tramo tramo2; // saoPablo-busan
@@ -61,13 +67,12 @@ class MejorRutaTest {
 	List<Tramo> tramosCir3;
 	
 
-	
-	
-
 	@BeforeEach
 	void setUp() throws Exception {
 		// Estrategia 
 		mejorRuta1 = new MenorPrecio();
+		mejorRuta2 = new MenorCantidadTerminal();
+		mejorRuta3 = new MenorTiempo();
 		
 		// TerminalPortuaria
 		bsAs = mock(TerminalPortuaria.class);
@@ -133,26 +138,20 @@ class MejorRutaTest {
 		when(circuito3.contieneA(saoPablo)).thenReturn(true);
 		when(circuito3.contieneA(cartagena)).thenReturn(true);
 		
+		when(circuito1.costoTotalDelCircuito()).thenReturn(250.0);
+		when(circuito2.costoTotalDelCircuito()).thenReturn(150.0);
+		when(circuito3.costoTotalDelCircuito()).thenReturn(350.0);
 		
-		when(tramo1.getPuertoOrigen()).thenReturn(bsAs);
-		when(tramo1.getPuertoDestino()).thenReturn(saoPablo);
-		when(tramo1.getCostoDetramo()).thenReturn(50.0);
-		//when(tramo1.getDuracionTramo()).thenReturn(5.0);
+		when(circuito1.duracionCircuito()).thenReturn((long) 8);
+		when(circuito2.duracionCircuito()).thenReturn((long) 9);
+		when(circuito3.duracionCircuito()).thenReturn((long) 10);
 		
-		when(tramo2.getPuertoOrigen()).thenReturn(saoPablo);
-		when(tramo2.getPuertoDestino()).thenReturn(busan);
-		
-		when(tramo3.getPuertoOrigen()).thenReturn(busan);
-		when(tramo3.getPuertoDestino()).thenReturn(hongKong);
 	
-
-		
 	}
 
 	@Test
 	void navierasDelPuertoTest() {
 		assertEquals(navieras, mejorRuta1.navierasDelPuerto(bsAs));
-
 	}
 
 	@Test
@@ -161,17 +160,32 @@ class MejorRutaTest {
 
 	}
 	@Test
-	void listaDeCircuitos() {
-		
-		List<Circuito> circuitosBuscados= Arrays.asList(circuito1,circuito3);
-		
-		/*when(circuito1.costoTotalDelCircuito()).thenReturn(100.0);
-		when(circuito2.costoTotalDelCircuito()).thenReturn(150.0);
-		when(circuito3.costoTotalDelCircuito()).thenReturn(50.0);*/
-		
-		
-		assertEquals(circuitosBuscados, mejorRuta1.listaDeCircuitos(bsAs, saoPablo));
-		
+	void listaDeCircuitosTest() {
+		List<Circuito> circuitosASaoPablo= Arrays.asList(circuito1,circuito3);
+		assertEquals(circuitosASaoPablo, mejorRuta1.listaDeCircuitos(bsAs, saoPablo));
+		List<Circuito> circuitosAShanghai= Arrays.asList(circuito2);
+		assertEquals(circuitosAShanghai, mejorRuta1.listaDeCircuitos(bsAs, shanghai));
 	}
-
+	@Test
+	void tieneMenorPrecioTest() {
+		
+		assertTrue(mejorRuta1.tieneMenorPrecio(circuito1, circuito3));
+	}
+	/*@Test
+	void tieneMenosEscalas() {
+		
+		assertTrue(mejorRuta2.tieneMenosEscalas(circuito2, circuito3));
+	}*/
+	@Test
+	void tieneMenorTiempo() {
+		assertTrue(mejorRuta3.tieneMenorTiempo(circuito2, circuito3));
+	}
+	@Test
+	void mejorCircuitoParaMenorPrecioTest() {
+		assertEquals(circuito1,mejorRuta1.mejorCircuito(bsAs, saoPablo));
+	}
+	@Test
+	void mejorCircuitoParaMenorTiempoTest() {
+		assertEquals(circuito2,mejorRuta3.mejorCircuito(bsAs, cartagena));
+	}
 }

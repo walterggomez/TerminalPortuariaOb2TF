@@ -12,7 +12,7 @@ public class MenorPrecio extends MejorRuta{
 		List<Circuito> circuitosConDestino = this.listaDeCircuitos(puertoOrigen,puertoDestino);
 		Circuito cirMenorPrecio = circuitosConDestino.get(0);
 		for (Circuito circ: circuitosConDestino) {
-			   if (this.tieneMenorPrecio(cirMenorPrecio,circ)){
+			   if (!this.tieneMenorPrecio(cirMenorPrecio,circ)){
 				   cirMenorPrecio = circ;
 			   }
 		}
@@ -25,7 +25,7 @@ public class MenorPrecio extends MejorRuta{
 
 
 	
- 
+  
 
 
 
