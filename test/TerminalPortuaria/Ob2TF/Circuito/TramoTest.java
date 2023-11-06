@@ -23,6 +23,12 @@ class TramoTest
 		TerminalPortuaria saoPablo = new TerminalPortuaria( new Point(-23, -46) );
 		Tramo buenosAiresSaoPablo = new Tramo( buenosAires, saoPablo, LocalDateTime.of(2023, 11, 05, 17, 10), 49, 1000 );
 		
+		
+		 
+		
+		
+		
+		
 		System.out.println( buenosAiresSaoPablo.getFechaYHoraSalida() );
 		System.out.println( buenosAiresSaoPablo.getFechaYHoraLlegada() );	
 	}

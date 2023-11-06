@@ -71,7 +71,7 @@ public class Tramo
 	{
 		this.fechaYHoraSalida = fechaYHoraSalida;
 	}
-	
+	// Establece fecha de salida frecuente > se genera un viaje... o no, pero al establecer esa fecha, se setean las fechas de los tramos.
 
 	
 	public LocalDateTime getFechaYHoraLlegada()
