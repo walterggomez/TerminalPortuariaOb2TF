@@ -12,7 +12,7 @@ public class MenorCantidadTerminal extends  MejorRuta{
 		List<Circuito> circuitosConDestino = this.listaDeCircuitos(puertoOrigen,puertoDestino);
 		Circuito cirConMenorEscala = circuitosConDestino.get(0);
 		for (Circuito circ: circuitosConDestino) {
-			   if (this.tieneMenosEscalas(cirConMenorEscala,circ)){
+			   if (!this.tieneMenosEscalas(cirConMenorEscala,circ)){
 				   cirConMenorEscala = circ;
 			   }
 		}

@@ -146,6 +146,8 @@ class MejorRutaTest {
 		when(circuito2.duracionCircuito()).thenReturn((long) 9);
 		when(circuito3.duracionCircuito()).thenReturn((long) 10);
 		
+		when(circuito1.cantidadDeEscalas()).thenReturn(0);// si el puerto destino es SaoPablo
+		when(circuito3.cantidadDeEscalas()).thenReturn(1);// si el puerto destino es SaoPablo
 	
 	}
 
@@ -171,11 +173,10 @@ class MejorRutaTest {
 		
 		assertTrue(mejorRuta1.tieneMenorPrecio(circuito1, circuito3));
 	}
-	/*@Test
+	@Test
 	void tieneMenosEscalas() {
-		
-		assertTrue(mejorRuta2.tieneMenosEscalas(circuito2, circuito3));
-	}*/
+		assertTrue(mejorRuta2.tieneMenosEscalas(circuito1, circuito3));
+	}
 	@Test
 	void tieneMenorTiempo() {
 		assertTrue(mejorRuta3.tieneMenorTiempo(circuito2, circuito3));
@@ -183,6 +184,10 @@ class MejorRutaTest {
 	@Test
 	void mejorCircuitoParaMenorPrecioTest() {
 		assertEquals(circuito1,mejorRuta1.mejorCircuito(bsAs, saoPablo));
+	}
+	@Test
+	void mejorCircuitoParaMenorCantidadDeEscalasTest() {
+		assertEquals(circuito1,mejorRuta2.mejorCircuito(bsAs, saoPablo));
 	}
 	@Test
 	void mejorCircuitoParaMenorTiempoTest() {
