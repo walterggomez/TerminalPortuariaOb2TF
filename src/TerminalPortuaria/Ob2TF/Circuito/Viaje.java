@@ -5,19 +5,31 @@ import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 public class Viaje
 {
-	int idViaje;
 	Buque buqueViaje;
 	Circuito circuitoViaje;
 	LocalDateTime fechaDeSalida;
 	LocalDateTime fechaDeLlegada;
+	TerminalPortuaria puertoOrigen;
 	TerminalPortuaria puertoDestino;
 
+	public Viaje( Buque buqueViaje, Circuito circuitoViaje, LocalDateTime fechaDeSalida)
+	{
+		this.circuitoViaje = circuitoViaje;
+		circuitoViaje.setfechaYHoraSalida(fechaDeSalida);
+		this.buqueViaje = buqueViaje;
+		this.fechaDeSalida = fechaDeSalida;
+		this.puertoOrigen = circuitoViaje.puertoOrigenCircuito();
+		this.puertoDestino = circuitoViaje.puertoDestinoCircuito();
+		this.fechaDeLlegada = circuitoViaje.getFechaYHoraLlegada();
+	}
+	
 	public TerminalPortuaria getpuertoDestino()
 	{
 		return puertoDestino;
 	}
 	
-	public LocalDateTime getFechaDeLlegada() {
+	public LocalDateTime getFechaDeLlegada()
+	{
 		return fechaDeLlegada;
 	}
 	

@@ -34,16 +34,22 @@ public class Circuito
 	} // Testear que funcione bien. Testear el caso en que instancie la fecha de salida desde el constructor y que se accione este método.
 	
 
-
+	public LocalDateTime getFechaYHoraLlegada()
+	{
+		return this.listaDeTramo.get( this.listaDeTramo.size() - 1 ).getFechaYHoraLlegada();
+	}
+	
 	public void setListaDeTramo(List<Tramo> listaDeTramo)
 	{
 		this.listaDeTramo = listaDeTramo;
 	}
 	
+	
 	public TerminalPortuaria puertoDestinoCircuito()
 	{
 		return listaDeTramo.get(listaDeTramo.size() -1 ).getPuertoDestino();
 	}
+	
 	
 	public TerminalPortuaria puertoOrigenCircuito()
 	{

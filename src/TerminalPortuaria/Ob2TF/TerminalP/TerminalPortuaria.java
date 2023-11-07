@@ -10,9 +10,7 @@ public class TerminalPortuaria
 {
 	private Point2D  ubicacion;
 	private List<Naviera> misNavieras;
-	private List<Viaje> viajes;
-	
-	
+	// private List<Viaje> viajes;
 	
 	public TerminalPortuaria(Point2D ubicacion)
 	{
@@ -31,10 +29,12 @@ public class TerminalPortuaria
 		return misNavieras;
 	}
 	
+	/*
 	public List<Viaje> getMisViajes()
 	{
 		return viajes;
 	}
+	*/
 	
 	
 	
