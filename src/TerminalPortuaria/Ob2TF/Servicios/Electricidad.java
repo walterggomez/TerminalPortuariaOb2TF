@@ -1,11 +1,12 @@
 package TerminalPortuaria.Ob2TF.Servicios;
+import TerminalPortuaria.Ob2TF.Orden.*;
 
 public class Electricidad implements Servicios
 {
 	float costoKwHora;
 	
 	
-	double costoServicio( Orden orden )
+	public double costoServicio( Orden orden )
 	{
 		return costoKwHora * orden.getContainer.getConsumo() * 
 	}

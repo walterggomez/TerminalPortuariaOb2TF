@@ -1,10 +1,11 @@
 package TerminalPortuaria.Ob2TF.Servicios;
+import TerminalPortuaria.Ob2TF.Orden.*;
 
 public class Pesado implements Servicios
 {
 	private double costoPesaje;
 	
-	double costoServicio( Orden orden )
+	public double costoServicio( Orden orden )
 	{
 		return costoPesaje;
 	}
