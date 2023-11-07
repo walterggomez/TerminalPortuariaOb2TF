@@ -19,6 +19,8 @@ class NavieraTest
 	
 	// TerminalPortuaria buenosAires = new TerminalPortuaria( new Point2D.Double(-34.61315, -58.37723) );
 	/*
+	
+	-
 	TerminalPortuaria saoPablo = new TerminalPortuaria( new Point2D.Double(-23.5475, -46.63611) );
 	TerminalPortuaria montevideo = new TerminalPortuaria( new Point2D.Double(-34.90328, -56.18816) );
 	TerminalPortuaria asuncion = new TerminalPortuaria( new Point2D.Double(-25.28646, -57.647) );
