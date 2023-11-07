@@ -30,7 +30,7 @@ public class Tramo
 		this.puertoOrigen = puertoOrigen;
 		this.puertoDestino = puertoDestino;
 		this.fechaYHoraSalida = fechaYHoraSalida;
-		this.duracionTramo = 40 *  GPS.distanciaEntrePuntos( puertoOrigen.getUbicacion(),puertoDestino.getUbicacion() );
+		this.duracionTramo = ( GPS.distanciaEntrePuntos( puertoOrigen.getUbicacion(), puertoDestino.getUbicacion() ) / 40 );
 		this.costoDetramo = costoDetramo;
 	}
 

@@ -3,12 +3,14 @@ package TerminalPortuaria.Ob2TF.Naviera;
 import static org.junit.jupiter.api.Assertions.*;
 import java.awt.Point;
 import java.awt.geom.Point2D;
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import TerminalPortuaria.Ob2TF.Buque.*;
 import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.Circuito.Tramo;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
@@ -16,6 +18,19 @@ import static org.mockito.Mockito.*;
 
 class NavieraTest
 {
+	
+	public static void main(String[] args)
+	{
+		TerminalPortuaria saoPablo = new TerminalPortuaria( new Point2D.Double(-23.5475, -46.63611) );
+		TerminalPortuaria montevideo = new TerminalPortuaria( new Point2D.Double(-34.90328, -56.18816) );
+		// 1566.02 km / 40
+		
+		Tramo tramo1 = new Tramo( saoPablo, montevideo, LocalDateTime.of(2023, 11, 07, 17, 20), 2000 );
+		
+		System.out.println( tramo1.getDuracionTramo() );
+		
+		// 	public Tramo(TerminalPortuaria puertoOrigen, TerminalPortuaria puertoDestino, LocalDateTime fechaYHoraSalida, double costoDetramo)
+	}
 	
 	// TerminalPortuaria buenosAires = new TerminalPortuaria( new Point2D.Double(-34.61315, -58.37723) );
 	/*
@@ -97,6 +112,10 @@ class NavieraTest
 	Naviera naviera1; // [circuito1, circuito2]
 	Naviera naviera2; // [circuito3]
 	
+	// Buques
+	Buque buque1;
+	Buque buque2;
+	
 	
 	
 	@BeforeEach
@@ -105,6 +124,10 @@ class NavieraTest
 		//Naviera		
 		naviera1 = new Naviera();
 		naviera2 = new Naviera();
+		
+		// Buques
+		buque1 = mock( Buque.class );
+		buque2 = mock( Buque.class );
 		
 		
 		// TerminalPortuaria
@@ -162,16 +185,53 @@ class NavieraTest
 		when(laPaz.getUbicacion()).thenReturn( new Point2D.Double(-16.5, -68.15) );
 		
 		// Tramos
+		when( tramo1.getPuertoOrigen() ).thenReturn(bsAs);
+		when( tramo1.getPuertoDestino() ).thenReturn(saoPablo);
 		
-		when( tramo1.getPuertoDestino() )
+		when( tramo2.getPuertoOrigen() ).thenReturn(saoPablo);
+		when( tramo2.getPuertoDestino() ).thenReturn(montevideo);
+		
+		when( tramo3.getPuertoOrigen() ).thenReturn(montevideo);
+		when( tramo3.getPuertoDestino() ).thenReturn(asuncion);
+		
+		when( tramo4.getPuertoOrigen() ).thenReturn(asuncion);
+		when( tramo4.getPuertoDestino() ).thenReturn(lima);
+		
+		when( tramo5.getPuertoOrigen() ).thenReturn(lima);
+		when( tramo5.getPuertoDestino() ).thenReturn(santiagoDeChile);
+		
+		when( tramo6.getPuertoOrigen() ).thenReturn(santiagoDeChile);
+		when( tramo6.getPuertoDestino() ).thenReturn(laPaz);
+		
+		// Circuitos
+		/*
+		 		circuito1 = mock(Circuito.class);
+				circuito2 = mock(Circuito.class);
+				circuito3 = mock(Circuito.class);
+		 */
+		
+
+		
+		// when(naviera1.getMisCircuitos()).thenReturn(circuitosN1);
 		
 		
 		
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void test() 
+	{
+		naviera1.agregarCircuito(circuito1);
+		naviera1.agregarCircuito(circuito2);
+		//assertThrows( naviera1.establecerViaje(buque1, LocalDateTime.of(2023, 11, 07, 17, 20), circuito3) );
+		// when( naviera1.es ).thenThrow(new MyException());
+		
+		Exception exception = assertThrows( Exception.class, () ->
+		{
+			naviera1.establecerViaje(buque1, LocalDateTime.of(2023, 11, 07, 17, 20), circuito3);
+		});
+		
+		assertEquals( "Este tramo no es valido", exception.getMessage() );
 	}
 
 }

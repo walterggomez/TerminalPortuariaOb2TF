@@ -42,9 +42,15 @@ public class Naviera
 	}
 	*/
 	
+	public void agregarCircuito( Circuito circuito )
+	{
+		// Agregarle validador
+		misCircuitos.add(circuito);
+	}
+	
 	public void validarCircuito(Circuito circuito) throws Exception
 	{
-		if ( this.misCircuitos.contains(circuito) )
+		if ( misCircuitos.contains(circuito) )
 		{
 			throw new Exception("Este tramo no es valido");
 		}
@@ -52,7 +58,7 @@ public class Naviera
 	
 	public void validarBuque(Buque buque) throws Exception
 	{
-		if ( this.buques.contains(buque) )
+		if ( buques.contains(buque) )
 		{
 			throw new Exception("Este buque no es valido");
 		}
