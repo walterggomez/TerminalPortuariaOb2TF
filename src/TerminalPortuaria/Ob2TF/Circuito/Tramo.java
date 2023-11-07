@@ -81,7 +81,7 @@ public class Tramo
 	
 	public LocalDateTime getFechaYHoraLlegada()
 	{
-		return this.fechaYHoraSalida.plus(this.duracionTramo, ChronoUnit.HOURS);
+		return this.fechaYHoraSalida.plus((long) this.duracionTramo, ChronoUnit.HOURS);
 	}
 	
 }

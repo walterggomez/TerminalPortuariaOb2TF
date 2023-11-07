@@ -102,7 +102,7 @@ public class Circuito
 		long duracionCircuito = 0;
 		for (Tramo tramo: this.listaDeTramo)
 		{
-			duracionCircuito = duracionCircuito + tramo.getDuracionTramo();
+			duracionCircuito = (long) (duracionCircuito + tramo.getDuracionTramo());
 		}
 		return duracionCircuito;
 	}
