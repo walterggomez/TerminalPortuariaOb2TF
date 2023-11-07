@@ -1,4 +1,6 @@
 package TerminalPortuaria.Ob2TF.Circuito;
+import java.awt.geom.Point2D;
+import TerminalPortuaria.Ob2TF.Buque.*;
 // import java.time.LocalDate;
 // import java.time.LocalTime;
 import java.time.LocalDateTime;
@@ -12,7 +14,7 @@ public class Tramo
 	private TerminalPortuaria puertoOrigen;
 	private TerminalPortuaria puertoDestino;
 	private LocalDateTime fechaYHoraSalida;
-	private long duracionTramo;
+	private double duracionTramo;
 	private double costoDetramo;
 	
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy, HH:mm"); // Formato de fecha y hora seleccionado.
@@ -22,26 +24,29 @@ public class Tramo
 		return puertoOrigen;
 	}
 
-	public Tramo(TerminalPortuaria puertoOrigen, TerminalPortuaria puertoDestino, LocalDateTime fechaYHoraSalida,
-		long duracionTramo, double costoDetramo){
+	public Tramo(TerminalPortuaria puertoOrigen, TerminalPortuaria puertoDestino, LocalDateTime fechaYHoraSalida, double costoDetramo)
+	{
 		super();
 		this.puertoOrigen = puertoOrigen;
 		this.puertoDestino = puertoDestino;
 		this.fechaYHoraSalida = fechaYHoraSalida;
-		this.duracionTramo = duracionTramo;
+		this.duracionTramo = 40 *  GPS.distanciaEntrePuntos( puertoOrigen.getUbicacion(),puertoDestino.getUbicacion() );
 		this.costoDetramo = costoDetramo;
 	}
 
+	
+	public double getDuracionTramo()
+	{
+		return duracionTramo;
+	}
+	
+	
 	public TerminalPortuaria getPuertoDestino()
 	{
 		return puertoDestino;
 	}
 
-	public long getDuracionTramo()
-	{
-		return duracionTramo;
-	}
-
+	
 	public double getCostoDetramo()
 	{
 		return costoDetramo;

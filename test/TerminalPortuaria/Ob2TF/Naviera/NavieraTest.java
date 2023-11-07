@@ -21,8 +21,11 @@ class NavieraTest
 	TerminalPortuaria laPaz = new TerminalPortuaria( new Point2D.Double(-16.5, -68.15) );
 	
 	
+	
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() throws Exception
+	{
+		
 	}
 
 	@Test
