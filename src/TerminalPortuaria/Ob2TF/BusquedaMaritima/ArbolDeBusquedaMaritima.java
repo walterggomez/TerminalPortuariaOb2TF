@@ -34,13 +34,13 @@ public class ArbolDeBusquedaMaritima {
 				return this.puertoGestionado.getMisViajes().stream().filter(t -> t.getFechaDeSalida() == fechaSalida).toList();
 			}
 			
-			//CONSTRUCTOR PARA PUERTO (SOBRE EL QUE SE REALIZA LA CONSULTA)
+			
+			
 			public ArbolDeBusquedaMaritima(TerminalPortuaria terminalPortuaria) {
 				this.puertoGestionado = terminalPortuaria;
 				this.arbolDeBusqueda = null;
 			}
 			
-			//CONSTRUCTOR DE ARBOLE SOBRE EL QUE SE REALIZA LA RECURSION
 			public ArbolDeBusquedaMaritima(String nombre) {
 				this.nombre = nombre;
 				this.arbolDeBusqueda = new ArrayList<>();
@@ -84,18 +84,16 @@ public class ArbolDeBusquedaMaritima {
 			}
 			
 			
-//			public boolean esPuertoSalida(TerminalPortuaria puertoSalida) {
-//				if (this.isComposite()) {
-//					boolean resultado = false;
-//					for (ArbolDeBusquedaMaritima node : this.arbolDeBusqueda) {
-//						resultado = node.esIgualPuerto(puertoSalida);
-//					}
-//					return resultado;
-//				}
-//				else {
-//					return this.esIgualPuerto(puertoSalida);
-//				}
-//			}
-
-
+			public List<Viaje> esPuertoSalida(TerminalPortuaria puertoSalida) {
+				if (this.isComposite()) {
+					List<Viaje> viajes = this.viajesConMismoPuertoDestino(puertoSalida);
+					for (ArbolDeBusquedaMaritima node : this.arbolDeBusqueda) {
+						viajes = node.viajesConMismoPuertoDestino(puertoSalida);
+					}
+					return viajes;
+				}
+				else {
+					throw new UnsupportedOperationException("No existen viajes con la busqueda esperada");
+				}
+			}
 }

@@ -78,6 +78,7 @@ public class Circuito
 	
 	public double costoTotalDelCircuito()
 	{
+//		List<Tramo> listaDeTramosDeCircuito = this.circuitoHasta();
 		double costoTotal = 0;
 		for (Tramo tramo: this.listaDeTramo)
 		{
