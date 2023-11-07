@@ -1,5 +1,5 @@
 package TerminalPortuaria.Ob2TF.Circuito;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import TerminalPortuaria.Ob2TF.Buque.Buque;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
@@ -8,8 +8,8 @@ public class Viaje
 	int idViaje;
 	Buque buqueViaje;
 	Circuito circuitoViaje;
-	LocalDate fechaDeSalida;
-	LocalDate fechaDeLlegada;
+	LocalDateTime fechaDeSalida;
+	LocalDateTime fechaDeLlegada;
 	TerminalPortuaria puertoDestino;
 
 	public TerminalPortuaria getpuertoDestino()
@@ -17,7 +17,7 @@ public class Viaje
 		return puertoDestino;
 	}
 	
-	public LocalDate getFechaDeLlegada() {
+	public LocalDateTime getFechaDeLlegada() {
 		return fechaDeLlegada;
 	}
 	
@@ -30,11 +30,11 @@ public class Viaje
 		this.buqueViaje = buqueViaje;
 	}
 	
-	public LocalDate getFechaDeSalida() {
+	public LocalDateTime getFechaDeSalida() {
 		return fechaDeSalida;
 	}
 	
-	public void setFechaDeSalida(LocalDate fechaDeSalida) {
+	public void setFechaDeSalida(LocalDateTime fechaDeSalida) {
 		this.fechaDeSalida = fechaDeSalida;
 	}
 	

@@ -31,7 +31,8 @@ public class TerminalPortuaria
 		return misNavieras;
 	}
 	
-	public List<Viaje> getMisViajes() {
+	public List<Viaje> getMisViajes()
+	{
 		return viajes;
 	}
 	
