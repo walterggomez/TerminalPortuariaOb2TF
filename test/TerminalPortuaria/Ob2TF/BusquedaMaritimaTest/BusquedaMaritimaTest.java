@@ -1,4 +1,4 @@
-package TerminaPortuaria.Ob2TF.BusquedaMaritimaTest;
+package TerminalPortuaria.Ob2TF.BusquedaMaritimaTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
