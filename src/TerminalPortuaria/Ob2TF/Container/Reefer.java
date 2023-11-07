@@ -2,15 +2,16 @@ package TerminalPortuaria.Ob2TF.Container;
 
 public class Reefer extends Container{
 
-	public Reefer(int ancho, int largo, int altura) {
+	double consumoKwHora;
+	
+	public Reefer(int ancho, int largo, int altura, double kwhora) {
 		super(ancho, largo, altura);
+		this.consumoKwHora = kwhora;
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	@Override
-	public int pesoTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double getConsumo() {
+		return consumoKwHora;
 	}
-
 }

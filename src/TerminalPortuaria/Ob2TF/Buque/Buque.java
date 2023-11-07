@@ -3,6 +3,7 @@ import java.awt.Point;
 import TerminalPortuaria.Ob2TF.Circuito.*;
 
 
+
 public class Buque
 {
 	private Point  posicionActual = new Point(0, 0);

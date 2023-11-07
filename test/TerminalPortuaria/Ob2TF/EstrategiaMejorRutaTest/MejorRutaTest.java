@@ -1,4 +1,4 @@
-package TerminalPortuariaOb2TF.EstrategiaMejorRutaTest;
+package TerminalPortuaria.Ob2TF.EstrategiaMejorRutaTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

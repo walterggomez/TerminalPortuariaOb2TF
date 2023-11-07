@@ -3,15 +3,16 @@ import TerminalPortuaria.Ob2TF.Orden.*;
 
 public class Lavado implements Servicios
 {
+	
 	public double costoServicio( Orden orden )
 	{
-		if( orden.getContainer.getVolumen() < 70 )
+		if( orden.getContainer().volumen() < 70 )
 		{
-			return precio1;
+			return 100;
 		}
 		else
 		{
-			return precio2;
+			return 30;
 		}
 	}
 

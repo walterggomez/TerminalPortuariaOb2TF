@@ -6,9 +6,6 @@ public class Tanque extends Container {
 		super(ancho, largo, altura);
 	}
 
-	@Override
-	public int pesoTotal() {
-		return 0;
-	}
+
 
 }

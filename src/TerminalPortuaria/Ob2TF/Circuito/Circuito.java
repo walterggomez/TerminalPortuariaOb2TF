@@ -65,6 +65,10 @@ public class Circuito
 	//Faltaria contemplar un try/catch para el caso de que sea una lista vacia
 	}
 
+//	public List<TerminalPortuaria> circuitoHasta(TerminalPortuaria terminalPorturia) {
+//	
+//		
+//	}
 	
 	public double costoTotalDelCircuito()
 	{

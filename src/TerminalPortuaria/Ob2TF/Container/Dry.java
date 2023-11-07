@@ -7,12 +7,5 @@ public class Dry extends Container{
 		
 	}
 
-	@Override
-	public int pesoTotal() {
-		
-		return 0;
-	}
-
-
 
 }

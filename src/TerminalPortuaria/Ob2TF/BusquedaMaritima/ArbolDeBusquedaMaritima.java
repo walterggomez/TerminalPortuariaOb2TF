@@ -84,18 +84,18 @@ public class ArbolDeBusquedaMaritima {
 			}
 			
 			
-			public boolean esPuertoSalida(TerminalPortuaria puertoSalida) {
-				if (this.isComposite()) {
-					boolean resultado = false;
-					for (ArbolDeBusquedaMaritima node : this.arbolDeBusqueda) {
-						resultado = node.esIgualPuerto(puertoSalida);
-					}
-					return resultado;
-				}
-				else {
-					return this.esIgualPuerto(puertoSalida);
-				}
-			}
+//			public boolean esPuertoSalida(TerminalPortuaria puertoSalida) {
+//				if (this.isComposite()) {
+//					boolean resultado = false;
+//					for (ArbolDeBusquedaMaritima node : this.arbolDeBusqueda) {
+//						resultado = node.esIgualPuerto(puertoSalida);
+//					}
+//					return resultado;
+//				}
+//				else {
+//					return this.esIgualPuerto(puertoSalida);
+//				}
+//			}
 
 
 }

@@ -1,4 +1,4 @@
-package TerminalPortuariaOb2TF.ClienteTest;
+package TerminalPortuaria.Ob2TF.ClienteTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
