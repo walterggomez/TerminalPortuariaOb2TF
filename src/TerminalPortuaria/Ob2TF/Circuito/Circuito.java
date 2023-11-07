@@ -6,6 +6,7 @@ import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 public class Circuito
 {
+	int idCircuito;
 	LocalDateTime fechaYHoraSalida;
 	private List<Tramo> listaDeTramo = new ArrayList<Tramo>();
 

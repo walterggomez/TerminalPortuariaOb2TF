@@ -5,11 +5,20 @@ import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 public class Viaje
 {
+	int idViaje;
 	Buque buqueViaje;
 	Circuito circuitoViaje;
 	LocalDate fechaDeSalida;
+	LocalDate fechaDeLlegada;
+	TerminalPortuaria puertoDestino;
 
+	public TerminalPortuaria getpuertoDestino() {
+		return puertoDestino;
+	}
 	
+	public LocalDate getFechaDeLlegada() {
+		return fechaDeLlegada;
+	}
 	
 	public Buque getBuqueViaje() {
 		return buqueViaje;
