@@ -1,6 +1,5 @@
-package TerminalPortuaria.Ob2TF.BuqueTest;
-import java.awt.Point;
-
+package TerminalPortuaria.Ob2TF.Buque;
+import java.awt.geom.Point2D;
 import TerminalPortuaria.Ob2TF.Buque.Buque;
 import TerminalPortuaria.Ob2TF.Buque.GPS;
 

@@ -1,12 +1,12 @@
 package TerminalPortuaria.Ob2TF.Buque;
-import java.awt.Point;
+import java.awt.geom.Point2D;
 import TerminalPortuaria.Ob2TF.Circuito.*;
 
 
 
 public class Buque
 {
-	private Point  posicionActual = new Point(0, 0);
+	private Point2D  posicionActual = new Point2D.Double(0, 0);
 	EstadoBuque estadoActual = new Outbound();
 	private Viaje viajeActual;
 	
@@ -29,7 +29,7 @@ public class Buque
 	}
 
 
-	public Point getPosicionActual()
+	public Point2D getPosicionActual()
 	{
 		return posicionActual;
 	}

@@ -12,7 +12,8 @@ public class Viaje
 	LocalDate fechaDeLlegada;
 	TerminalPortuaria puertoDestino;
 
-	public TerminalPortuaria getpuertoDestino() {
+	public TerminalPortuaria getpuertoDestino()
+	{
 		return puertoDestino;
 	}
 	
@@ -23,12 +24,16 @@ public class Viaje
 	public Buque getBuqueViaje() {
 		return buqueViaje;
 	}
-	public void setBuqueViaje(Buque buqueViaje) {
+	
+	public void setBuqueViaje(Buque buqueViaje)
+	{
 		this.buqueViaje = buqueViaje;
 	}
+	
 	public LocalDate getFechaDeSalida() {
 		return fechaDeSalida;
 	}
+	
 	public void setFechaDeSalida(LocalDate fechaDeSalida) {
 		this.fechaDeSalida = fechaDeSalida;
 	}
