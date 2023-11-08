@@ -10,9 +10,9 @@ import java.util.HashMap;
 
 public class Naviera
 {
-	private List<Circuito> misCircuitos;
+	private List<Circuito> misCircuitos = new ArrayList<>();
 	// private Map<Circuito, LocalDateTime> listaCircuitosSalidas = new HashMap<>();
-	private List<Buque> buques;
+	private List<Buque> buques = new ArrayList<>();
 	private List<Viaje> viajes = new ArrayList<>();
 	
 
@@ -50,7 +50,7 @@ public class Naviera
 	
 	public void validarCircuito(Circuito circuito) throws Exception
 	{
-		if ( misCircuitos.contains(circuito) )
+		if ( ! misCircuitos.contains(circuito) )
 		{
 			throw new Exception("Este tramo no es valido");
 		}

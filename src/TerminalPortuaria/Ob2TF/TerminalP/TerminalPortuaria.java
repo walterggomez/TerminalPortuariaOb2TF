@@ -1,16 +1,18 @@
 package TerminalPortuaria.Ob2TF.TerminalP;
 import java.awt.Point;
 import java.awt.geom.Point2D;
+import java.util.Collection;
 import java.util.List;
 
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
+import TerminalPortuaria.Ob2TF.BusquedaMaritima.ArbolDeBusquedaMaritima;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 
 public class TerminalPortuaria
 {
 	private Point2D  ubicacion;
 	private List<Naviera> misNavieras;
-	// private List<Viaje> viajes;
+	private List<Viaje> viajes;
 	
 	public TerminalPortuaria(Point2D ubicacion)
 	{
@@ -28,14 +30,14 @@ public class TerminalPortuaria
 	{
 		return misNavieras;
 	}
+
 	
-	/*
+
 	public List<Viaje> getMisViajes()
 	{
 		return viajes;
 	}
-	*/
-	
+
 	
 	
 	/*

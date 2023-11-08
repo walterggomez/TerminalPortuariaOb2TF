@@ -3,6 +3,7 @@ package TerminalPortuaria.Ob2TF.BusquedaMaritima;
 import TerminalPortuaria.Ob2TF.Circuito.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import TerminalPortuaria.Ob2TF.TerminalP.*;
@@ -25,12 +26,12 @@ public class ArbolDeBusquedaMaritima {
 			}
 			
 			//Devuelve una lista de los viajes que tienen una fecha de llegada igual al parametros fechaLlegada
-			public List<Viaje> viajesConFechaDeLlegada(LocalDate fechaLlegada) {
+			public List<Viaje> viajesConFechaDeLlegada(LocalDateTime fechaLlegada) {
 				return this.puertoGestionado.getMisViajes().stream().filter(t -> t.getFechaDeLlegada() == fechaLlegada).toList();
 			}
 			
 			//Devuelve una lista de los viajes que tienen una fecha de salida igual al parametro fechaSalida
-			public List<Viaje> viajesConFechaDeSalida(LocalDate fechaSalida) {
+			public List<Viaje> viajesConFechaDeSalida(LocalDateTime fechaSalida) {
 				return this.puertoGestionado.getMisViajes().stream().filter(t -> t.getFechaDeSalida() == fechaSalida).toList();
 			}
 			
