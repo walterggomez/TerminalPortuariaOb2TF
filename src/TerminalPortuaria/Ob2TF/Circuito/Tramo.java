@@ -30,7 +30,7 @@ public class Tramo
 		this.puertoOrigen = puertoOrigen;
 		this.puertoDestino = puertoDestino;
 		this.fechaYHoraSalida = fechaYHoraSalida;
-		this.duracionTramo = ( GPS.distanciaEntrePuntos( puertoOrigen.getUbicacion(), puertoDestino.getUbicacion() ) / 40 );
+		this.duracionTramo = ( Math.round( GPS.distanciaEntrePuntos( puertoOrigen.getUbicacion(), puertoDestino.getUbicacion() ) / 40 )  );
 		this.costoDetramo = costoDetramo;
 	}
 
@@ -59,6 +59,14 @@ public class Tramo
 	 */
 	{
 		 return fechaYHoraSalida.format(formatter);
+	}
+	
+	public String mostrarFechaYHoraLlegada()
+	/*
+		Retorna la fecha con formato en 'String' 'LocalDateTime' para poder mostrar la fecha con un formato más legible.
+	 */
+	{
+		 return this.getFechaYHoraLlegada().format(formatter);
 	}
 	
 	
