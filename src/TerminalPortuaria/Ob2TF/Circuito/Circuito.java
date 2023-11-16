@@ -1,5 +1,4 @@
 package TerminalPortuaria.Ob2TF.Circuito;
-
 import java.util.List;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ public class Circuito {
 		return listaDeTramo;
 	}
 
+	
 	public Circuito(List<Tramo> listaDeTramo, LocalDateTime fechaYHoraSalida) {
 		super();
 		this.listaDeTramo = listaDeTramo;
@@ -25,40 +25,56 @@ public class Circuito {
 		 */
 	}
 
+	
 	public void setfechaYHoraSalida(LocalDateTime fechaYHora) {
 		listaDeTramo.get(0).setFechaYHoraSalida(fechaYHora);
 		for (int i = 1; i <= listaDeTramo.size(); i++) {
 			listaDeTramo.get(i).setFechaYHoraSalida(listaDeTramo.get(i - 1).getFechaYHoraLlegada());
 		}
-	} // Testear que funcione bien. Testear el caso en que instancie la fecha de
-		// salida desde el constructor y que se accione este método.
+	} 
+	// Testear que funcione bien. Testear el caso en que instancie la fecha de salida desde el constructor y que se accione este método.
+	// Contemplar caso de que instancie una lista vacía, con un try catch.
+	
 
+	
 	public LocalDateTime getFechaYHoraLlegada() {
 		return this.listaDeTramo.get(this.listaDeTramo.size() - 1).getFechaYHoraLlegada();
 	}
 
+	
 	public void setListaDeTramo(List<Tramo> listaDeTramo) {
 		this.listaDeTramo = listaDeTramo;
 	}
 
+	
 	public TerminalPortuaria puertoDestinoCircuito() {
 		return listaDeTramo.get(listaDeTramo.size() - 1).getPuertoDestino();
 	}
 
+	
 	public TerminalPortuaria puertoOrigenCircuito() {
 		return listaDeTramo.get(0).getPuertoOrigen();
 	}
 
-	public void agregarNuevoTramo(Tramo tramo) throws Exception {
+	
+	public void agregarNuevoTramo(Tramo tramo) throws Exception
+	{
 		Tramo ultimoTramo = listaDeTramo.get(listaDeTramo.size() - 1);
-		if (ultimoTramo.getPuertoDestino() == tramo.getPuertoOrigen()) {
+		if ( ultimoTramo.getPuertoDestino() == tramo.getPuertoOrigen() )
+		{
 			listaDeTramo.add(tramo);
-		} else {
+		} 
+		else
+		{
 			throw new Exception("Este tramo no es valido");
 		}
-		// Faltaria contemplar un try/catch para el caso de que sea una lista vacia
+		/*
+		 	Faltaria contemplar un try/catch para el caso de que sea una lista vacia. Es decir si quiero agregar un tramo a una lista vacía
+		 		debería dejarme hacerlo.
+		*/
 	}
 
+	
 	//POSIBLE SOLUCION PENSADA POR LAS VIVENCIAS EN EDD
 	public List<Tramo> circuitoDesde(TerminalPortuaria terminalPortuaria) {
 	    List<Tramo> nuevaLista = new ArrayList<>();

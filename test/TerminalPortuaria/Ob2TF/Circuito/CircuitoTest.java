@@ -1,23 +1,43 @@
 package TerminalPortuaria.Ob2TF.Circuito;
-
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import java.awt.geom.Point2D;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
+import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
-class CircuitoTest {
+class CircuitoTest 
+{
+/*
+	Lista de tests a crear en circuito:
+	- Agregar tramo
+	- Evaluar duración de cada tramo y sumarlo. Testear que sea igual a la duración del circuito.
+	- Evaluar fecha de inicio y fecha de final.
+	- Evaluar método para extraer circuito desde cierto tramo, creando un nuevo circuito que solo incluya ese tramo.
+	- Evaluar excepción al agregar tramo... el último tramo del circuito debe tener como puerto de destino al puerto de origen del tramo
+		que quiero agregar.
+*/
+	
+	// Circuitos
+	Circuito circuito1;
+	Circuito circuito2;
+	Circuito circuito3;
+	
+	// Puertos
+	TerminalPortuaria bsAs;
+	TerminalPortuaria saoPablo;
+	TerminalPortuaria montevideo;
+	TerminalPortuaria asuncion;
+	TerminalPortuaria lima;
+	TerminalPortuaria santiagoDeChile;
+	TerminalPortuaria laPaz;
 
-	Circuito circuito1; // [tramo1,tramo2,tramo3]-> bsAs - saoPablo - busan - hongKong
-	// 1d 5d 2d = 8d
-	Circuito circuito2; // [tramo4,tramo5,tramo6]-> bsAs - cartagena - shanghai - singapur
-	// 3d 5d 1d = 9d
-	Circuito circuito3; // [tramo7,tramo8,tramo9]-> bsAs - longBeach - saoPablo - cartagena
-	// 5d 4d 1 = 10d
-
+	
+	// Tramos
 	Tramo tramo1; // bsAs-saoPablo
 	Tramo tramo2; // saoPablo-busan
 	Tramo tramo3; // busan-hongKong
@@ -30,6 +50,7 @@ class CircuitoTest {
 	Tramo tramo8; // longBeach-saoPablo
 	Tramo tramo9; // saoPablo-cartagena
 
+/*
 	List<Naviera> navieras;
 
 	List<Circuito> circuitosN1;
@@ -41,14 +62,33 @@ class CircuitoTest {
 	List<Tramo> tramosCir1;
 	List<Tramo> tramosCir2;
 	List<Tramo> tramosCir3;
+*/
 
 	@BeforeEach
-	void setUp() throws Exception {
-
+	void setUp() throws Exception 
+	{
+		// Mocks de las terminales
+		bsAs = mock(TerminalPortuaria.class);
+		saoPablo = mock(TerminalPortuaria.class);
+		montevideo = mock(TerminalPortuaria.class);
+		asuncion = mock(TerminalPortuaria.class);
+		lima = mock(TerminalPortuaria.class);
+		santiagoDeChile = mock(TerminalPortuaria.class);
+		laPaz = mock(TerminalPortuaria.class);
+		
+		// getUbicacion() de las terminales
+		when(bsAs.getUbicacion()).thenReturn( new Point2D.Double(-23.5475, -46.63611) );
+		when(saoPablo.getUbicacion()).thenReturn( new Point2D.Double(-34.61315, -58.37723) );
+		when(montevideo.getUbicacion()).thenReturn( new Point2D.Double(-34.90328, -56.18816) );
+		when(asuncion.getUbicacion()).thenReturn( new Point2D.Double(-25.28646, -57.647) );
+		when(lima.getUbicacion()).thenReturn( new Point2D.Double(-12.04318, -77.02824) );
+		when(santiagoDeChile.getUbicacion()).thenReturn( new Point2D.Double(-33.45694, -70.64827) );
+		when(laPaz.getUbicacion()).thenReturn( new Point2D.Double(-16.5, -68.15) );
 	}
 
 	@Test
-	void test() {
+	void test() 
+	{
 
 		fail("Not yet implemented");
 	}
