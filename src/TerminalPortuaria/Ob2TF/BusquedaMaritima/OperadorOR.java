@@ -6,13 +6,13 @@ import java.util.List;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
-public class OperadorOR extends Componente {
+public class OperadorOR implements Componente {
 
-
+	String nombre;
 	List<Componente> hijo = new ArrayList<Componente>();
 	
 	public OperadorOR(String nombre) {
-	super(nombre);
+	this.nombre = nombre;
 	// TODO Auto-generated constructor stub
 }
 
@@ -28,12 +28,6 @@ public class OperadorOR extends Componente {
 		hijo.remove(componente);
 	}
 
-	@Override
-	public void nivel(int nivel) {
-		// TODO Auto-generated method stub
-		for (int i = 0; i < hijo.size(); i++)
-            hijo.get(i).nivel(nivel + 1);
-	}
 
 	@Override
 	public List<Viaje> filtrar(Viaje viaje, TerminalPortuaria puertoDestino) {

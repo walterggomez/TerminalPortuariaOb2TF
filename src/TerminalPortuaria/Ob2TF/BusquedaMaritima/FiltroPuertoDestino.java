@@ -6,12 +6,9 @@ import java.util.List;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
-public class FiltroPuertoDestino extends Componente {
+public class FiltroPuertoDestino implements Componente {
 
-	public FiltroPuertoDestino(String nombre) {
-		super(nombre);
-		// TODO Auto-generated constructor stub
-	}
+
 
 	@Override
 	public List<Viaje> filtrar(Viaje viaje, TerminalPortuaria puertoDestino) {
@@ -24,19 +21,12 @@ public class FiltroPuertoDestino extends Componente {
 
 	@Override
 	public void Agregar(Componente componente) {
-		// TODO Auto-generated method stub
-		System.out.println("no se puede agregar la hoja");
+		throw new UnsupportedOperationException("No Valido");
 	}
 
 	@Override
 	public void Remover(Componente componente) {
-		// TODO Auto-generated method stub
-		System.out.println("no se puede quitar la hoja");
 	}
 
-	@Override
-	public void nivel(int nivel) {
-		// TODO Auto-generated method stub
-		System.out.println('-' + "" + nombre);
-	}
+
 }
