@@ -4,6 +4,7 @@ import java.awt.geom.Point2D;
 
 public class GPS 
 {
+
 	
 	public static double  distanciaEntrePuntos( Point2D punto1, Point2D punto2 )
 	{        

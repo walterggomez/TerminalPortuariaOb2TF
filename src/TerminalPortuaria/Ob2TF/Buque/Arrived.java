@@ -8,6 +8,6 @@ public class Arrived implements EstadoBuque
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 
 }

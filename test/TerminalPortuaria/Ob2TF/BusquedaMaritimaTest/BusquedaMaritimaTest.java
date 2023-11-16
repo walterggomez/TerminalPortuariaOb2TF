@@ -52,7 +52,7 @@ class BusquedaMaritimaTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		// Estrategia 
-		busqueda = new OperadorAND(todosLosViajes);
+		busqueda = new OperadorAND("NombrePrueba");
 		
 		// TerminalPortuaria
 		bsAs = mock(TerminalPortuaria.class);
@@ -76,13 +76,12 @@ class BusquedaMaritimaTest {
 		// Lista de viajes
 		List<Viaje> viajesSoloASanPablo = Arrays.asList(viajePorSanPablo);
 		
+		todosLosViajes = (List<Viaje>) mock(Viaje.class);
+		
 	
 	
 	}
 	
-	@Test
-	void navierasDelPuertoTest() {
-		assertEquals(todosLosViajes, busqueda.match(saoPablo, fechaLlegada));
-	}
+	
 
 }

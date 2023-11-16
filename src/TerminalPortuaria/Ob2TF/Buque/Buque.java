@@ -16,10 +16,13 @@ public class Buque
 		this.posicionActual =  new Point (0, 0);
 	}
 	*/
+	
+	//ASD
 
 	public Viaje getViajeActual()
 	{
 		return viajeActual;
+		
 	}
 
 
