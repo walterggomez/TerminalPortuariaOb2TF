@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
+import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 
 public class TerminalPortuaria
@@ -13,6 +14,11 @@ public class TerminalPortuaria
 	private List<Naviera> misNavieras;
 	private List<Viaje> viajes;
 	
+	public TerminalPortuaria() {
+		
+		
+	}
+
 	public TerminalPortuaria(Point2D ubicacion)
 	{
 		super();
@@ -37,6 +43,20 @@ public class TerminalPortuaria
 		return viajes;
 	}
 
+	public void registrarNuevaNaviera(Naviera nav) {
+		if (this.estoyEnUnCircuitoDeLaNaviera(nav)) {
+			this.getMisNavieras().add(nav);
+		}else{
+			System.out.println("Naviera no valida para registrar");			
+		}
+		
+	}
+
+	public boolean estoyEnUnCircuitoDeLaNaviera(Naviera nav) {
+		List<Circuito> circuitosNaviera = nav.getMisCircuitos();
+		return circuitosNaviera.stream().anyMatch(cir->cir.contieneA(this));
+
+	}
 	
 	
 	/*
