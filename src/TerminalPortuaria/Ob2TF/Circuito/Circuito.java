@@ -14,7 +14,8 @@ public class Circuito {
 	}
 
 	
-	public Circuito(List<Tramo> listaDeTramo, LocalDateTime fechaYHoraSalida) {
+	public Circuito(List<Tramo> listaDeTramo, LocalDateTime fechaYHoraSalida)
+	{
 		super();
 		this.listaDeTramo = listaDeTramo;
 		this.fechaYHoraSalida = fechaYHoraSalida;
@@ -27,22 +28,28 @@ public class Circuito {
 
 	
 	public void setfechaYHoraSalida(LocalDateTime fechaYHora) {
-		listaDeTramo.get(0).setFechaYHoraSalida(fechaYHora);
-		for (int i = 1; i <= listaDeTramo.size(); i++) {
-			listaDeTramo.get(i).setFechaYHoraSalida(listaDeTramo.get(i - 1).getFechaYHoraLlegada());
+		this.listaDeTramo.get(0).setFechaYHoraSalida(fechaYHora);
+		for (int i = 1; i < this.listaDeTramo.size(); i++) {
+			this.listaDeTramo.get(i).setFechaYHoraSalida(this.listaDeTramo.get(i - 1).getFechaYHoraLlegada());
 		}
-	} 
+	}
 	// Testear que funcione bien. Testear el caso en que instancie la fecha de salida desde el constructor y que se accione este método.
 	// Contemplar caso de que instancie una lista vacía, con un try catch.
 	
-
+	
+	public LocalDateTime getFechaYHoraSalida()
+	{
+		return this.fechaYHoraSalida;
+	}
+	
 	
 	public LocalDateTime getFechaYHoraLlegada() {
 		return this.listaDeTramo.get(this.listaDeTramo.size() - 1).getFechaYHoraLlegada();
 	}
 
 	
-	public void setListaDeTramo(List<Tramo> listaDeTramo) {
+	public void setListaDeTramo(List<Tramo> listaDeTramo)
+	{
 		this.listaDeTramo = listaDeTramo;
 	}
 

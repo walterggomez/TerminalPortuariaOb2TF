@@ -28,6 +28,7 @@ class TramoTest
 
 
 		System.out.println( GPS.distanciaEntrePuntos(buenosAires.getUbicacion(), saoPablo.getUbicacion()) );
+		System.out.println( tramo1.getDuracionTramo() );
 		System.out.println( tramo1.mostrarFechaYHoraLlegada() );
 
 	}
@@ -78,6 +79,10 @@ class TramoTest
 		when(lima.getUbicacion()).thenReturn( new Point2D.Double(-12.04318, -77.02824) );
 		when(santiagoDeChile.getUbicacion()).thenReturn( new Point2D.Double(-33.45694, -70.64827) );
 		when(laPaz.getUbicacion()).thenReturn( new Point2D.Double(-16.5, -68.15) );
+		
+		
+
+		
 		
 		
 		tramo1 = new Tramo( bsAs, saoPablo, LocalDateTime.of(1980, 12, 18, 07, 00), 1500 );

@@ -1,20 +1,18 @@
 package TerminalPortuaria.Ob2TF.Circuito;
 import java.awt.geom.Point2D;
 import TerminalPortuaria.Ob2TF.Buque.*;
-// import java.time.LocalDate;
-// import java.time.LocalTime;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 import java.time.format.DateTimeFormatter;
-// asd
+
 
 public class Tramo
 {
 	private TerminalPortuaria puertoOrigen;
 	private TerminalPortuaria puertoDestino;
 	private LocalDateTime fechaYHoraSalida;
-	private double duracionTramo;
+	 private double duracionTramo;
 	private double costoDetramo;
 	
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy, HH:mm"); // Formato de fecha y hora seleccionado.
@@ -24,6 +22,11 @@ public class Tramo
 		return puertoOrigen;
 	}
 
+	public Tramo() // Constructor sin argumentos para crear spy en mockito.
+	{
+		super();
+	}
+	
 	public Tramo(TerminalPortuaria puertoOrigen, TerminalPortuaria puertoDestino, LocalDateTime fechaYHoraSalida, double costoDetramo)
 	{
 		super();
@@ -37,7 +40,7 @@ public class Tramo
 	
 	public double getDuracionTramo()
 	{
-		return duracionTramo;
+		return  duracionTramo;
 	}
 	
 	
@@ -89,7 +92,7 @@ public class Tramo
 	
 	public LocalDateTime getFechaYHoraLlegada()
 	{
-		return this.fechaYHoraSalida.plus((long) this.duracionTramo, ChronoUnit.HOURS);
+		return this.fechaYHoraSalida.plus( (long) this.getDuracionTramo(), ChronoUnit.HOURS);
 	}
 	
 }
