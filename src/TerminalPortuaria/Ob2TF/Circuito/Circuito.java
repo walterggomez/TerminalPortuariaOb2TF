@@ -85,6 +85,7 @@ public class Circuito {
 	
 
 	
+	/*
 	//POSIBLE SOLUCION PENSADA POR LAS VIVENCIAS EN EDD
 	public List<Tramo> circuitoDesde(TerminalPortuaria terminalPortuaria) {
 	    List<Tramo> nuevaLista = new ArrayList<>();
@@ -102,7 +103,28 @@ public class Circuito {
 	    }
 	    return nuevaLista;
 	}
+	*/
+	
+	
+	// Primero hay que considerar si en la lista de tramos, la terminal origen venga antes que la terminal destino.
+	public Circuito circuitoDesdeHasta( TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino )
+	{
+		Tramo tramoOrigen = this.listaDeTramo.stream()
+				.filter( t -> t.getPuertoOrigen() == terminalOrigen )
+				.findFirst()
+				.orElse(null);
+		
+		Tramo tramoDestino = this.listaDeTramo.stream()
+				.filter( t -> t.getPuertoDestino() == terminalDestino )
+				.findFirst()
+				.orElse(null);
+		
+		 List<Tramo> listaTramoReducida = this.listaDeTramo.subList( listaDeTramo.indexOf( tramoOrigen ) , listaDeTramo.indexOf( tramoDestino) ); 
+		 
+		 return new Circuito( listaTramoReducida,  listaTramoReducida.get(0).getFechaYHoraSalida() );
+	}
 
+	
 	//POSIBLE SOLUCION PENSADA POR LAS VIVENCIAS EN EDD
 	public List<Tramo> circuitoHasta(TerminalPortuaria terminalPortuaria) {
 	    List<Tramo> nuevoCircuito = new ArrayList<>();
