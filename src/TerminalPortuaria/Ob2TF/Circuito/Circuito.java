@@ -20,21 +20,20 @@ public class Circuito {
 		this.listaDeTramo = listaDeTramo;
 		this.fechaYHoraSalida = fechaYHoraSalida;
 		this.setfechaYHoraSalida(fechaYHoraSalida);
-		/*
-		 * Este método en el constructor setea la fecha y hora de salida de los tramos
-		 * del circuito. Testear que funcione correctamente.
-		 */
 	}
 
 	
-	public void setfechaYHoraSalida(LocalDateTime fechaYHora) {
-		this.listaDeTramo.get(0).setFechaYHoraSalida(fechaYHora);
-		for (int i = 1; i < this.listaDeTramo.size(); i++) {
-			this.listaDeTramo.get(i).setFechaYHoraSalida(this.listaDeTramo.get(i - 1).getFechaYHoraLlegada());
+	public void setfechaYHoraSalida(LocalDateTime fechaYHora)
+	{
+		if( ! this.listaDeTramo.isEmpty() )
+		{
+			this.listaDeTramo.get(0).setFechaYHoraSalida(fechaYHora);
+			for (int i = 1; i < this.listaDeTramo.size(); i++)
+			{
+				this.listaDeTramo.get(i).setFechaYHoraSalida(this.listaDeTramo.get(i - 1).getFechaYHoraLlegada());
+			}			
 		}
 	}
-	// Testear que funcione bien. Testear el caso en que instancie la fecha de salida desde el constructor y que se accione este método.
-	// Contemplar caso de que instancie una lista vacía, con un try catch.
 	
 	
 	public LocalDateTime getFechaYHoraSalida()
@@ -66,20 +65,24 @@ public class Circuito {
 	
 	public void agregarNuevoTramo(Tramo tramo) throws Exception
 	{
-		Tramo ultimoTramo = listaDeTramo.get(listaDeTramo.size() - 1);
-		if ( ultimoTramo.getPuertoDestino() == tramo.getPuertoOrigen() )
+		if ( this.listaDeTramo.isEmpty() || coindicenPuertosDestinoOrigen(tramo) )
 		{
 			listaDeTramo.add(tramo);
 		} 
 		else
 		{
-			throw new Exception("Este tramo no es valido");
+			throw new Exception("El puerto de origen del tramo a agregar no coincide con el puerto destino del último tramo de la lista.");
 		}
-		/*
-		 	Faltaria contemplar un try/catch para el caso de que sea una lista vacia. Es decir si quiero agregar un tramo a una lista vacía
-		 		debería dejarme hacerlo.
-		*/
 	}
+	
+	
+	// Validador de tramos entre el puerto destino del último tramo del circuito y el puerto de origen del tramo a agregar.
+	private boolean coindicenPuertosDestinoOrigen( Tramo tramo )
+	{
+		Tramo ultimoTramo = listaDeTramo.get(listaDeTramo.size() - 1);
+		return ultimoTramo.getPuertoDestino() == tramo.getPuertoOrigen();
+	}
+	
 
 	
 	//POSIBLE SOLUCION PENSADA POR LAS VIVENCIAS EN EDD

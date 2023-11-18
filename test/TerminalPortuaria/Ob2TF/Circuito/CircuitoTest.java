@@ -1,4 +1,5 @@
 package TerminalPortuaria.Ob2TF.Circuito;
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -6,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import java.awt.geom.Point2D;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,12 +21,16 @@ class CircuitoTest
 {
 /*
 	Lista de tests a crear en circuito:
-	- Agregar tramo
-	- Evaluar duración de cada tramo y sumarlo. Testear que sea igual a la duración del circuito.
-	- Evaluar fecha de inicio y fecha de final.
+	- Agregar tramo > OK.
+	
+	- Evaluar duración de cada tramo y sumarlo. Testear que sea igual a la duración del circuito > OK.
+	
+	- Evaluar fecha de inicio y fecha de final > OK.
+	
 	- Evaluar método para extraer circuito desde cierto tramo, creando un nuevo circuito que solo incluya ese tramo.
+	
 	- Evaluar excepción al agregar tramo... el último tramo del circuito debe tener como puerto de destino al puerto de origen del tramo
-		que quiero agregar.
+		que quiero agregar. OK.
 */
 	
 	public static void main(String[] args)
@@ -166,7 +172,23 @@ class CircuitoTest
 		montevideoAsuncion = spy( Tramo.class );
 		asuncionLima = spy( Tramo.class );
 		limaSantiagoDeChile = spy( Tramo.class );
+		// Último tramo del circuito
 		santiagoDeChileLaPaz = spy( Tramo.class );
+		when( santiagoDeChileLaPaz.getPuertoOrigen() ).thenReturn(santiagoDeChile);
+		when( santiagoDeChileLaPaz.getPuertoDestino() ).thenReturn(laPaz);
+		
+		
+		// Tramo a agregar, sin continuidad con el último puerto del circuito
+		asuncionSaoPablo = spy( Tramo.class );
+		when( asuncionSaoPablo.getPuertoOrigen() ).thenReturn(asuncion);
+		when( asuncionSaoPablo.getPuertoDestino() ).thenReturn(saoPablo);
+		
+		// Tramo a agregar el cual coincide con el último puerto del circuito
+		laPazAsuncion = spy( Tramo.class );
+		when( laPazAsuncion.getPuertoOrigen() ).thenReturn(laPaz);
+		when( laPazAsuncion.getPuertoDestino() ).thenReturn(asuncion);
+		
+		
 		
 		
 		when( bsAsSaoPablo.getDuracionTramo() ).thenReturn(10.0);
@@ -177,10 +199,15 @@ class CircuitoTest
 		when( santiagoDeChileLaPaz.getDuracionTramo() ).thenReturn(10.0);
 		
 		// Lista de tramos
-		listaTramosNro1 = Arrays.asList
+		listaTramosNro1 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
+		(
+				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
 				(
 						bsAsSaoPablo, saoPabloMontevideo, montevideoAsuncion, asuncionLima, limaSantiagoDeChile, santiagoDeChileLaPaz
-				);
+				)
+		);
+		
+		listaTramosNro2 = new ArrayList<Tramo>();
 		
 		// Circuitos
 		circuito1 = new Circuito( listaTramosNro1, LocalDateTime.of(2023, 11, 18, 11, 00) );
@@ -231,16 +258,31 @@ class CircuitoTest
 		assertEquals( LocalDateTime.of(2023, 11, 20, 23, 00), circuito1.getFechaYHoraLlegada() );
 	}
 	
-	
-	
-	/*
 	@Test
-	void laFechaYHoraDeLlegadaDelUltimoTramoDelCircuito1EsEl20Del11Del2023ALas12Horas00Minutos()
+	void lanzarExcepciónAlAgregarTramoCuyoPuertoOrigenNoCoincideConElPuertoDestinoDelCircuito() throws Exception
 	{
-		assertEquals( circuito1.getListaDeTramo().get(5).getFechaYHoraLlegada(), LocalDateTime.of(2023, 11, 20, 23, 00) );
+		Exception error = assertThrows( Exception.class, () -> 
+		{
+			circuito1.agregarNuevoTramo(asuncionSaoPablo);
+		} );
+		
+		assertEquals( "El puerto de origen del tramo a agregar no coincide con el puerto destino del último tramo de la lista.", error.getMessage() );
 	}
-	*/
 	
+	@Test
+	void agregoTramoAListaDeTramosVacía() throws Exception
+	{
+		circuito2 = new Circuito( listaTramosNro2, LocalDateTime.of(2023, 11, 18, 11, 00) );
+		circuito2.agregarNuevoTramo(asuncionSaoPablo);
+	}
+	
+	@Test
+	void agregoTramoCuyoPuertoOrigenCoincideConPuertoDestinoDelUltimoTramoDelCircuito() throws Exception
+	{
+		circuito1.agregarNuevoTramo(laPazAsuncion);
+	}
+	
+
 	
 	
 
