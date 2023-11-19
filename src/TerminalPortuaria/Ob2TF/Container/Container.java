@@ -7,13 +7,14 @@ public abstract class Container {
 	private int altura;
 	private int peso;
 	
-	public Container(int ancho, int largo, int altura) {
+	public Container(int ancho, int largo, int altura, int peso) {
 		super();
 		this.ancho = ancho;
 		this.largo = largo;
 		this.altura = altura;
+		this.peso = peso;
 	}
-	
+
 	public int getPeso() {
 		return peso;
 	}
@@ -22,7 +23,12 @@ public abstract class Container {
 		return this.ancho * this.largo * this.altura;
 	}
 	
-	public double getConsumo() {
-		return 0;
+	public boolean necesitaRefrigeracion() {
+		return false;
 	}
+	
+	public boolean isAptoLiquido() {
+		return false;
+	}
+	
 }
