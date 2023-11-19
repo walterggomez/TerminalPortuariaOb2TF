@@ -106,25 +106,55 @@ public class Circuito {
 	*/
 	
 	
-	// Primero hay que considerar si en la lista de tramos, la terminal origen venga antes que la terminal destino.
-	public Circuito circuitoDesdeHasta( TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino )
-	{
-		Tramo tramoOrigen = this.listaDeTramo.stream()
-				.filter( t -> t.getPuertoOrigen() == terminalOrigen )
-				.findFirst()
-				.orElse(null);
-		
-		Tramo tramoDestino = this.listaDeTramo.stream()
-				.filter( t -> t.getPuertoDestino() == terminalDestino )
-				.findFirst()
-				.orElse(null);
-		
-		 List<Tramo> listaTramoReducida = this.listaDeTramo.subList( listaDeTramo.indexOf( tramoOrigen ) , listaDeTramo.indexOf( tramoDestino) ); 
-		 
-		 return new Circuito( listaTramoReducida,  listaTramoReducida.get(0).getFechaYHoraSalida() );
-	}
+    public Circuito construirCircuitoDesdeHasta(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino) 
+    {
+        if (terminalesExistenEnCircuito(terminalOrigen, terminalDestino)) 
+        {
+            Tramo tramoOrigen = obtenerTramoPorPuerto(terminalOrigen);
+            Tramo tramoDestino = obtenerTramoPorPuerto(terminalDestino);
 
-	
+            if (origenEstaAntesQueDestino(tramoOrigen, tramoDestino))
+            {
+                return construirCircuitoReducido(tramoOrigen, tramoDestino);
+            }
+        }
+        return null;
+    }
+
+    private boolean terminalesExistenEnCircuito(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino)
+    {
+        return validarSiTerminalExisteEnCircuito(terminalOrigen) && validarSiTerminalExisteEnCircuito(terminalDestino);
+    }
+
+    Tramo obtenerTramoPorPuerto(TerminalPortuaria terminal)
+    {
+        return listaDeTramo.stream()
+                .filter(t -> t.getPuertoOrigen() == terminal || t.getPuertoDestino() == terminal)
+                .findFirst()
+                .orElse(null);
+    }
+
+    boolean origenEstaAntesQueDestino(Tramo tramoOrigen, Tramo tramoDestino)
+    {
+        return listaDeTramo.indexOf(tramoOrigen) < listaDeTramo.indexOf(tramoDestino);
+    }
+
+    private Circuito construirCircuitoReducido(Tramo tramoOrigen, Tramo tramoDestino)
+    {
+        int indexOfOrigen = listaDeTramo.indexOf(tramoOrigen);
+        int indexOfDestino = listaDeTramo.indexOf(tramoDestino);
+
+        List<Tramo> listaTramoReducida = listaDeTramo.subList(indexOfOrigen, indexOfDestino);
+        return new Circuito(listaTramoReducida, listaTramoReducida.get(0).getFechaYHoraSalida());
+    }
+
+    public boolean validarSiTerminalExisteEnCircuito(TerminalPortuaria terminal)
+    {
+        return listaDeTramo.stream().anyMatch(t -> t.getPuertoDestino() == terminal || t.getPuertoOrigen() == terminal);
+    }
+
+
+/*
 	//POSIBLE SOLUCION PENSADA POR LAS VIVENCIAS EN EDD
 	public List<Tramo> circuitoHasta(TerminalPortuaria terminalPortuaria) {
 	    List<Tramo> nuevoCircuito = new ArrayList<>();
@@ -139,7 +169,7 @@ public class Circuito {
 	    
 	    return nuevoCircuito;
 	}
-
+*/
 
 
 
@@ -154,6 +184,7 @@ public class Circuito {
 		return costoTotal;
 	}
 
+	/*
 	public boolean contieneA( TerminalPortuaria puertoDestino )
 	{
 		return this.listaDeTramo.stream().anyMatch(t -> t.getPuertoDestino() == puertoDestino );
@@ -163,6 +194,7 @@ public class Circuito {
 	{
 		return listaDeTramo.size() - 1;
 	}
+	*/
 
 	public long duracionCircuito()
 	{

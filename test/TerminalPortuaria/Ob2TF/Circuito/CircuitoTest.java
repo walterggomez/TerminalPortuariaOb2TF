@@ -1,6 +1,8 @@
 package TerminalPortuaria.Ob2TF.Circuito;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
@@ -172,16 +174,14 @@ class CircuitoTest
 		montevideoAsuncion = spy( Tramo.class );
 		asuncionLima = spy( Tramo.class );
 		limaSantiagoDeChile = spy( Tramo.class );
-		// Último tramo del circuito
 		santiagoDeChileLaPaz = spy( Tramo.class );
-		when( santiagoDeChileLaPaz.getPuertoOrigen() ).thenReturn(santiagoDeChile);
-		when( santiagoDeChileLaPaz.getPuertoDestino() ).thenReturn(laPaz);
-		
+
 		
 		// Tramo a agregar, sin continuidad con el último puerto del circuito
 		asuncionSaoPablo = spy( Tramo.class );
 		when( asuncionSaoPablo.getPuertoOrigen() ).thenReturn(asuncion);
 		when( asuncionSaoPablo.getPuertoDestino() ).thenReturn(saoPablo);
+		
 		
 		// Tramo a agregar el cual coincide con el último puerto del circuito
 		laPazAsuncion = spy( Tramo.class );
@@ -189,8 +189,22 @@ class CircuitoTest
 		when( laPazAsuncion.getPuertoDestino() ).thenReturn(asuncion);
 		
 		
+		// Puertos de los tramos
+		when( bsAsSaoPablo.getPuertoOrigen() ).thenReturn(bsAs);
+		when( bsAsSaoPablo.getPuertoDestino() ).thenReturn(saoPablo);
+		when( saoPabloMontevideo.getPuertoOrigen() ).thenReturn(saoPablo);
+		when( saoPabloMontevideo.getPuertoDestino() ).thenReturn(montevideo);
+		when( montevideoAsuncion.getPuertoOrigen() ).thenReturn(montevideo);
+		when( montevideoAsuncion.getPuertoDestino() ).thenReturn(asuncion);
+		when( asuncionLima.getPuertoOrigen() ).thenReturn(asuncion);
+		when( asuncionLima.getPuertoDestino() ).thenReturn(lima);
+		when( limaSantiagoDeChile.getPuertoOrigen() ).thenReturn(lima);
+		when( limaSantiagoDeChile.getPuertoDestino() ).thenReturn(santiagoDeChile);
+		when( santiagoDeChileLaPaz.getPuertoOrigen() ).thenReturn(santiagoDeChile);
+		when( santiagoDeChileLaPaz.getPuertoDestino() ).thenReturn(laPaz);
+
 		
-		
+		// Duración de los tramos
 		when( bsAsSaoPablo.getDuracionTramo() ).thenReturn(10.0);
 		when( saoPabloMontevideo.getDuracionTramo() ).thenReturn(10.0);
 		when( montevideoAsuncion.getDuracionTramo() ).thenReturn(10.0);
@@ -198,7 +212,11 @@ class CircuitoTest
 		when( limaSantiagoDeChile.getDuracionTramo() ).thenReturn(10.0);
 		when( santiagoDeChileLaPaz.getDuracionTramo() ).thenReturn(10.0);
 		
-		// Lista de tramos
+		// TerminalPortuaria montevideo = new TerminalPortuaria( new Point2D.Double(-34.90328, -56.18816) );
+		// TerminalPortuaria santiagoDeChile = new TerminalPortuaria( new Point2D.Double(-33.45694, -70.64827) );
+		
+		
+		// Lista de tramos usada
 		listaTramosNro1 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
 		(
 				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
@@ -207,6 +225,7 @@ class CircuitoTest
 				)
 		);
 		
+		// Lista de tramos vacía
 		listaTramosNro2 = new ArrayList<Tramo>();
 		
 		// Circuitos
@@ -282,8 +301,73 @@ class CircuitoTest
 		circuito1.agregarNuevoTramo(laPazAsuncion);
 	}
 	
+	@Test
+	void validarSiPuertoDestinoCoincideConAlgunoDeLosTramosDelCircuito()
+	{
+		when( montevideoAsuncion.getPuertoOrigen() ).thenReturn(montevideo);
+		when( montevideoAsuncion.getPuertoDestino() ).thenReturn(asuncion);
+		assertTrue( circuito1.validarSiTerminalExisteEnCircuito( asuncion) );
+	}
+	
+	@Test
+	void validarSiPuertoOridenCoincideConAlgunoDeLosTramosDelCircuito()
+	{
+		when( asuncionLima.getPuertoOrigen() ).thenReturn(asuncion);
+		when( asuncionLima.getPuertoDestino() ).thenReturn(lima);
+		assertTrue( circuito1.validarSiTerminalExisteEnCircuito( asuncion) );
+	}
+	
 
 	
 	
+/*	
+	@Test
+	void circuitoReducidoEntreMontevideoSantiagoDeChile()
+	{
+	
+		List<Tramo> tramosEsperados = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
+				(
+						Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
+						(
+							montevideoAsuncion, asuncionLima, limaSantiagoDeChile
+						)
+				);
+		when(circuito1.construirCircuitoDesdeHasta(montevideo, santiagoDeChile) )
+			.thenReturn(new Circuito(tramosEsperados, LocalDateTime.now()));
+		
+		Circuito montevideoChile = circuito1.construirCircuitoDesdeHasta(montevideo, santiagoDeChile);
+		List<Tramo> tramosDelNuevoCircuito = montevideoChile.getListaDeTramo();
+		
+				
+		assertIterableEquals( tramosEsperados, tramosDelNuevoCircuito );
+		
+		 		El assertIterableEquals compara el contenido de las listas de objetos, a diferencia de assertArrayEquals que compara
+		 			referencias.
+		 		assertSame compara que ambas listas tengan las mismas instancias de objetos y en el mismo orden.
+	}
+*/
+	// Tramo(TerminalPortuaria puertoOrigen, TerminalPortuaria puertoDestino, LocalDateTime fechaYHoraSalida, double costoDetramo)
+    @Test // Testearlo con objetos reales para ver si el problema es con mockito
+    void circuitoReducidoEntreMontevideoSantiagoDeChile() {
+        // Crear la lista esperada de tramos reducida
+    	Tramo montevideoAsuncionReal = new Tramo(montevideo, asuncion, LocalDateTime.now(), 1000);
+    	Tramo asuncionLimaReal = new Tramo(asuncion, lima, LocalDateTime.now(), 1000);
+    	Tramo limaSantiagoDeChileReal = new Tramo(lima, santiagoDeChile, LocalDateTime.now(), 1000);
 
+    	List<Tramo> tramosEsperados = Arrays.asList(montevideoAsuncionReal, asuncionLimaReal, limaSantiagoDeChileReal);
+
+        // Llamar a la función que queremos probar
+        Circuito montevideoChile = circuito1.construirCircuitoDesdeHasta(montevideo, santiagoDeChile);
+
+        // Obtener la lista de tramos del nuevo circuito
+        List<Tramo> tramosDelNuevoCircuito = montevideoChile.getListaDeTramo();
+
+        // Verificar que la lista de tramos sea la esperada
+        assertIterableEquals(tramosEsperados, tramosDelNuevoCircuito);
+    }
+    
+    
 }
+
+	
+

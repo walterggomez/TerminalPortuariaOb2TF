@@ -54,7 +54,7 @@ public class TerminalPortuaria
 
 	public boolean estoyEnUnCircuitoDeLaNaviera(Naviera nav) {
 		List<Circuito> circuitosNaviera = nav.getMisCircuitos();
-		return circuitosNaviera.stream().anyMatch(cir->cir.contieneA(this));
+		return circuitosNaviera.stream().anyMatch(cir->cir.validarSiTerminalExisteEnCircuito(this));
 
 	}
 	
