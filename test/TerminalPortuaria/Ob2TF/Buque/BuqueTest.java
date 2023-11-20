@@ -15,4 +15,9 @@ public class BuqueTest
 		
 		System.out.println( GPS.distanciaEntrePuntos(buquebus.getPosicionActual(), buquebus2.getPosicionActual()) );
 	}
+	
+	
+	
+	
+	
 }

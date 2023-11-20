@@ -1,12 +1,15 @@
 package TerminalPortuaria.Ob2TF.Buque;
-import java.awt.Point;
+
 import java.awt.geom.Point2D;
 
-public class GPS 
-{
+public class GPS {
 
 	
-	public static double  distanciaEntrePuntos( Point2D punto1, Point2D punto2 )
+	public GPS() {
+		
+	}
+
+	public double  distanciaEntrePuntos( Point2D punto1, Point2D punto2 )
 	{        
 		double lat1rad = Math.toRadians( punto1.getX() );
 	    double lon1rad = Math.toRadians( punto1.getY() );

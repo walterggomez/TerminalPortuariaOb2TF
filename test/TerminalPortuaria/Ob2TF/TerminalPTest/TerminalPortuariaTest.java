@@ -76,12 +76,12 @@ class TerminalPortuariaTest{
 	
 
 	@Test
-	void registrarNuevaNavieraTestOk(){ // se espera resultado ok
+	void registrarNuevaNavieraTestOk(){ // se espera resultado valido
 		bsAs.registrarNuevaNaviera(naviera1);
 		assertEquals(1,bsAs.getMisNavieras().size());
 	}
 	@Test
-	void registrarNuevaNavieraTest(){ 
+	void registrarNuevaNavieraTest(){ // se espera resultado NO valido
 		saoPablo.registrarNuevaNaviera(naviera2);
 		assertEquals(0,saoPablo.getMisNavieras().size());
 	}
@@ -89,6 +89,11 @@ class TerminalPortuariaTest{
 	void estoyEnUnCircuitoDeLaNavieraTest(){
 		assertTrue(bsAs.estoyEnUnCircuitoDeLaNaviera(naviera1));
 		assertFalse(saoPablo.estoyEnUnCircuitoDeLaNaviera(naviera1));
+	}
+	@Test
+	void getUbicacionTest(){
+		assertEquals(latitudLongitudBsAs,bsAs.getUbicacion());
+		assertEquals(latitudLongitudSaoPablo,saoPablo.getUbicacion());
 	}
 
 }

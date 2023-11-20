@@ -1,24 +1,28 @@
 package TerminalPortuaria.Ob2TF.Buque;
-import java.awt.Point;
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.awt.geom.Point2D;
 
-import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class GPSTest 
-{
-	public static void main(String[] args)
-	{
-		TerminalPortuaria buenosAires = new TerminalPortuaria( new Point2D.Double(-34.61315, -58.37723) );
-		TerminalPortuaria saoPablo = new TerminalPortuaria( new Point2D.Double(-23.5475, -46.63611) );
+class GPSTest {
+
+	Point2D puntoA;
+	Point2D puntoB;
+	
+	GPS garminDrive;
+	
+	@BeforeEach
+	void setUp() throws Exception{
 		
-		System.out.println( GPS.distanciaEntrePuntos( buenosAires.getUbicacion(), saoPablo.getUbicacion()) );
-		
+		garminDrive = new GPS();
+		puntoA = new Point2D.Double(-34.61315, -58.37723);
+		puntoB = new Point2D.Double(-23.5475, -46.63611);
 	}
 	
-	
-	
-	
-	
-	
-
+	@Test
+	void distanciaEntrePuntosTest() {
+		assertEquals(1677.0,garminDrive.distanciaEntrePuntos(puntoA, puntoB));
+	}
 }
