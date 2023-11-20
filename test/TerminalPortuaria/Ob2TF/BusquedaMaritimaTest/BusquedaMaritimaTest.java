@@ -13,9 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import TerminalPortuaria.Ob2TF.Circuito.*;
 
-import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MenorCantidadTerminal;
-import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MenorPrecio;
-import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MenorTiempo;
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 import TerminalPortuaria.Ob2TF.BusquedaMaritima.*;
@@ -25,63 +22,72 @@ import org.junit.jupiter.api.Test;
 
 class BusquedaMaritimaTest {
 
-	OperadorAND busqueda;
+	OperadorAND compo1;
+	OperadorAND compo2;
+	OperadorAND compo3;
 	
+	
+	// Circuitos
+	Circuito circuito1;
+	Circuito circuito2;
+	Circuito circuito3;
+	
+	// Puertos
 	TerminalPortuaria bsAs;
 	TerminalPortuaria saoPablo;
-	TerminalPortuaria busan;
-	TerminalPortuaria hongKong;
-
+	TerminalPortuaria montevideo;
+	TerminalPortuaria asuncion;
+	TerminalPortuaria lima;
+	TerminalPortuaria santiagoDeChile;
+	TerminalPortuaria laPaz;
 	
-
-	
-	LocalDate fechaLlegada;
-	
-	Viaje viajePorSanPablo;
-	Viaje viajePorBsAs;
-	Viaje ViajeConLlegadaBien;
-	Viaje ViajeConLlegadaMal;
-	Viaje ViajeConSalidaBien;
-	Viaje ViajeConSalidaMal;
-	Viaje viaje7;
-	
+	// Viajes
+	Viaje viajeBsAsSanPabloMonteVideo;
+	Viaje viajeAsuncionLimaSantiago;
+	Viaje viajeLimaSantiagoLaPaz;
+	Viaje viajeBsAsMontevideoLima;
+	Viaje viajeSanPabloMontevideoLima;
 	
 	List<Viaje> todosLosViajes;
+	
+	//FiltrosPuertoDestino
+	FiltroPuertoDestino viajeAMontevideo;
+	FiltroPuertoDestino viajeASantiago;
+	FiltroPuertoDestino viajeALaPaz;
+	FiltroPuertoDestino viajeABsAs;
+	FiltroPuertoDestino viajeALima;
+
 	
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		// Estrategia 
-		busqueda = new OperadorAND("NombrePrueba");
+		viajeBsAsSanPabloMonteVideo = mock(Viaje.class);
+		viajeAsuncionLimaSantiago = mock(Viaje.class);
+		viajeLimaSantiagoLaPaz = mock(Viaje.class);
+		viajeBsAsMontevideoLima = mock(Viaje.class);
+		viajeSanPabloMontevideoLima = mock(Viaje.class);
 		
-		// TerminalPortuaria
-		bsAs = mock(TerminalPortuaria.class);
-		saoPablo = mock(TerminalPortuaria.class);
-		busan = mock(TerminalPortuaria.class);
-		hongKong = mock(TerminalPortuaria.class);
-
-
+		compo1 = new OperadorAND("BusquedaDestinoMonteVideo");
+		compo2 = new OperadorAND("BusquedaDestinoLima");
+		compo3 = new OperadorAND("BusquedaDestinoLaPaz");
 		
-		//Viajes
-		viajePorSanPablo = mock(Viaje.class);
-		viajePorBsAs = mock(Viaje.class);
-		ViajeConLlegadaBien = mock(Viaje.class);
-		ViajeConLlegadaMal = mock(Viaje.class);
-		ViajeConSalidaBien = mock(Viaje.class);
-		ViajeConSalidaMal = mock(Viaje.class);
-		viaje7 = mock(Viaje.class);
+		when(viajeBsAsSanPabloMonteVideo.getpuertoDestino()).thenReturn(montevideo);
+		when(viajeAsuncionLimaSantiago.getpuertoDestino()).thenReturn(santiagoDeChile);
+		when(viajeLimaSantiagoLaPaz.getpuertoDestino()).thenReturn(laPaz);
+		when(viajeBsAsMontevideoLima.getpuertoDestino()).thenReturn(lima);
+		when(viajeSanPabloMontevideoLima.getpuertoDestino()).thenReturn(lima);
 		
-
+		compo1.Agregar(compo1);
 		
-		// Lista de viajes
-		List<Viaje> viajesSoloASanPablo = Arrays.asList(viajePorSanPablo);
-		
-		todosLosViajes = (List<Viaje>) mock(Viaje.class);
 		
 	
 	
 	}
 	
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
 	
 
 }

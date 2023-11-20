@@ -1,6 +1,6 @@
 package TerminalPortuaria.Ob2TF.BusquedaMaritima;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
@@ -8,16 +8,21 @@ import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 public class FiltroPuertoDestino implements Componente {
 
-
+	private TerminalPortuaria puertoDestino;
+	
+	public FiltroPuertoDestino(TerminalPortuaria puertoDestino) {
+		super();
+		this.puertoDestino = puertoDestino;
+	}
+	
+	
 
 	@Override
-	public List<Viaje> filtrar(Viaje viaje, TerminalPortuaria puertoDestino) {
-		List<Viaje> viajesFiltrados = new ArrayList<>();
-		if (viaje.getpuertoDestino() == puertoDestino) {
-			viajesFiltrados.add(viaje);
-		}
-		return viajesFiltrados;
+	public List<Viaje> filtrar(List<Viaje> listaDeViajes) {
+		return listaDeViajes.stream().filter(v -> v.getpuertoDestino() == this.puertoDestino).toList();
 	}
+	
+	
 
 	@Override
 	public void Agregar(Componente componente) {

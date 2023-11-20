@@ -1,12 +1,10 @@
 
 package TerminalPortuaria.Ob2TF.BusquedaMaritima;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import TerminalPortuaria.Ob2TF.Circuito.*;
-import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 public class OperadorAND implements Componente {
 
@@ -34,10 +32,10 @@ public class OperadorAND implements Componente {
 
 
 		@Override
-		public List<Viaje> filtrar(Viaje viaje, TerminalPortuaria puertoDestino) {
+		public List<Viaje> filtrar(List<Viaje> listaDeViajes) {
 			List<Viaje> viajesFiltrados = new ArrayList<>();
-			for (Componente hijo : hijos) {
-				viajesFiltrados.addAll(hijo.filtrar(viaje, puertoDestino));
+			for (Componente componente : hijos) {
+				viajesFiltrados.retainAll(componente.filtrar(listaDeViajes));
 			}
 			return viajesFiltrados;
 		}

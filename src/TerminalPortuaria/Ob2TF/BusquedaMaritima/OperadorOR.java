@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
-import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 public class OperadorOR implements Componente {
 
 	String nombre;
-	List<Componente> hijo = new ArrayList<Componente>();
+	List<Componente> hijos = new ArrayList<Componente>();
 	
 	public OperadorOR(String nombre) {
 	this.nombre = nombre;
@@ -19,20 +18,23 @@ public class OperadorOR implements Componente {
 	@Override
 	public void Agregar(Componente componente) {
 		// TODO Auto-generated method stub
-		hijo.add(componente);
+		hijos.add(componente);
 	}
 
 	@Override
 	public void Remover(Componente componente) {
 		// TODO Auto-generated method stub
-		hijo.remove(componente);
+		hijos.remove(componente);
 	}
 
 
 	@Override
-	public List<Viaje> filtrar(Viaje viaje, TerminalPortuaria puertoDestino) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Viaje> filtrar(List<Viaje> listaDeViajes) {
+		List<Viaje> viajesFiltrados = new ArrayList<>();
+		for (Componente componente : hijos) {
+			viajesFiltrados.addAll(componente.filtrar(listaDeViajes));
+		}
+		return viajesFiltrados;
 	}
 	
 }

@@ -23,6 +23,10 @@ public class Viaje
 		this.fechaDeLlegada = circuitoViaje.getFechaYHoraLlegada();
 	}
 	
+	public TerminalPortuaria getpuertoOrigen() {
+		return this.puertoOrigen;
+	}
+	
 	public TerminalPortuaria getpuertoDestino()
 	{
 		return puertoDestino;

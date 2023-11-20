@@ -1,5 +1,6 @@
 package TerminalPortuaria.Ob2TF.Orden;
 import TerminalPortuaria.Ob2TF.Container.*;
+import TerminalPortuaria.Ob2TF.Buque.Buque;
 import TerminalPortuaria.Ob2TF.Circuito.*;
 import TerminalPortuaria.Ob2TF.Cliente.*;
 import java.time.LocalDateTime;
@@ -9,7 +10,11 @@ public class Orden
 	protected Cliente cliente;
 	protected Viaje viaje;
 	protected Container container;
+	protected Buque buque;
 	
+	public Buque getbuque() {
+		return this.buque;
+	}
 	
 	public Viaje getViaje()
 	{
