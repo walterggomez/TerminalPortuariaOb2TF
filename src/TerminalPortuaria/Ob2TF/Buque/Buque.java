@@ -7,18 +7,24 @@ import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 public class Buque
 {
-	private Point2D  posicionActual = new Point2D.Double(0, 0);
-	protected EstadoBuque estadoActual = new Outbound();
+	//private Point2D  posicionActual = new Point2D.Double(0, 0);
+	private Point2D  posicionActual;
+	private GPS miGps;
+	//protected EstadoBuque estadoActual = new Outbound();
+	private EstadoBuque estadoActual;
 	private Viaje viajeActual;
-	private boolean sePuedeDescargar = false;
+	//private boolean sePuedeDescargar = false;
+	private boolean sePuedeDescargar; 
 	
-	/*
-	public Buque()
-	{
-		this.posicionActual =  new Point (0, 0);
+	public Buque(Point2D posicionActual, GPS miGps, Viaje viajeActual) {
+		super();
+		this.posicionActual = posicionActual;
+		this.miGps = miGps;
+		this.estadoActual = new Outbound();
+		this.viajeActual = viajeActual;
+		this.sePuedeDescargar = false;
 	}
-	*/
-	
+
 	//ASD
 
 	public Viaje getViajeActual()
@@ -26,7 +32,15 @@ public class Buque
 		return viajeActual;
 		
 	}
-	
+
+	public GPS getMiGps() {
+		return miGps;
+	}
+
+	public EstadoBuque getEstadoActual() {
+		return estadoActual;
+	}
+
 	public TerminalPortuaria puertoDestino() {
 		return viajeActual.getpuertoDestino();
 	}
