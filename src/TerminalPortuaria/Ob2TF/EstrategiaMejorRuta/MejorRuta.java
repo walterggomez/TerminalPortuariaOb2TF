@@ -18,7 +18,7 @@ public abstract class MejorRuta {
 		/* Armo la lista de todos los circuitos maritimos */
 		List<Circuito> todosLoscircuitos = this.todosLosCircuitosMaritimos(listaNavieras);
 		/* Filtro los circuitos que contengan al puerto destino */
-		List<Circuito> circuitosConDestino = todosLoscircuitos.stream().filter(cir -> cir.contieneA(puertoDestino))
+		List<Circuito> circuitosConDestino = todosLoscircuitos.stream().filter(cir -> cir.validarSiTerminalExisteEnCircuito(puertoDestino))
 				.collect(Collectors.toList());
 		return circuitosConDestino;
 	}
@@ -45,6 +45,8 @@ public abstract class MejorRuta {
 	/*[ [cir 1,cir 2, cir 3],[cir 4,cir 5],[cir 6,cir 7, cir 8],[cir 9,cir 10] ]*/
 	
 	/*[ cir 1,cir 2, cir 3,cir 4,cir 5,cir 6,cir 7, cir 8,cir 9,cir 10 ]*/
+	
+	/*validarSiTerminalExisteEnCircuito*/
 	
 	
 }

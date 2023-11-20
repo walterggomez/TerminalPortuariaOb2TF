@@ -1,5 +1,5 @@
 package TerminalPortuaria.Ob2TF.TerminalP;
-import java.awt.Point;
+
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,18 +20,16 @@ public class TerminalPortuaria
 	private List<Naviera> misNavieras;
 	private List<Viaje> viajes;
 	private List<Orden> ordenes;
-
-	
 	
 	public TerminalPortuaria() {
 		
-		
 	}
 
-	public TerminalPortuaria(Point2D ubicacion)
-	{
-		super();
+	public TerminalPortuaria(Point2D ubicacion) {
 		this.ubicacion = ubicacion;
+		this.misNavieras = new ArrayList<Naviera>();
+		this.viajes = new ArrayList<Viaje>();
+		this.ordenes = new ArrayList<Orden>();
 	}
 
 	public Point2D getUbicacion()

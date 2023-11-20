@@ -122,21 +122,21 @@ class MejorRutaTest {
 		when(naviera1.getMisCircuitos()).thenReturn(circuitosN1);
 		when(naviera2.getMisCircuitos()).thenReturn(circuitosN2);
 		
-		when(circuito1.contieneA(bsAs)).thenReturn(true);
-		when(circuito2.contieneA(bsAs)).thenReturn(true);
-		when(circuito3.contieneA(bsAs)).thenReturn(true);
+		when(circuito1.validarSiTerminalExisteEnCircuito(bsAs)).thenReturn(true);
+		when(circuito2.validarSiTerminalExisteEnCircuito(bsAs)).thenReturn(true);
+		when(circuito3.validarSiTerminalExisteEnCircuito(bsAs)).thenReturn(true);
 		
-		when(circuito1.contieneA(saoPablo)).thenReturn(true);
-		when(circuito1.contieneA(busan)).thenReturn(true);
-		when(circuito1.contieneA(hongKong)).thenReturn(true);
+		when(circuito1.validarSiTerminalExisteEnCircuito(saoPablo)).thenReturn(true);
+		when(circuito1.validarSiTerminalExisteEnCircuito(busan)).thenReturn(true);
+		when(circuito1.validarSiTerminalExisteEnCircuito(hongKong)).thenReturn(true);
 		
-		when(circuito2.contieneA(cartagena)).thenReturn(true);
-		when(circuito2.contieneA(shanghai)).thenReturn(true);
-		when(circuito2.contieneA(singapur)).thenReturn(true);
+		when(circuito2.validarSiTerminalExisteEnCircuito(cartagena)).thenReturn(true);
+		when(circuito2.validarSiTerminalExisteEnCircuito(shanghai)).thenReturn(true);
+		when(circuito2.validarSiTerminalExisteEnCircuito(singapur)).thenReturn(true);
 		
-		when(circuito3.contieneA(longBeach)).thenReturn(true);
-		when(circuito3.contieneA(saoPablo)).thenReturn(true);
-		when(circuito3.contieneA(cartagena)).thenReturn(true);
+		when(circuito3.validarSiTerminalExisteEnCircuito(longBeach)).thenReturn(true);
+		when(circuito3.validarSiTerminalExisteEnCircuito(saoPablo)).thenReturn(true);
+		when(circuito3.validarSiTerminalExisteEnCircuito(cartagena)).thenReturn(true);
 		
 		when(circuito1.costoTotalDelCircuito()).thenReturn(250.0);
 		when(circuito2.costoTotalDelCircuito()).thenReturn(150.0);
@@ -146,8 +146,8 @@ class MejorRutaTest {
 		when(circuito2.duracionCircuito()).thenReturn((long) 9);
 		when(circuito3.duracionCircuito()).thenReturn((long) 10);
 		
-		when(circuito1.cantidadDeEscalas()).thenReturn(0);// si el puerto destino es SaoPablo
-		when(circuito3.cantidadDeEscalas()).thenReturn(1);// si el puerto destino es SaoPablo
+		//when(circuito1.cantidadDeEscalas()).thenReturn(0);// si el puerto destino es SaoPablo
+		//when(circuito3.cantidadDeEscalas()).thenReturn(1);// si el puerto destino es SaoPablo
 	
 	}
 
