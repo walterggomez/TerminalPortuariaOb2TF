@@ -85,7 +85,7 @@ class TramoTest
 		
 		
 		
-		tramo1 = new Tramo( bsAs, saoPablo, LocalDateTime.of(1980, 12, 18, 07, 00), 1500 );
+		tramo1 = new Tramo( bsAs, saoPablo, LocalDateTime.of(1980, 12, 18, 07, 00), 1500, 42);
 
 
 	}

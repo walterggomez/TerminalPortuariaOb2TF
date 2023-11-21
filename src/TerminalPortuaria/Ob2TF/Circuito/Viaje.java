@@ -50,7 +50,8 @@ public class Viaje
 		return fechaDeSalida;
 	}
 	
-	public void setFechaDeSalida(LocalDateTime fechaDeSalida) {
+	public void setFechaDeSalida(LocalDateTime fechaDeSalida)
+	{
 		this.fechaDeSalida = fechaDeSalida;
 	}
 	

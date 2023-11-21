@@ -27,13 +27,13 @@ public class Tramo
 		super();
 	}
 	
-	public Tramo(TerminalPortuaria puertoOrigen, TerminalPortuaria puertoDestino, LocalDateTime fechaYHoraSalida, double costoDetramo)
+	public Tramo(TerminalPortuaria puertoOrigen, TerminalPortuaria puertoDestino, LocalDateTime fechaYHoraSalida, double costoDetramo,  double duracionTramo)
 	{
 		super();
 		this.puertoOrigen = puertoOrigen;
 		this.puertoDestino = puertoDestino;
 		this.fechaYHoraSalida = fechaYHoraSalida;
-		this.duracionTramo = ( Math.round( GPS.distanciaEntrePuntos( puertoOrigen.getUbicacion(), puertoDestino.getUbicacion() ) / 40 )  );
+		this.duracionTramo = duracionTramo;
 		this.costoDetramo = costoDetramo;
 	}
 
