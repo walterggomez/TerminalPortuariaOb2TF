@@ -1,15 +1,19 @@
 package TerminalPortuaria.Ob2TF.Buque;
 
-import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
+public class Arrived implements EstadoBuque {
 
-public class Arrived implements EstadoBuque
-{
-
-	
 	@Override
 	public void actualizarEstado(Buque buque) {
 		buque.setestadoBuque(new Working());
 	}
 
+	@Override
+	public boolean estoyEnEstado(String string) {
+		if (string == "Arrived") {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }
