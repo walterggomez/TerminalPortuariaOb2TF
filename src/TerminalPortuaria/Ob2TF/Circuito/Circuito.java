@@ -105,6 +105,15 @@ public class Circuito {
 	}
 	*/
 	
+/*
+			return viaje.getCircuito.construirCircuitoDesdeHasta( terminalOrgen, terminalDestino).costoTotalDelCircuito();
+			
+			
+			
+*/
+	
+	
+	
 	
     public Circuito construirCircuitoDesdeHasta(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino) 
     {

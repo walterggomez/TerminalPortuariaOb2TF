@@ -58,7 +58,7 @@ class CircuitoTest
 		
 		
 		// Lista de tramos del circuito.
-		listaTramosNro1 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
+		List<Tramo>listaTramosNro1 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
 		(
 				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
 				(
@@ -68,7 +68,7 @@ class CircuitoTest
 		
 
 		// Circuitos
-		circuito1 = new Circuito( listaTramosNro1, LocalDateTime.of(2023, 11, 18, 11, 00) );
+		Circuito circuito1 = new Circuito( listaTramosNro1, LocalDateTime.of(2023, 11, 18, 11, 00) );
 		
 		
 		// Lista de tramos reducida y lista esperada
@@ -76,11 +76,12 @@ class CircuitoTest
 		Circuito montevideoChile = circuito1.construirCircuitoDesdeHasta(montevideo, santiagoDeChile);
 		List<Tramo> tramosDelNuevoCircuito = montevideoChile.getListaDeTramo();
 		
-		
-
-		
-    
+		for( Tramo tramo: circuito1.getListaDeTramo() )
+		{
+			System.out.printf( "%s%s%n", tramo.getPuertoOrigen().toString(), tramo.getPuertoDestino().toString() );
+		}
 	}
+	
 	
 	// Circuitos
 	Circuito circuito1;
