@@ -139,13 +139,23 @@ public class Circuito {
         return listaDeTramo.indexOf(tramoOrigen) < listaDeTramo.indexOf(tramoDestino);
     }
 
+//    private Circuito construirCircuitoReducido(Tramo tramoOrigen, Tramo tramoDestino)
+//    {
+//        int indexOfOrigen = listaDeTramo.indexOf(tramoOrigen);
+//        int indexOfDestino = listaDeTramo.indexOf(tramoDestino);
+//
+//        List<Tramo> listaTramoReducida = listaDeTramo.subList(indexOfOrigen, indexOfDestino);
+//        return new Circuito(listaTramoReducida, listaTramoReducida.get(0).getFechaYHoraSalida());
+//    }
+    
+    //LOS PARAMETROS DEBERIAN SER DEL TIPO TERMINAL PORTUARIA
     private Circuito construirCircuitoReducido(Tramo tramoOrigen, Tramo tramoDestino)
     {
-        int indexOfOrigen = listaDeTramo.indexOf(tramoOrigen);
-        int indexOfDestino = listaDeTramo.indexOf(tramoDestino);
+    	int indexOfOrigen = listaDeTramo.indexOf(tramoOrigen);
+    	int indexOfDestino = listaDeTramo.indexOf(tramoDestino);
 
-        List<Tramo> listaTramoReducida = listaDeTramo.subList(indexOfOrigen, indexOfDestino);
-        return new Circuito(listaTramoReducida, listaTramoReducida.get(0).getFechaYHoraSalida());
+    	List<Tramo> listaTramoReducida = listaDeTramo.subList(indexOfOrigen, indexOfDestino);
+    	return new Circuito(listaTramoReducida, listaTramoReducida.get(0).getFechaYHoraSalida());
     }
 
     public boolean validarSiTerminalExisteEnCircuito(TerminalPortuaria terminal)
@@ -184,17 +194,17 @@ public class Circuito {
 		return costoTotal;
 	}
 
-	/*
-	public boolean contieneA( TerminalPortuaria puertoDestino )
+//	public boolean contieneA( TerminalPortuaria puertoDestino )
+//	{
+//		return this.listaDeTramo.stream().anyMatch(t -> t.getPuertoDestino() == puertoDestino );
+//	}
+
+	public int cantidadDeEscalas ( Tramo tramoOr, Tramo tramoDe)
 	{
-		return this.listaDeTramo.stream().anyMatch(t -> t.getPuertoDestino() == puertoDestino );
+		return (this.construirCircuitoReducido(tramoOr, tramoDe)).getListaDeTramo().size() - 1;
 	}
 
-	public int cantidadDeEscalas ()
-	{
-		return listaDeTramo.size() - 1;
-	}
-	*/
+
 
 	public long duracionCircuito()
 	{
