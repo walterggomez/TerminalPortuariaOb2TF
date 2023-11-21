@@ -57,17 +57,21 @@ public class Buque
 		return posicionActual;
 	}
 
-	
-	public void setPosicionActual(int x, int y)
+	public void setPosicionActual(Point2D posicionActual) {
+		this.posicionActual = posicionActual;
+	}
+	/*public void setPosicionActual(int x, int y)
 	{
 		this.posicionActual.setLocation(x, y);
-	}
+	}*/
 	
 	
 	public void actualizarEstado() {
 		this.estadoActual.actualizarEstado(this);
 	}
 	
+
+
 	public void setestadoBuque(EstadoBuque estado) {
 		this.estadoActual = estado;
 	}

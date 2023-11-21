@@ -51,7 +51,6 @@ class BuqueTest {
 		araBouchard = new Buque(posicionAraBouchard, garminDrive, viajeBsAsHongKong);
 
 		when(viajeBsAsHongKong.getpuertoDestino()).thenReturn(bsAs);
-		
 
 	}
 
@@ -74,11 +73,13 @@ class BuqueTest {
 	void getPosicionActualTest() {
 		assertEquals(posicionAraBouchard, araBouchard.getPosicionActual());
 	}
+
 	@Test
 	void estoyEnEstadoOutboundTest() {
 		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Outbound"));
 
 	}
+
 	@Test
 	void pasarDelEstadoOutboundAlEstadoInboundTest() {
 		when(garminDrive.distanciaEntrePuntos(posicionAraBouchard, posicionTerBsAs)).thenReturn(40.0);
@@ -86,17 +87,33 @@ class BuqueTest {
 		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Inbound"));
 
 	}
+
 	@Test
 	void pasarDelEstadoInboundAlEstadoArrivedTest() {
 		// Primero paso al Estado Inbound
 		when(garminDrive.distanciaEntrePuntos(posicionAraBouchard, posicionTerBsAs)).thenReturn(40.0);
 		araBouchard.actualizarEstado();
-		
 		// Posiciono al buque en el puerto
-		araBouchard.setPosicionActual(0, 0);
-		//araBouchard.actualizarEstado();
-		//assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Inbound"));
+		araBouchard.setPosicionActual(posicionTerBsAs);  
+		when(bsAs.getUbicacion()).thenReturn(posicionTerBsAs);
+		araBouchard.actualizarEstado();
+		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Arrived"));
 
+	}
+	@Test
+	void pasarDelEstadoArrivedAlEstadoWorkingTest() {
+		// Hago que el Buque pase por los dos estados anteriores 
+		when(garminDrive.distanciaEntrePuntos(posicionAraBouchard, posicionTerBsAs)).thenReturn(40.0);
+		araBouchard.actualizarEstado();
+		araBouchard.setPosicionActual(posicionTerBsAs);  
+		when(bsAs.getUbicacion()).thenReturn(posicionTerBsAs);
+		araBouchard.actualizarEstado(); // Aca estoy en estado Arrived
+		bsAs.trabajoCargaYDescarga(araBouchard);
+		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Working"));
+		
+		
+		
+		
 	}
 
 }
