@@ -3,6 +3,7 @@ package TerminalPortuaria.Ob2TF.Buque;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 import java.awt.geom.Point2D;
@@ -108,6 +109,7 @@ class BuqueTest {
 		araBouchard.setPosicionActual(posicionTerBsAs);  
 		when(bsAs.getUbicacion()).thenReturn(posicionTerBsAs);
 		araBouchard.actualizarEstado(); // Aca estoy en estado Arrived
+		bsAs = spy(TerminalPortuaria.class);
 		bsAs.trabajoCargaYDescarga(araBouchard);
 		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Working"));
 		
