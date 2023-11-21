@@ -1,6 +1,7 @@
 package TerminalPortuaria.Ob2TF.TerminalP;
 
 import java.awt.geom.Point2D;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -12,6 +13,8 @@ import TerminalPortuaria.Ob2TF.BusquedaMaritima.*;
 import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.Cliente.Cliente;
+import TerminalPortuaria.Ob2TF.EmpresaTransportista.Camion;
+import TerminalPortuaria.Ob2TF.EmpresaTransportista.Chofer;
 
 
 public class TerminalPortuaria
@@ -49,6 +52,11 @@ public class TerminalPortuaria
 	{
 		return viajes;
 	}
+	
+	public void registrasNuevaOrden(Orden orden) {
+		//VERIFICAR SI NECESITA VALIDACION
+		this.ordenes.add(orden);
+	}
 
 	public void registrarNuevaNaviera(Naviera nav) {
 		if (this.estoyEnUnCircuitoDeLaNaviera(nav)) {
@@ -83,6 +91,36 @@ public class TerminalPortuaria
 	private List<Orden> filtrarLista(Viaje viaje) {
 		return this.ordenes.stream().filter( v -> v.getbuque() == viaje.getBuqueViaje()).toList();
 	}
+	
+	private void validarEntregaTerrestreExp(Orden orden, Camion camion, Chofer chofer) throws Exception {
+		this.validarCamion(camion, orden);
+		this.validarChofer(chofer, orden);
+		this.validarHorarioDeEntrega(orden);
+	}
+	
+	private void validarEntregaTerrestreImp(Orden orden, Camion camion, Chofer chofer) throws Exception {
+		this.validarCamion(camion, orden);
+		this.validarChofer(chofer, orden);
+	}
+	
+	private void validarHorarioDeEntrega(Orden orden) throws Exception {
+		if ( orden.getCliente().getTurno().getHour() - LocalDateTime.now().getHour() > 3 ) {
+			throw new Exception ("Llegaste tarde");
+		}
+	}
+	
+	private void validarChofer(Chofer chofer, Orden orden) throws Exception {
+		if (chofer.getNombre() != orden.getCliente().getChofer().getNombre()) {
+			throw new Exception ("El chofer no coincide");
+		}
+	}
+	
+	private void validarCamion(Camion camion, Orden orden) throws Exception {
+		if ( camion.getPatente() != orden.getCliente().getCamion().getPatente()) {
+			throw new Exception ("El chofer no coincide");
+		}
+	}
+	
 	/*
 	 private EstrategiaMejorRuta estrategiaSeleccionada;
 	 

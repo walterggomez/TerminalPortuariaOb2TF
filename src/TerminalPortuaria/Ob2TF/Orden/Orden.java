@@ -12,6 +12,15 @@ public class Orden
 	protected Container container;
 	protected Buque buque;
 	
+	
+	
+	public Orden(Cliente cliente, Viaje viaje, Container container, Buque buque) {
+		this.cliente = cliente;
+		this.viaje = viaje;
+		this.container = container;
+		this.buque = buque;
+	}
+
 	public Buque getbuque() {
 		return this.buque;
 	}
