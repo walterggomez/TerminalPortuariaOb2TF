@@ -10,15 +10,11 @@ import TerminalPortuaria.Ob2TF.Container.Container;
 public class OrdenExportacion extends Orden
 {
 
-
-	
-	
-	public OrdenExportacion(Cliente cliente, Viaje viaje, Container container, Buque buque, LocalDateTime fecha) {
+	public OrdenExportacion(Cliente cliente, Viaje viaje, Container container, Buque buque) {
 		super(cliente, viaje, container, buque);
-		this.fechaYHoraDeEntrega = fecha;
+		// TODO Auto-generated constructor stub
 	}
 
-	public LocalDateTime getFechaYHoraDeEntrega() {
-		return fechaYHoraDeEntrega;
-	}
+
+	
 }
