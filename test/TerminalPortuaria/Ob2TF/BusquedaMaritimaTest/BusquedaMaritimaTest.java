@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,9 +23,15 @@ import org.junit.jupiter.api.Test;
 
 class BusquedaMaritimaTest {
 
-	OperadorAND compo1;
-	OperadorAND compo2;
-	OperadorAND compo3;
+	//OPERADORES AND
+	OperadorOR compo1;
+	OperadorOR compo2;
+	OperadorOR compo3;
+	
+	//FiltrosPuertoDestino
+	FiltroPuertoDestino destinoAMontevideo;
+	FiltroPuertoDestino destinoALima;
+	FiltroPuertoDestino destinoABsAs;
 	
 	
 	// Circuitos
@@ -48,7 +55,14 @@ class BusquedaMaritimaTest {
 	Viaje viajeBsAsMontevideoLima;
 	Viaje viajeSanPabloMontevideoLima;
 	
-	List<Viaje> todosLosViajes;
+	List<Viaje> viajes1;
+	List<Viaje> viajes2;
+	List<Viaje> viajes3;
+	
+	List<Viaje> viajesABsAs;
+	List<Viaje> viajeAMonteYLima;
+	List<Viaje> viajeAMonte;
+	List<Viaje> viajeALimaPeru;
 	
 	//FiltrosPuertoDestino
 	FiltroPuertoDestino viajeAMontevideo;
@@ -61,15 +75,52 @@ class BusquedaMaritimaTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
+		
+		
 		viajeBsAsSanPabloMonteVideo = mock(Viaje.class);
 		viajeAsuncionLimaSantiago = mock(Viaje.class);
 		viajeLimaSantiagoLaPaz = mock(Viaje.class);
 		viajeBsAsMontevideoLima = mock(Viaje.class);
 		viajeSanPabloMontevideoLima = mock(Viaje.class);
 		
-		compo1 = new OperadorAND("BusquedaDestinoMonteVideo");
-		compo2 = new OperadorAND("BusquedaDestinoLima");
-		compo3 = new OperadorAND("BusquedaDestinoLaPaz");
+		viajesABsAs = new ArrayList<>();
+		viajeAMonteYLima = new ArrayList<>();
+		viajeAMonte = new ArrayList<>();
+		viajeALimaPeru = new ArrayList<>();
+		viajes1 = new ArrayList<>();
+		viajes2 = new ArrayList<>();
+		viajes3 = new ArrayList<>();
+		viajesABsAs.add(viajeLimaSantiagoLaPaz);
+		viajeAMonteYLima.add(viajeBsAsSanPabloMonteVideo);
+		viajeAMonteYLima.add(viajeBsAsMontevideoLima);
+		viajeAMonte.add(viajeBsAsSanPabloMonteVideo);
+		viajeALimaPeru.add(viajeBsAsMontevideoLima);
+		viajes1.add(viajeBsAsSanPabloMonteVideo);
+		viajes1.add(viajeSanPabloMontevideoLima);
+		viajes1.add(viajeAsuncionLimaSantiago);
+		viajes2.add(viajeLimaSantiagoLaPaz);
+		viajes3.add(viajeBsAsMontevideoLima);
+		viajes3.add(viajeSanPabloMontevideoLima);
+
+		
+		compo1 = new OperadorOR("BusquedaDestinoMonteVideoYLima");
+		compo2 = new OperadorOR("BusquedaDestinoLimaYSantiago");
+		compo3 = new OperadorOR("BusquedaDestinoLaPazYBsAs");
+		
+		
+		viajeAMontevideo = mock(FiltroPuertoDestino.class);
+		viajeASantiago = mock(FiltroPuertoDestino.class);
+		viajeALaPaz = mock(FiltroPuertoDestino.class);
+		viajeABsAs = mock(FiltroPuertoDestino.class);
+		viajeALima = mock(FiltroPuertoDestino.class);
+		
+		when(viajeAMontevideo.filtrar(viajes1)).thenReturn(viajeAMonte);
+		when(viajeASantiago.filtrar(viajes1)).thenReturn(viajesABsAs);
+		when(viajeALaPaz.filtrar(viajes1)).thenReturn(viajesABsAs);
+		when(viajeABsAs.filtrar(viajes1)).thenReturn(viajesABsAs);
+		when(viajeALima.filtrar(viajes1)).thenReturn(viajeALimaPeru);
+		
+		
 		
 		when(viajeBsAsSanPabloMonteVideo.getpuertoDestino()).thenReturn(montevideo);
 		when(viajeAsuncionLimaSantiago.getpuertoDestino()).thenReturn(santiagoDeChile);
@@ -77,17 +128,23 @@ class BusquedaMaritimaTest {
 		when(viajeBsAsMontevideoLima.getpuertoDestino()).thenReturn(lima);
 		when(viajeSanPabloMontevideoLima.getpuertoDestino()).thenReturn(lima);
 		
-		compo1.Agregar(compo1);
+//		when(viajeAMontevideo.filtrar(viajes1)).thenReturn(viajeAMonte);
 		
+//		FiltroPuertoDestino viajeAMontevideo;
+//		FiltroPuertoDestino viajeASantiago;
+//		FiltroPuertoDestino viajeALaPaz;
+//		FiltroPuertoDestino viajeABsAs;
+//		FiltroPuertoDestino viajeALima;
 		
-	
-	
 	}
 	
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		compo1.Agregar(viajeAMontevideo);
+		compo1.Agregar(viajeALima);
+		assertEquals(compo1.filtrar(viajes1), viajeAMonteYLima);
 	}
+
 	
 
 }
