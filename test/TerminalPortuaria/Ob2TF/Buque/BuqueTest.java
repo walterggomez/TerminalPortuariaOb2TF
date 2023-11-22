@@ -52,6 +52,8 @@ class BuqueTest {
 		araBouchard = new Buque(posicionAraBouchard, garminDrive, viajeBsAsHongKong);
 
 		when(viajeBsAsHongKong.getpuertoDestino()).thenReturn(bsAs);
+		when(viajeBsAsHongKong.getpuertoOrigen()).thenReturn(bsAs);
+		when(bsAs.getUbicacion()).thenReturn(posicionTerBsAs);
 
 	}
 
@@ -130,6 +132,7 @@ class BuqueTest {
 		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Departing"));
 		
 	}
+
 	@Test
 	void pasarDelEstadoDepartingAlEstadoOutboundTest() {
 		// Hago que el Buque pase por los dos estados anteriores 
@@ -141,12 +144,10 @@ class BuqueTest {
 		bsAs = spy(TerminalPortuaria.class);
 		bsAs.trabajoCargaYDescarga(araBouchard);
 		bsAs.depart(araBouchard); // Aca estoy en estado Departing
-		//araBouchard.setPosicionActual(posicionAraBouchard);  
-		//bsAs = mock(TerminalPortuaria.class);
-		//when(garminDrive.distanciaEntrePuntos(posicionAraBouchard, posicionTerBsAs)).thenReturn(5.0);
-		
-		//assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Outbound"));
-		
+		araBouchard.setPosicionActual(posicionAraBouchard);  
+		when(garminDrive.distanciaEntrePuntos(posicionAraBouchard, posicionTerBsAs)).thenReturn(5.0);
+		araBouchard.actualizarEstado(); 
+		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Outbound"));
 	}
 
 }
