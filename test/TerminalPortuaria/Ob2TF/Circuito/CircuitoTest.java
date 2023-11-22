@@ -6,7 +6,6 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
-
 import java.awt.geom.Point2D;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import TerminalPortuaria.Ob2TF.Buque.GPS;
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
@@ -41,13 +39,13 @@ class CircuitoTest
 		
 	
 		
-		TerminalPortuaria bsAs = new TerminalPortuaria( new Point2D.Double(-34.61315, -58.37723) );
-		TerminalPortuaria saoPablo = new TerminalPortuaria( new Point2D.Double(-23.5475, -46.63611) );
-		TerminalPortuaria montevideo = new TerminalPortuaria( new Point2D.Double(-34.90328, -56.18816) );
-		TerminalPortuaria asuncion = new TerminalPortuaria( new Point2D.Double(-25.28646, -57.647) );
-		TerminalPortuaria lima = new TerminalPortuaria( new Point2D.Double(-12.04318, -77.02824) );
-		TerminalPortuaria santiagoDeChile = new TerminalPortuaria( new Point2D.Double(-33.45694, -70.64827) );
-		TerminalPortuaria laPaz = new TerminalPortuaria( new Point2D.Double(-16.5, -68.15) );
+		TerminalPortuaria bsAs = new TerminalPortuaria( "Buenos Aires", new Point2D.Double(-34.61315, -58.37723) );
+		TerminalPortuaria saoPablo = new TerminalPortuaria( "Sao Pablo", new Point2D.Double(-23.5475, -46.63611) );
+		TerminalPortuaria montevideo = new TerminalPortuaria( "Montevideo", new Point2D.Double(-34.90328, -56.18816) );
+		TerminalPortuaria asuncion = new TerminalPortuaria( "Asuncion", new Point2D.Double(-25.28646, -57.647) );
+		TerminalPortuaria lima = new TerminalPortuaria( "Lima", new Point2D.Double(-12.04318, -77.02824) );
+		TerminalPortuaria santiagoDeChile = new TerminalPortuaria( "Santiago de Chile", new Point2D.Double(-33.45694, -70.64827) );
+		TerminalPortuaria laPaz = new TerminalPortuaria( "La Paz", new Point2D.Double(-16.5, -68.15) );
 
 		Tramo bsAsSaoPablo = new Tramo(bsAs, saoPablo, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10);
 		Tramo saoPabloMontevideo  = new Tramo(saoPablo, montevideo, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
@@ -76,10 +74,23 @@ class CircuitoTest
 		Circuito montevideoChile = circuito1.construirCircuitoDesdeHasta(montevideo, santiagoDeChile);
 		List<Tramo> tramosDelNuevoCircuito = montevideoChile.getListaDeTramo();
 		
+		
 		for( Tramo tramo: circuito1.getListaDeTramo() )
 		{
-			System.out.printf( "%s%s%n", tramo.getPuertoOrigen().toString(), tramo.getPuertoDestino().toString() );
+			System.out.printf( "%s\t\t\t%s%n", tramo.getPuertoOrigen().getNombre(), tramo.getPuertoDestino().getNombre() );
 		}
+		
+		System.out.printf("%n%n");
+		
+		for( Tramo tramo: tramosDelNuevoCircuito )
+		{
+			System.out.printf( "%s\t\t\t%s%n", tramo.getPuertoOrigen().getNombre(), tramo.getPuertoDestino().getNombre() );
+		}
+		
+		/*
+		System.out.printf( "%s\t\t\t%s", circuito1.obtenerTramoPorPuertoDestino(santiagoDeChile).getPuertoOrigen().getNombre(),
+				circuito1.obtenerTramoPorPuertoDestino(santiagoDeChile).getPuertoDestino().getNombre());
+		*/
 	}
 	
 	

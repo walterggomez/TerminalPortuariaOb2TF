@@ -153,6 +153,7 @@ public class Circuito {
                 .orElse(null);
     }
 
+    
     boolean origenEstaAntesQueDestino(Tramo tramoOrigen, Tramo tramoDestino)
     {
         return listaDeTramo.indexOf(tramoOrigen) < listaDeTramo.indexOf(tramoDestino);

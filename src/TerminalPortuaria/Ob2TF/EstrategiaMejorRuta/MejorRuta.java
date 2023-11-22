@@ -35,9 +35,9 @@ public abstract class MejorRuta {
 		return todosLosCircuitosT;
 	}
 
-	public List<Naviera> navierasDelPuerto(TerminalPortuaria puertoOrigen) {
+	public List<Naviera> navierasDelPuerto(TerminalPortuaria puertoOrigen)
+	{
 		return puertoOrigen.getMisNavieras();
-
 	}
 	
 	/* [naviera1,naviera2,naviera3,naviera4]*/

@@ -15,6 +15,7 @@ import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.Cliente.Cliente;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Camion;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Chofer;
+import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MejorRuta;
 
 
 
@@ -25,7 +26,7 @@ public class TerminalPortuaria
 	private List<Naviera> misNavieras;
 	private List<Viaje> viajes;
 	private List<Orden> ordenes;
-	
+	private MejorRuta estrategia;
 	public TerminalPortuaria() {
 		
 	}
@@ -124,31 +125,22 @@ public class TerminalPortuaria
 		}
 	}
 	
-
 	public String getNombre()
 	{
 		return this.nombre;
 	}
 	
-	/*
-	 private EstrategiaMejorRuta estrategiaSeleccionada;
-	 
-	 
-	 
-	 
-	 private void setMejorCircuito( EstrategiaMejorRuta estrategia )
-	 {
-	 	this.mejorCircuito = estrategia;
-	 }
-	 
-	 
-	 public Circuito getMejorCircuito(TerminalGestionada terminalDestino)
-	 {
-	 	return this.estrategiaSeleccionada.mejorCircuito(this, terminalDestino);
-	 }
-	 
-	 
-	 */
 	
+	 private void setMejorCircuito( MejorRuta estrategia )
+	 {
+	 	this.estrategia = estrategia;
+	 }
+	 
+	 
+	 public Circuito getMejorCircuito(TerminalPortuaria terminalDestino)
+	 {
+	 	return this.estrategia.mejorCircuito(this, terminalDestino);
+	 }
+	 
 	
 }
