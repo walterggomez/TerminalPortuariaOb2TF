@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
+
 public class Circuito {
 	int idCircuito;
 	LocalDateTime fechaYHoraSalida;
@@ -113,45 +114,52 @@ public class Circuito {
 */
 	
 	
-	
-	
     public Circuito construirCircuitoDesdeHasta(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino) 
     {
-//    	this.origenEstaAntesQueDestino(terminalOrigen, terminalDestino)
         if (terminalesExistenEnCircuito(terminalOrigen, terminalDestino)) 
         {
-            Tramo tramoOrigen = obtenerTramoPorPuerto(terminalOrigen);
-            Tramo tramoDestino = obtenerTramoPorPuerto(terminalDestino);
+            Tramo tramoOrigen = obtenerTramoPorPuertoOrigen(terminalOrigen);
+            Tramo tramoDestino = obtenerTramoPorPuertoDestino(terminalDestino);
 
-        return construirCircuitoReducido(tramoOrigen, tramoDestino);
+            if (origenEstaAntesQueDestino(tramoOrigen, tramoDestino))
+            {
+                return construirCircuitoReducido(tramoOrigen, tramoDestino);
+            }
         }
         return null;
     }
+    
 
     private boolean terminalesExistenEnCircuito(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino)
     {
         return validarSiTerminalExisteEnCircuito(terminalOrigen) && validarSiTerminalExisteEnCircuito(terminalDestino);
     }
+    
 
-    Tramo obtenerTramoPorPuerto(TerminalPortuaria terminal)
+    Tramo obtenerTramoPorPuertoOrigen(TerminalPortuaria puertoOrigen)
     {
         return listaDeTramo.stream()
-                .filter(t -> t.getPuertoOrigen() == terminal || t.getPuertoDestino() == terminal)
+                .filter(t -> t.getPuertoOrigen() == puertoOrigen)
+                .findFirst()
+                .orElse(null);
+    }
+    
+    
+    public Tramo obtenerTramoPorPuertoDestino(TerminalPortuaria puertoDestino)
+    {
+        return listaDeTramo.stream()
+                .filter(t -> t.getPuertoDestino() == puertoDestino)
                 .findFirst()
                 .orElse(null);
     }
 
-    private boolean origenEstaAntesQueDestino(Tramo tramoOrigen, Tramo tramoDestino)
+    boolean origenEstaAntesQueDestino(Tramo tramoOrigen, Tramo tramoDestino)
     {
-    	if (listaDeTramo.indexOf(tramoOrigen) > listaDeTramo.indexOf(tramoDestino) ) {
-    		return true;
-    	}
-    	else {
-    		return false;
-    	}
-       
+        return listaDeTramo.indexOf(tramoOrigen) < listaDeTramo.indexOf(tramoDestino);
     }
 
+    
+    
 //    private Circuito construirCircuitoReducido(Tramo tramoOrigen, Tramo tramoDestino)
 //    {
 //        int indexOfOrigen = listaDeTramo.indexOf(tramoOrigen);
@@ -165,7 +173,7 @@ public class Circuito {
     private Circuito construirCircuitoReducido(Tramo tramoOrigen, Tramo tramoDestino)
     {
     	int indexOfOrigen = listaDeTramo.indexOf(tramoOrigen);
-    	int indexOfDestino = listaDeTramo.indexOf(tramoDestino);
+    	int indexOfDestino = listaDeTramo.indexOf(tramoDestino) + 1;
 
     	List<Tramo> listaTramoReducida = listaDeTramo.subList(indexOfOrigen, indexOfDestino);
     	return new Circuito(listaTramoReducida, listaTramoReducida.get(0).getFechaYHoraSalida());
@@ -212,9 +220,9 @@ public class Circuito {
 //		return this.listaDeTramo.stream().anyMatch(t -> t.getPuertoDestino() == puertoDestino );
 //	}
 
-	public int cantidadDeEscalas ()
+	public int cantidadDeEscalas ( Tramo tramoOr, Tramo tramoDe)
 	{
-		return (listaDeTramo.size() - 1);
+		return (this.construirCircuitoReducido(tramoOr, tramoDe)).getListaDeTramo().size() - 1;
 	}
 
 

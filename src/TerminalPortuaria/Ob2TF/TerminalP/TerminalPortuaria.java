@@ -17,8 +17,10 @@ import TerminalPortuaria.Ob2TF.EmpresaTransportista.Camion;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Chofer;
 
 
+
 public class TerminalPortuaria
 {
+	private String nombre;
 	private Point2D  ubicacion;
 	private List<Naviera> misNavieras;
 	private List<Viaje> viajes;
@@ -28,7 +30,8 @@ public class TerminalPortuaria
 		
 	}
 
-	public TerminalPortuaria(Point2D ubicacion) {
+	public TerminalPortuaria(String nombre, Point2D ubicacion) {
+		this.nombre = nombre;
 		this.ubicacion = ubicacion;
 		this.misNavieras = new ArrayList<Naviera>();
 		this.viajes = new ArrayList<Viaje>();
@@ -83,8 +86,6 @@ public class TerminalPortuaria
 		buque.actualizarEstado();
 	}
 	
-	
-	
 	public void avisarClientes() {
 		
 	}
@@ -121,6 +122,12 @@ public class TerminalPortuaria
 		if ( camion.getPatente() != orden.getCliente().getCamion().getPatente()) {
 			throw new Exception ("El chofer no coincide");
 		}
+	}
+	
+
+	public String getNombre()
+	{
+		return this.nombre;
 	}
 	
 	/*
