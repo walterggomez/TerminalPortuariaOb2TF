@@ -19,7 +19,7 @@ import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MejorRuta;
 
 
 
-public class TerminalPortuaria implements CostoServicios
+public class TerminalPortuaria
 {
 	private String nombre;
 	private Point2D  ubicacion;
@@ -73,13 +73,14 @@ public class TerminalPortuaria implements CostoServicios
 		
 	}
 
-	public boolean estoyEnUnCircuitoDeLaNaviera(Naviera nav) {
+	public boolean estoyEnUnCircuitoDeLaNaviera(Naviera nav) 
+	{
 		List<Circuito> circuitosNaviera = nav.getMisCircuitos();
 		return circuitosNaviera.stream().anyMatch(cir->cir.validarSiTerminalExisteEnCircuito(this));
-
 	}
 	
-	public void trabajoCargaYDescarga(Buque buque) {
+	public void trabajoCargaYDescarga(Buque buque)
+	{
 		//posible verificacion de estado arrived
 		buque.actualizarEstado();
 	}
@@ -87,6 +88,7 @@ public class TerminalPortuaria implements CostoServicios
 	public void depart(Buque buque) {
 		//posible verificacion de estado working
 		buque.actualizarEstado();
+		// Orden debe establecer llegada del container
 	}
 	
 	public void avisarClientes() {
@@ -103,12 +105,14 @@ public class TerminalPortuaria implements CostoServicios
 		this.validarCamion(camion, orden);
 		this.validarChofer(chofer, orden);
 		this.validarHorarioDeEntrega(orden);
+		orden.registrarEntregaContainer();
 	}
 	
 	private void validarEntregaTerrestreImp(Orden orden, Camion camion, Chofer chofer) throws Exception 
 	{
 		this.validarCamion(camion, orden);
 		this.validarChofer(chofer, orden);
+		orden.registrarSalidaContainer();
 	}
 	
 	private void validarHorarioDeEntrega(Orden orden) throws Exception 

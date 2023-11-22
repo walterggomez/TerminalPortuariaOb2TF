@@ -22,10 +22,7 @@ public class AlmacenamientoExcedente implements Servicios // Se instancia en tod
 	@Override
 	public double costoServicio( Orden orden )
 	{
-		LocalDateTime fechayHoraRetiroContainer = LocalDateTime.now();
-		LocalDateTime fechaYHoraIngresoContainer = orden.getFechaDeLlegadaCarga();
-		long diferenciaDias = ChronoUnit.DAYS.between(fechayHoraRetiroContainer, fechaYHoraIngresoContainer);
-		return costoPorDia *  diferenciaDias;
+		return costoPorDia *  ChronoUnit.HOURS.between( orden.getSalidaContainer(), orden.getEntregaContainer() );
 	}
 	
 }

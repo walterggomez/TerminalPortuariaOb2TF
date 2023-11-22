@@ -21,10 +21,10 @@ public abstract class Orden
 	protected List<Servicios> servicios = new ArrayList<Servicios>();
 	protected TransporteAsignado transporteAsignado;
 	protected boolean servicioLavado;
+	protected LocalDateTime entregaContainer;
+	protected LocalDateTime salidaContainer;
+	
 
-	
-	
-	
 	public Orden(Cliente cliente, Viaje viaje, Container container, TransporteAsignado transporte, boolean servicioLavado)
 	{
 		this.cliente = cliente;
@@ -36,6 +36,7 @@ public abstract class Orden
 		this.evaluarServicioReefer();
 	}
 	
+	
 	private void evaluarServicioLavado()
 	{
 		if( servicioLavado )
@@ -43,7 +44,6 @@ public abstract class Orden
 			servicios.add( new Lavado() );
 		}
 	}
-	
 	
 	protected void evaluarServicioReefer()
 	{
@@ -79,8 +79,34 @@ public abstract class Orden
 		return viaje.getFechaDeLlegada();
 	}
 	
+	public void registrarEntregaContainer()
+	{
+		this.entregaContainer = LocalDateTime.now();
+	}
+	
+	public void registrarSalidaContainer()
+	{
+		this.salidaContainer = LocalDateTime.now();
+	}
+	
+	public LocalDateTime getEntregaContainer() 
+	{
+		return entregaContainer;
+	}
+
+	public LocalDateTime getSalidaContainer() 
+	{
+		return salidaContainer;
+	}
+
 	public TransporteAsignado getTransporteAsignado()
 	{
 		return transporteAsignado;
 	}
+	
+	public double precioTotal()
+	{
+		return this.servicios.stream().mapToDouble( s -> s.costoServicio(this)  ).sum() + this.viaje.getCircuito().costoTotalDelCircuito();
+	}
+	
 }

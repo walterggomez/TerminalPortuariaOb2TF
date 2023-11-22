@@ -15,6 +15,9 @@ public class OrdenExportacion extends Orden
 	{
 		super( cliente, viaje, container, transporte, servicioLavado );
 		servicios.add( new Pesado() );
+		this.salidaContainer = viaje.getFechaDeSalida();
 	}
+	
+	
 	
 }
