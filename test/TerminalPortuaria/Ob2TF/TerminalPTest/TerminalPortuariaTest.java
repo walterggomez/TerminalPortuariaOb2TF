@@ -42,8 +42,8 @@ class TerminalPortuariaTest{
 		latitudLongitudSaoPablo = new Point2D.Double(-23.5475, -46.63611);
 		
 		
-		bsAs = new TerminalPortuaria(latitudLongitudBsAs);
-		saoPablo = new TerminalPortuaria(latitudLongitudSaoPablo);
+		bsAs = new TerminalPortuaria("Buenos Aires",latitudLongitudBsAs);
+		saoPablo = new TerminalPortuaria("Sao Pablo",latitudLongitudSaoPablo);
 		
 		naviera1 = mock(Naviera.class);
 		naviera2 = mock(Naviera.class);
