@@ -18,7 +18,7 @@ class ContainerTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		containerA = new Dry(15,20,17,3000);
-		containerB = new Reefer(20,15,10,7000,36);
+		containerB = new Reefer(20,15,10,7000);
 		containerC = new Tanque(12,16,10,5000);
 	}
 
@@ -35,19 +35,16 @@ class ContainerTest {
 		assertEquals(1920,containerC.volumen());
 	}
 	@Test
-	void necesitaRefrigeracionTest() {
-		assertFalse(containerA.necesitaRefrigeracion());
-		assertTrue(containerB.necesitaRefrigeracion());
-		assertFalse(containerC.necesitaRefrigeracion());
-		// verifico el consumo para el container Reefer
-		assertEquals(36,containerB.getConsumo());
+	void containerReeferTest() {
+		assertEquals(50,containerB.getConsumo());
+		containerB.setConsumoKwHora(100);
+		assertEquals(100,containerB.getConsumo());
+		
 	}
-	@Test
-	void isAptoLiquidoTest() {
-		assertFalse(containerA.isAptoLiquido());
-		assertFalse(containerB.isAptoLiquido());
-		assertTrue(containerC.isAptoLiquido());
-	}
+	
+
+
+	
 
 }
 // getPeso volumen necesitaRefrigeracion isAptoLiquido
