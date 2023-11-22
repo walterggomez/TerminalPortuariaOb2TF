@@ -3,44 +3,32 @@ import TerminalPortuaria.Ob2TF.Orden.*;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDateTime;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
-public class AlmacenamientoExcedente implements Servicios
+
+public class AlmacenamientoExcedente implements Servicios // Se instancia en todas las ordenes de importación.
 {
-	private float costoPorDia;
+	private double costoPorDia;
+	
+	public AlmacenamientoExcedente( double costoPorDia )
+	{
+		this.costoPorDia = costoPorDia;
+	}
 	
 	
 	public double costoServicio( Orden orden )
 	{
-		//
-		String fechaIngreso = LocalTime.now().toString();
-		String fechaLlegada = orden.getViaje().getFechaDeLlegada().toString();
-		return costoPorDia * this.diferenciaDias(fechaIngreso, fechaLlegada); // Extraer dato en que el camión va a buscar el container.
+		LocalDateTime fechayHoraRetiroContainer = LocalDateTime.now();
+		LocalDateTime fechaYHoraIngresoContainer = orden.getFechaDeLlegadaCarga();
+		long diferenciaDias = ChronoUnit.DAYS.between(fechayHoraRetiroContainer, fechaYHoraIngresoContainer);
+		return costoPorDia *  diferenciaDias;
 	}
 	
-	public static long diferenciaDias(String ingreso, String retiro){
-        //int dias=0,meses=0,anos=0;
-        LocalDate i = LocalDate.parse(ingreso, DateTimeFormatter.ISO_LOCAL_DATE);
-        LocalDate r = LocalDate.parse(retiro, DateTimeFormatter.ISO_LOCAL_DATE);
-        
-        //Period period = Period.between(i, r);
-        
-        //dias= Math.abs(period.getDays()); meses=Math.abs(period.getMonths()); anos=Math.abs(period.getYears());
-        
-        //dias=dias+1;
-        
-        /*if(dias>=30){
-            dias=0; meses=meses+1;
-        }
-        if(meses>=12){
-            meses=0;anos=anos+1;
-        }*/
-        
-        return ChronoUnit.DAYS.between(i, r);
-        
-        //return dias;
-    }
-
-
-
 }
+
+
+
+

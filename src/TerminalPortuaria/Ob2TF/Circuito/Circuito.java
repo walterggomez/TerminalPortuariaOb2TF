@@ -113,7 +113,7 @@ public class Circuito {
 			
 */
 	
-	
+	// Deuda refactor validaciones
     public Circuito construirCircuitoDesdeHasta(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino) 
     {
         if (terminalesExistenEnCircuito(terminalOrigen, terminalDestino)) 

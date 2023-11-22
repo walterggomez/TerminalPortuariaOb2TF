@@ -241,7 +241,7 @@ class MejorRutaTest {
 		Tramo montevideoLaPaz  = new Tramo(montevideo, laPaz, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
 		
 		
-		// Lista de tramos del circuito 1째
+		// Lista de tramos del circuito 1°
 		List<Tramo>listaTramosNro1 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
 		(
 				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
@@ -250,7 +250,7 @@ class MejorRutaTest {
 				)
 		);
 		
-		// Lista de tramos del circuito 2째
+		// Lista de tramos del circuito 2°
 		List<Tramo>listaTramosNro2 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
 		(
 				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
@@ -259,7 +259,7 @@ class MejorRutaTest {
 				)
 		);
 		
-		// Lista de tramos del circuito 3째
+		// Lista de tramos del circuito 3°
 		List<Tramo>listaTramosNro3 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
 		(
 				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
