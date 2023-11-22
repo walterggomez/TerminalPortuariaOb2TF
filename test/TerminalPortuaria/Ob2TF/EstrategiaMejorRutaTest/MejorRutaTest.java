@@ -146,8 +146,8 @@ class MejorRutaTest {
 		when(circuito2.duracionCircuito()).thenReturn((long) 9);
 		when(circuito3.duracionCircuito()).thenReturn((long) 10);
 		
-		//when(circuito1.cantidadDeEscalas()).thenReturn(0);// si el puerto destino es SaoPablo
-		//when(circuito3.cantidadDeEscalas()).thenReturn(1);// si el puerto destino es SaoPablo
+		when(circuito1.cantidadDeEscalas()).thenReturn(0);// si el puerto destino es SaoPablo
+		when(circuito3.cantidadDeEscalas()).thenReturn(1);// si el puerto destino es SaoPablo
 	
 	}
 

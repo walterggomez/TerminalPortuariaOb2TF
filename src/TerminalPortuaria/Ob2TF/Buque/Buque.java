@@ -44,6 +44,10 @@ public class Buque
 	public TerminalPortuaria puertoDestino() {
 		return viajeActual.getpuertoDestino();
 	}
+	
+	public TerminalPortuaria puertoOrigen() {
+		return viajeActual.getpuertoOrigen();
+	}
 
 
 	public void setViajeActual(Viaje viajeActual)

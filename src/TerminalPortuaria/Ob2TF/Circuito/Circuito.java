@@ -117,15 +117,13 @@ public class Circuito {
 	
     public Circuito construirCircuitoDesdeHasta(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino) 
     {
+//    	this.origenEstaAntesQueDestino(terminalOrigen, terminalDestino)
         if (terminalesExistenEnCircuito(terminalOrigen, terminalDestino)) 
         {
             Tramo tramoOrigen = obtenerTramoPorPuerto(terminalOrigen);
             Tramo tramoDestino = obtenerTramoPorPuerto(terminalDestino);
 
-            if (origenEstaAntesQueDestino(tramoOrigen, tramoDestino))
-            {
-                return construirCircuitoReducido(tramoOrigen, tramoDestino);
-            }
+        return construirCircuitoReducido(tramoOrigen, tramoDestino);
         }
         return null;
     }
@@ -143,9 +141,15 @@ public class Circuito {
                 .orElse(null);
     }
 
-    boolean origenEstaAntesQueDestino(Tramo tramoOrigen, Tramo tramoDestino)
+    private boolean origenEstaAntesQueDestino(Tramo tramoOrigen, Tramo tramoDestino)
     {
-        return listaDeTramo.indexOf(tramoOrigen) < listaDeTramo.indexOf(tramoDestino);
+    	if (listaDeTramo.indexOf(tramoOrigen) > listaDeTramo.indexOf(tramoDestino) ) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+       
     }
 
 //    private Circuito construirCircuitoReducido(Tramo tramoOrigen, Tramo tramoDestino)
@@ -208,9 +212,9 @@ public class Circuito {
 //		return this.listaDeTramo.stream().anyMatch(t -> t.getPuertoDestino() == puertoDestino );
 //	}
 
-	public int cantidadDeEscalas ( Tramo tramoOr, Tramo tramoDe)
+	public int cantidadDeEscalas ()
 	{
-		return (this.construirCircuitoReducido(tramoOr, tramoDe)).getListaDeTramo().size() - 1;
+		return (listaDeTramo.size() - 1);
 	}
 
 

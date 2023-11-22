@@ -1,5 +1,6 @@
 package TerminalPortuaria.Ob2TF.Orden;
 import TerminalPortuaria.Ob2TF.Container.*;
+import TerminalPortuaria.Ob2TF.Servicios.Servicios;
 import TerminalPortuaria.Ob2TF.Buque.Buque;
 import TerminalPortuaria.Ob2TF.Circuito.*;
 import TerminalPortuaria.Ob2TF.Cliente.*;
@@ -11,6 +12,7 @@ public class Orden
 	protected Viaje viaje;
 	protected Container container;
 	protected Buque buque;
+	protected Servicios servicios;
 	
 	
 	
