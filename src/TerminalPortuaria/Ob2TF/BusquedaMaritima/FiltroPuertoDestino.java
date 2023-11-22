@@ -16,6 +16,14 @@ public class FiltroPuertoDestino implements Componente {
 	}
 	
 	
+	
+
+	public TerminalPortuaria getPuertoDestino() {
+		return puertoDestino;
+	}
+
+
+
 
 	@Override
 	public List<Viaje> filtrar(List<Viaje> listaDeViajes) {

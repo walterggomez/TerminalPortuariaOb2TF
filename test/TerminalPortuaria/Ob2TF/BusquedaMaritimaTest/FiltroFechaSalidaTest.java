@@ -5,22 +5,23 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import TerminalPortuaria.Ob2TF.Circuito.*;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import TerminalPortuaria.Ob2TF.BusquedaMaritima.Componente;
-import TerminalPortuaria.Ob2TF.BusquedaMaritima.FiltroPuertoDestino;
+import TerminalPortuaria.Ob2TF.BusquedaMaritima.FiltroFechaSalida;
+import TerminalPortuaria.Ob2TF.BusquedaMaritima.FiltroFechaLlegada;
+import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
-class FiltroPuertoDestinoTest {
+class FiltroFechaSalidaTest {
 
-	FiltroPuertoDestino filtroDestinoBsAs;
-	FiltroPuertoDestino filtroDestinoLima;
+	//FILTROS
+	FiltroFechaSalida filtroFecha1;
+	FiltroFechaSalida filtroFecha2;
 	
 	TerminalPortuaria bsAs;
 	TerminalPortuaria lima;
@@ -28,13 +29,19 @@ class FiltroPuertoDestinoTest {
 	TerminalPortuaria santiago;
 	TerminalPortuaria laPaz;
 	
-	
+
+	LocalDateTime fecha1;
+	LocalDateTime fecha2;
+	LocalDateTime fecha3;
+	LocalDateTime fecha4;
+	LocalDateTime fecha5;
+	LocalDateTime fecha6;
 	
 	//LISTAS
 	List<Viaje> listaDeViajesTest;
 	List<Viaje> listaDeViajesTest2;
 	List<Viaje> listaVaciaTest;
-	List<Viaje> listaSoloBsAs;	
+	List<Viaje> listaHongKongBsYMonteLima;	
 	// Viajes
 	Viaje viajeBsAsSanPabloMonteVideo;
 	Viaje viajeAsuncionLimaSantiago;
@@ -46,6 +53,10 @@ class FiltroPuertoDestinoTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
+		LocalDateTime fecha4 = LocalDateTime.of(2023, 11, 22, 10, 30);
+		LocalDateTime fecha1 = LocalDateTime.of(2023, 10, 22, 10, 30);
+		LocalDateTime fecha2 = LocalDateTime.of(2023, 9, 22, 10, 30);
+		LocalDateTime fecha3 = LocalDateTime.of(2023, 8, 22, 10, 30);
 		viajeBsAsSanPabloMonteVideo = mock(Viaje.class);
 		viajeAsuncionLimaSantiago = mock(Viaje.class);
 		viajeLimaSantiagoLaPaz = mock(Viaje.class);
@@ -53,7 +64,7 @@ class FiltroPuertoDestinoTest {
 		viajeSanPabloMontevideoLima = mock(Viaje.class);
 		viajeHongKongBsAs = mock(Viaje.class);
 		listaVaciaTest = new ArrayList<>();
-		listaSoloBsAs = new ArrayList<>();
+		listaHongKongBsYMonteLima = new ArrayList<>();
 		listaDeViajesTest = new ArrayList<>();
 		listaDeViajesTest2 = new ArrayList<>();
 		bsAs = mock(TerminalPortuaria.class);
@@ -61,44 +72,52 @@ class FiltroPuertoDestinoTest {
 		montevideo = mock(TerminalPortuaria.class);
 		santiago = mock(TerminalPortuaria.class);
 		laPaz = mock(TerminalPortuaria.class);
-		when(viajeHongKongBsAs.getpuertoDestino()).thenReturn(bsAs);
-		when(viajeBsAsSanPabloMonteVideo.getpuertoDestino()).thenReturn(montevideo);
-		when(viajeAsuncionLimaSantiago.getpuertoDestino()).thenReturn(santiago);
-		when(viajeLimaSantiagoLaPaz.getpuertoDestino()).thenReturn(laPaz);
-		when(viajeBsAsMontevideoLima.getpuertoDestino()).thenReturn(lima);
-		when(viajeSanPabloMontevideoLima.getpuertoDestino()).thenReturn(lima);
+		when(viajeHongKongBsAs.getFechaDeSalida()).thenReturn(fecha1);
+		when(viajeBsAsSanPabloMonteVideo.getFechaDeSalida()).thenReturn(fecha2);
+		when(viajeAsuncionLimaSantiago.getFechaDeSalida()).thenReturn(fecha3);
+		when(viajeLimaSantiagoLaPaz.getFechaDeSalida()).thenReturn(fecha4);
+		when(viajeBsAsMontevideoLima.getFechaDeSalida()).thenReturn(fecha1);
+//		when(viajeSanPabloMontevideoLima.getFechaDeSalida()).thenReturn(fecha5);
 		listaDeViajesTest.add(viajeHongKongBsAs);
 		listaDeViajesTest.add(viajeBsAsSanPabloMonteVideo);
 		listaDeViajesTest.add(viajeAsuncionLimaSantiago);
 		listaDeViajesTest.add(viajeLimaSantiagoLaPaz);
 		listaDeViajesTest.add(viajeBsAsMontevideoLima);
-		listaSoloBsAs.add(viajeHongKongBsAs);
+		listaHongKongBsYMonteLima.add(viajeHongKongBsAs);
+		listaHongKongBsYMonteLima.add(viajeBsAsMontevideoLima);
 		listaDeViajesTest2.add(viajeBsAsSanPabloMonteVideo);
 		listaDeViajesTest2.add(viajeAsuncionLimaSantiago);
 		listaDeViajesTest2.add(viajeLimaSantiagoLaPaz);
-		filtroDestinoBsAs = new FiltroPuertoDestino(bsAs);
+		filtroFecha1 = new FiltroFechaSalida(fecha1);
 		
 		
 	}
 	
 	@Test
 	void busquedaDestinoBsAs() {
-		assertEquals(filtroDestinoBsAs.filtrar(listaDeViajesTest) , listaSoloBsAs);
+		assertEquals(filtroFecha1.filtrar(listaDeViajesTest) , listaHongKongBsYMonteLima);
 
 	}
 	
 	@Test
 	void busquedaDestinoBsAsNoExistente() {
-		assertEquals(filtroDestinoBsAs.filtrar(listaDeViajesTest2) , listaVaciaTest);
+		assertEquals(filtroFecha1.filtrar(listaDeViajesTest2) , listaVaciaTest);
 
 	}
+	
+//	@Test
+//	void agregarDevuelveError() {
+//		var mensaje = Assert.Throws<Exception>() => filtroDestinoBsAs.agregar(filtroDestinoLima));
+//		Assert.That(ex.Message, Is.EqualTo("Actual exception message"));
+//
+//	}
 	
 	@Test
 	void lanzarErrorAlAgregarUnComponente() throws Exception
 	{
 		Exception error = assertThrows( Exception.class, () -> 
 		{
-			filtroDestinoBsAs.Agregar(filtroDestinoBsAs);
+			filtroFecha1.Agregar(filtroFecha1);
 		} );
 		
 		assertEquals( "No Valido", error.getMessage() );
@@ -106,8 +125,11 @@ class FiltroPuertoDestinoTest {
 	
 	@Test
 	void removerNoHaceCambioDeEstado() {
-		filtroDestinoBsAs.Remover(filtroDestinoBsAs);
-		assertEquals(filtroDestinoBsAs.getPuertoDestino(), bsAs);
+		LocalDateTime fecha1 = LocalDateTime.of(2023, 10, 22, 10, 30);
+		filtroFecha1.Remover(filtroFecha1);
+		assertEquals(filtroFecha1.getFechaDestino(), fecha1);
 	}
+
+	
 
 }
