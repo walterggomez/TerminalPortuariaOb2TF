@@ -19,7 +19,7 @@ import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MejorRuta;
 
 
 
-public class TerminalPortuaria
+public class TerminalPortuaria implements CostoServicios
 {
 	private String nombre;
 	private Point2D  ubicacion;
@@ -27,6 +27,10 @@ public class TerminalPortuaria
 	private List<Viaje> viajes;
 	private List<Orden> ordenes;
 	private MejorRuta estrategia;
+	private double costoServicioPesaje;
+	private double costoKwConsumido;
+	private double costoAlmacenamientoExcedente;
+	
 	public TerminalPortuaria() {
 		
 	}
@@ -142,5 +146,35 @@ public class TerminalPortuaria
 	 	return this.estrategia.mejorCircuito(this, terminalDestino);
 	 }
 	 
-	
+	 
+	 public double getCostoServicioPesaje()
+	 	{
+			return costoServicioPesaje;
+		}
+
+		public void setCostoServicioPesaje(double costoServicioPesaje)
+		{
+			this.costoServicioPesaje = costoServicioPesaje;
+		}
+
+		public double getCostoKwConsumido()
+		{
+			return costoKwConsumido;
+		}
+
+		public void setCostoKwConsumido(double costoKwConsumido)
+		{
+			this.costoKwConsumido = costoKwConsumido;
+		}
+
+		public double getCostoAlmacenamientoExcedente()
+		{
+			return costoAlmacenamientoExcedente;
+		}
+
+		public void setCostoAlmacenamientoExcedente(double costoAlmacenamientoExcedente)
+		{
+			this.costoAlmacenamientoExcedente = costoAlmacenamientoExcedente;
+		}
+
 }

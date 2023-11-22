@@ -5,9 +5,9 @@ public class Pesado implements Servicios // Se intancia en todas las ordenes de 
 {
 	private double costoPesaje;
 	
-	public Pesado( float costoPesaje )
+	public Pesado( double d )
 	{
-		this.costoPesaje = costoPesaje;
+		this.costoPesaje = d;
 	}
 	
 	@Override

@@ -9,15 +9,18 @@ import TerminalPortuaria.Ob2TF.EmpresaTransportista.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import TerminalPortuaria.Ob2TF.Container.*;
 
 
-public class Orden 
+public abstract class Orden 
 {
 	protected Cliente cliente;
 	protected Viaje viaje;
 	protected Container container;
 	protected List<Servicios> servicios = new ArrayList<Servicios>();
 	protected TransporteAsignado transporteAsignado;
+	protected boolean servicioLavado;
+
 	
 	
 	
@@ -27,13 +30,20 @@ public class Orden
 		this.viaje = viaje;
 		this.container = container;
 		this.transporteAsignado = transporte;
+		this.servicioLavado = servicioLavado;
+		this.evaluarServicioLavado();
+		this.evaluarServicioReefer();
+	}
+	
+	private void evaluarServicioLavado()
+	{
 		if( servicioLavado )
 		{
 			servicios.add( new Lavado() );
 		}
 	}
 	
-	
+	protected abstract void evaluarServicioReefer();
 	
 	public Viaje getViaje()
 	{

@@ -4,11 +4,11 @@ import TerminalPortuaria.Ob2TF.Container.*;
 
 public class Electricidad implements Servicios // Se instancia en containers reefer.
 {
-	float costoKwHora;
+	double costoKwHora;
 	
-	public Electricidad( float costoKwHora )
+	public Electricidad( double d )
 	{
-		this.costoKwHora = costoKwHora;
+		this.costoKwHora = d;
 	}
 	
 	@Override
