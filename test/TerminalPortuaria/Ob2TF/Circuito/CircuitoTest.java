@@ -71,14 +71,15 @@ class CircuitoTest
 		
 		// Lista de tramos reducida y lista esperada
 		List<Tramo> tramosEsperados = Arrays.asList(montevideoAsuncion, asuncionLima, limaSantiagoDeChile);
-		Circuito montevideoChile = circuito1.construirCircuitoDesdeHasta(montevideo, santiagoDeChile);
+		Circuito montevideoChile = circuito1.construirCircuitoDesdeHasta(saoPablo, laPaz);
 		List<Tramo> tramosDelNuevoCircuito = montevideoChile.getListaDeTramo();
 		
-		
+		/*
 		for( Tramo tramo: circuito1.getListaDeTramo() )
 		{
 			System.out.printf( "%s\t\t\t%s%n", tramo.getPuertoOrigen().getNombre(), tramo.getPuertoDestino().getNombre() );
 		}
+		*/
 		
 		System.out.printf("%n%n");
 		
@@ -334,59 +335,29 @@ class CircuitoTest
 		assertTrue( circuito1.validarSiTerminalExisteEnCircuito( asuncion) );
 	}
 	
-
 	
-	
-/*	
-	@Test
-	void circuitoReducidoEntreMontevideoSantiagoDeChile()
-	{
-	
-		List<Tramo> tramosEsperados = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
-				(
-						Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
-						(
-							montevideoAsuncion, asuncionLima, limaSantiagoDeChile
-						)
-				);
-		when(circuito1.construirCircuitoDesdeHasta(montevideo, santiagoDeChile) )
-			.thenReturn(new Circuito(tramosEsperados, LocalDateTime.now()));
-		
-		Circuito montevideoChile = circuito1.construirCircuitoDesdeHasta(montevideo, santiagoDeChile);
-		List<Tramo> tramosDelNuevoCircuito = montevideoChile.getListaDeTramo();
-		
-				
-		assertIterableEquals( tramosEsperados, tramosDelNuevoCircuito );
-		
-		 		El assertIterableEquals compara el contenido de las listas de objetos, a diferencia de assertArrayEquals que compara
-		 			referencias.
-		 		assertSame compara que ambas listas tengan las mismas instancias de objetos y en el mismo orden.
-	}
-*/
-	// Tramo(TerminalPortuaria puertoOrigen, TerminalPortuaria puertoDestino, LocalDateTime fechaYHoraSalida, double costoDetramo)
     @Test // Testearlo con objetos reales para ver si el problema es con mockito
     void circuitoReducidoEntreMontevideoSantiagoDeChile()
     {
     	// Terminales
-		TerminalPortuaria bsAs = new TerminalPortuaria( new Point2D.Double(-34.61315, -58.37723) );
-		TerminalPortuaria saoPablo = new TerminalPortuaria( new Point2D.Double(-23.5475, -46.63611) );
-		TerminalPortuaria montevideo = new TerminalPortuaria( new Point2D.Double(-34.90328, -56.18816) );
-		TerminalPortuaria asuncion = new TerminalPortuaria( new Point2D.Double(-25.28646, -57.647) );
-		TerminalPortuaria lima = new TerminalPortuaria( new Point2D.Double(-12.04318, -77.02824) );
-		TerminalPortuaria santiagoDeChile = new TerminalPortuaria( new Point2D.Double(-33.45694, -70.64827) );
-		TerminalPortuaria laPaz = new TerminalPortuaria( new Point2D.Double(-16.5, -68.15) );
+		TerminalPortuaria bsAs = new TerminalPortuaria( "Buenos Aires", new Point2D.Double(-34.61315, -58.37723) );
+		TerminalPortuaria saoPablo = new TerminalPortuaria( "Sao Pablo", new Point2D.Double(-23.5475, -46.63611) );
+		TerminalPortuaria montevideo = new TerminalPortuaria( "Montevideo", new Point2D.Double(-34.90328, -56.18816) );
+		TerminalPortuaria asuncion = new TerminalPortuaria( "Asuncion", new Point2D.Double(-25.28646, -57.647) );
+		TerminalPortuaria lima = new TerminalPortuaria( "Lima", new Point2D.Double(-12.04318, -77.02824) );
+		TerminalPortuaria santiagoDeChile = new TerminalPortuaria( "Santiago de Chile", new Point2D.Double(-33.45694, -70.64827) );
+		TerminalPortuaria laPaz = new TerminalPortuaria( "La Paz", new Point2D.Double(-16.5, -68.15) );
 
-		// Tramos estándar
 		Tramo bsAsSaoPablo = new Tramo(bsAs, saoPablo, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10);
 		Tramo saoPabloMontevideo  = new Tramo(saoPablo, montevideo, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
 		Tramo montevideoAsuncion  = new Tramo(montevideo, asuncion, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
 		Tramo asuncionLima  = new Tramo(asuncion, lima, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
 		Tramo limaSantiagoDeChile  = new Tramo(lima, santiagoDeChile, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
 		Tramo santiagoDeChileLaPaz  = new Tramo(santiagoDeChile, laPaz, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
-    	
+		
 		
 		// Lista de tramos del circuito.
-		listaTramosNro1 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
+		List<Tramo>listaTramosNro1 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
 		(
 				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
 				(
@@ -396,8 +367,8 @@ class CircuitoTest
 		
 
 		// Circuitos
-		circuito1 = new Circuito( listaTramosNro1, LocalDateTime.of(2023, 11, 18, 11, 00) );
-		
+		Circuito circuito1 = new Circuito( listaTramosNro1, LocalDateTime.of(2023, 11, 18, 11, 00) );
+    	
 		
 		// Lista de tramos reducida y lista esperada
 		List<Tramo> tramosEsperados = Arrays.asList(montevideoAsuncion, asuncionLima, limaSantiagoDeChile);
@@ -406,9 +377,17 @@ class CircuitoTest
 		
 		
         // Verificar que la lista de tramos sea la esperada
-		assertSame(tramosEsperados, tramosDelNuevoCircuito);
+		assertEquals(tramosEsperados, tramosDelNuevoCircuito);
     }
     
+    
+    @ Test
+    void circuitoReducidoConMockito()
+    {
+    	List<Tramo> tramosEsperados = Arrays.asList(montevideoAsuncion, asuncionLima, limaSantiagoDeChile);
+    	Circuito montevideoChile = circuito1.construirCircuitoDesdeHasta(montevideo, santiagoDeChile);
+    	assertEquals(tramosEsperados, tramosDelNuevoCircuito);
+    }
     
 }
 

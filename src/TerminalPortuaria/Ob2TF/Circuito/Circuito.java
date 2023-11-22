@@ -156,7 +156,8 @@ public class Circuito {
     
     boolean origenEstaAntesQueDestino(Tramo tramoOrigen, Tramo tramoDestino)
     {
-        return listaDeTramo.indexOf(tramoOrigen) < listaDeTramo.indexOf(tramoDestino);
+        return listaDeTramo.indexOf(tramoOrigen) < listaDeTramo.indexOf(tramoDestino) ||
+        		listaDeTramo.indexOf(tramoOrigen) == listaDeTramo.indexOf(tramoDestino);
     }
 
     

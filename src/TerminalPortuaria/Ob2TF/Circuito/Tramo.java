@@ -95,11 +95,6 @@ public class Tramo
 		return this.fechaYHoraSalida.plus( (long) this.getDuracionTramo(), ChronoUnit.HOURS);
 	}
 	
-	
-	@Override
-    public String toString() 
-	{
-        return String.format("Puerto origen: %s, Puerto destino. %s)", ubicacion.getX(), ubicacion.getY());
-    }
+
 	
 }
