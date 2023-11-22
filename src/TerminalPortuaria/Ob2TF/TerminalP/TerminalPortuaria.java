@@ -159,7 +159,7 @@ public class TerminalPortuaria implements CostoServicios
 			return costoServicioPesaje;
 		}
 
-		public void setCostoServicioPesaje(double costoServicioPesaje)
+		public double setCostoServicioPesaje(double costoServicioPesaje)
 		{
 			this.costoServicioPesaje = costoServicioPesaje;
 		}
@@ -169,7 +169,7 @@ public class TerminalPortuaria implements CostoServicios
 			return costoKwConsumido;
 		}
 
-		public void setCostoKwConsumido(double costoKwConsumido)
+		public double setCostoKwConsumido(double costoKwConsumido)
 		{
 			this.costoKwConsumido = costoKwConsumido;
 		}
@@ -179,9 +179,13 @@ public class TerminalPortuaria implements CostoServicios
 			return costoAlmacenamientoExcedente;
 		}
 
-		public void setCostoAlmacenamientoExcedente(double costoAlmacenamientoExcedente)
+		public double setCostoAlmacenamientoExcedente(double costoAlmacenamientoExcedente)
 		{
 			this.costoAlmacenamientoExcedente = costoAlmacenamientoExcedente;
 		}
+
+
+
+
 
 }
