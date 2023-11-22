@@ -81,7 +81,7 @@ public class Buque
 	}
 	
 	public void avisarTerminalPortuaria(TerminalPortuaria puertoGestionado){
-		puertoGestionado.avisarClientes();
+		puertoGestionado.avisarClientes( this.viajeActual );
 	}
 	
 	public void setsePuedeDescargar() {

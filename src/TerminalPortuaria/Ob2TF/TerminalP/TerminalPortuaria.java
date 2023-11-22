@@ -85,21 +85,56 @@ public class TerminalPortuaria
 		buque.actualizarEstado();
 	}
 	
-	public void depart(Buque buque) {
+	public void depart(Buque buque) 
+	{
 		//posible verificacion de estado working
 		buque.actualizarEstado();
 		// Orden debe establecer llegada del container
 	}
 	
-	public void avisarClientes() 
+	
+	public void avisarClientes( Viaje viaje ) 
 	{
+		viaje.notify();
+		/*
+		 		El viaje cumple la función de publisher
+		 		Los suscriptores son los shippers.
+		 		Al crear una orden, se agrega un nuevo suscriptor, (shipper), a la lista de suscriptores del viaje en cuestión.
+		 		
+		 		Viaje...
+				List<Shipper> listaDeShippers;
+				public suscribe( Shipper c ){}...
 		
+				<<Suscriptor>>
+				public notificarme();
+		
+		
+				Cliente(shipper) implements Suscriptor
+				@Override
+				public notificarme()
+				{	
+					...
+				}
+		
+				Terminal
+				generarOrden()
+				{
+					suscribir( Shipper c )
+					{
+						viaje.suscribe( c )
+					}		
+		 */
 	}
 	
+	
+	
 	//CONVERTIR LISTA DE ORDENES A LISTA DE CLIENTES
-	private List<Orden> filtrarLista(Viaje viaje) {
-		return this.ordenes.stream().filter( v -> v.getbuque() == viaje.getBuqueViaje()).toList();
+	private List<Orden> filtrarLista(Viaje viaje) 
+	{
+		return this.ordenes.stream().filter( v -> v.getViaje().getBuqueViaje() == viaje.getBuqueViaje()).toList();
 	}
+	
+	
 	
 	private void validarEntregaTerrestreExp(Orden orden, Camion camion, Chofer chofer) throws Exception 
 	{
