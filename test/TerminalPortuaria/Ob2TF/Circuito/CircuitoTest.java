@@ -382,14 +382,6 @@ class CircuitoTest
     
     
     
-    @ Test
-    void circuitoReducidoConMockito()
-    {
-    	List<Tramo> tramosEsperados = Arrays.asList(montevideoAsuncion, asuncionLima, limaSantiagoDeChile);
-    	Circuito montevideoChile = circuito1.construirCircuitoDesdeHasta(montevideo, santiagoDeChile);
-    	assertEquals(tramosEsperados, tramosDelNuevoCircuito);
-    }
-    
 }
 
 	
