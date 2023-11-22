@@ -1,5 +1,6 @@
 package TerminalPortuaria.Ob2TF.EmpresaTransportista;
 import TerminalPortuaria.Ob2TF.Cliente.*;
+import TerminalPortuaria.Ob2TF.Orden.Orden;
 
 public class TransporteAsignado 
 {
@@ -7,9 +8,10 @@ public class TransporteAsignado
 	private Chofer choferAsignado;
 	private Cliente cliente;
 	
-	public TransporteAsignado( Cliente cliente, Camion camionasignado, Chofer choferAsignado )
+	
+	public TransporteAsignado( Orden ordenAsignada, Camion camionasignado, Chofer choferAsignado )
 	{
-		this.cliente = cliente;
+		this.cliente = ordenAsignada.getCliente();
 		this.camionAsignado = camionasignado;
 		this.choferAsignado = choferAsignado;
 	}
