@@ -11,6 +11,7 @@ public class Electricidad implements Servicios // Se instancia en containers ree
 		this.costoKwHora = costoKwHora;
 	}
 	
+	@Override
 	public double costoServicio( Orden orden )
 	{
 		return costoKwHora * orden.getContainer().getPeso();

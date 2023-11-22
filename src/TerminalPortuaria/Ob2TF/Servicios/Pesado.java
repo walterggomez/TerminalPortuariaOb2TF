@@ -10,6 +10,7 @@ public class Pesado implements Servicios // Se intancia en todas las ordenes de 
 		this.costoPesaje = costoPesaje;
 	}
 	
+	@Override
 	public double costoServicio(Orden orden )
 	{
 		return costoPesaje;

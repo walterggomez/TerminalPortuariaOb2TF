@@ -1,14 +1,17 @@
 package TerminalPortuaria.Ob2TF.EmpresaTransportista;
 
-public class Camion {
+public class Camion 
+{
 
 	private String patente;
 
-	public Camion(String patente) {
+	public Camion(String patente) 
+	{
 		this.patente = patente;
 	}
 	
-	public String getPatente() {
+	public String getPatente() 
+	{
 		return patente;
 	}
 

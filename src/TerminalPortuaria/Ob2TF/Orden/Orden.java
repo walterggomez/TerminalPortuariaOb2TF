@@ -11,8 +11,8 @@ public class Orden
 	protected Cliente cliente;
 	protected Viaje viaje;
 	protected Container container;
-	protected Buque buque;
 	protected Servicios servicios;
+	protected Transporte transporteAsignado;
 	
 	
 	

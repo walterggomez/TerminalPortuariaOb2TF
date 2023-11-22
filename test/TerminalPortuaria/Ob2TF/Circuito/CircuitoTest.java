@@ -381,6 +381,7 @@ class CircuitoTest
     }
     
     
+    
     @ Test
     void circuitoReducidoConMockito()
     {

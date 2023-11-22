@@ -9,8 +9,6 @@ public abstract class Cliente
 {
 	protected String nombre;
 	protected int codigoCliente;
-	protected Chofer chofer;
-	protected Camion camion; 
 	protected LocalDateTime turno;
 	
 	abstract boolean soy(String string);
@@ -31,22 +29,6 @@ public abstract class Cliente
 		this.codigoCliente = codigoCliente;
 	}
 
-	public Chofer getChofer() {
-		return chofer;
-	}
-
-	public void setChofer(Chofer chofer) {
-		this.chofer = chofer;
-	}
-
-	public Camion getCamion() {
-		return camion;
-	}
-
-	public void setCamion(Camion camion) {
-		this.camion = camion;
-	}
-	
 	public LocalDateTime getTurno() {
 		return turno;
 	}
