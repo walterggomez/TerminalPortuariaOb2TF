@@ -59,7 +59,8 @@ public class Circuito {
 	}
 
 	
-	public TerminalPortuaria puertoOrigenCircuito() {
+	public TerminalPortuaria puertoOrigenCircuito() 
+	{
 		return listaDeTramo.get(0).getPuertoOrigen();
 	}
 

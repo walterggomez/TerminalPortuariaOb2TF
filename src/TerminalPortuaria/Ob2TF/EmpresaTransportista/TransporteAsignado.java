@@ -16,5 +16,28 @@ public class TransporteAsignado
 		this.choferAsignado = choferAsignado;
 	}
 	
+	
+	public Camion getCamionAsignado() 
+	{
+		return camionAsignado;
+	}
+
+	public Chofer getChoferAsignado()
+	{
+		return choferAsignado;
+	}
+
+	public Cliente getCliente()
+	{
+		return cliente;
+	}
+
+
+
+	
+	
+
+	
+	
 
 }

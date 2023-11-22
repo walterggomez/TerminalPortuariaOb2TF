@@ -100,32 +100,39 @@ public class TerminalPortuaria implements CostoServicios
 		return this.ordenes.stream().filter( v -> v.getbuque() == viaje.getBuqueViaje()).toList();
 	}
 	
-	private void validarEntregaTerrestreExp(Orden orden, Camion camion, Chofer chofer) throws Exception {
+	private void validarEntregaTerrestreExp(Orden orden, Camion camion, Chofer chofer) throws Exception 
+	{
 		this.validarCamion(camion, orden);
 		this.validarChofer(chofer, orden);
 		this.validarHorarioDeEntrega(orden);
 	}
 	
-	private void validarEntregaTerrestreImp(Orden orden, Camion camion, Chofer chofer) throws Exception {
+	private void validarEntregaTerrestreImp(Orden orden, Camion camion, Chofer chofer) throws Exception 
+	{
 		this.validarCamion(camion, orden);
 		this.validarChofer(chofer, orden);
 	}
 	
-	private void validarHorarioDeEntrega(Orden orden) throws Exception {
-		if ( orden.getCliente().getTurno().getHour() - LocalDateTime.now().getHour() > 3 ) {
+	private void validarHorarioDeEntrega(Orden orden) throws Exception 
+	{
+		if ( orden.getCliente().getTurno().getHour() - LocalDateTime.now().getHour() > 3 ) 
+		{
 			throw new Exception ("Llegaste tarde");
 		}
 	}
 	
 	private void validarChofer(Chofer chofer, Orden orden) throws Exception {
-		if (chofer.getNombre() != orden.getCliente().getChofer().getNombre()) {
+		if ( chofer.getNombre() != orden.getTransporteAsignado().getChoferAsignado().getNombre() ) 
+		{
 			throw new Exception ("El chofer no coincide");
 		}
 	}
 	
-	private void validarCamion(Camion camion, Orden orden) throws Exception {
-		if ( camion.getPatente() != orden.getCliente().getCamion().getPatente()) {
-			throw new Exception ("El chofer no coincide");
+	private void validarCamion(Camion camion, Orden orden) throws Exception 
+	{
+		if ( camion.getPatente() != orden.getTransporteAsignado().getCamionAsignado().getPatente() ) 
+		{
+			throw new Exception ("El camión no coincide");
 		}
 	}
 	
