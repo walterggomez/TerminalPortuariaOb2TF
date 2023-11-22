@@ -11,11 +11,16 @@ public class Departing implements EstadoBuque {
         }
 
     }
+	
+	
 	@Override
-	public boolean estoyEnEstado(String string) {
-		if (string == "Departing") {
+	public boolean estoyEnEstado(String string)
+	{
+		if (string == "Departing")
+		{
 			return true;
-		} else {
+		} else 
+		{
 			return false;
 		}
 	}

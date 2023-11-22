@@ -19,7 +19,10 @@ public class OrdenImportacion extends Orden
 		this.entregaContainer = viaje.getFechaDeLlegada();
 	}
 	
-	
+	@Override
+	public double precioTotal()
+	{
+		return super.precioTotal() + this.viaje.getCircuito().costoTotalDelCircuito();
+	}
 
-	
 }

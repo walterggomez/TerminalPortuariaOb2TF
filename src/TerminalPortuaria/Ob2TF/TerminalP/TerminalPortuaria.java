@@ -91,7 +91,8 @@ public class TerminalPortuaria
 		// Orden debe establecer llegada del container
 	}
 	
-	public void avisarClientes() {
+	public void avisarClientes() 
+	{
 		
 	}
 	

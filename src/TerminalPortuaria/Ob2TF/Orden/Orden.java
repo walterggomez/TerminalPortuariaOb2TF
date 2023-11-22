@@ -106,7 +106,7 @@ public abstract class Orden
 	
 	public double precioTotal()
 	{
-		return this.servicios.stream().mapToDouble( s -> s.costoServicio(this)  ).sum() + this.viaje.getCircuito().costoTotalDelCircuito();
+		return this.servicios.stream().mapToDouble( s -> s.costoServicio(this)  ).sum();
 	}
 	
 }
