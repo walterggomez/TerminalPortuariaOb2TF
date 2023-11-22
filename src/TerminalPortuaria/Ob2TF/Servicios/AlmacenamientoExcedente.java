@@ -11,13 +11,13 @@ import java.time.temporal.ChronoUnit;
 
 public class AlmacenamientoExcedente implements Servicios // Se instancia en todas las ordenes de importación.
 {
-	private double costoPorDia;
+	private double costoPorDia = 50;
 	
-	public AlmacenamientoExcedente( double costoPorDia )
+
+	public void setCostoPorDia(double costoPorDia) 
 	{
 		this.costoPorDia = costoPorDia;
 	}
-	
 	
 	@Override
 	public double costoServicio( Orden orden )

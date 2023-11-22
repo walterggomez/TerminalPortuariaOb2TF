@@ -27,9 +27,7 @@ public class TerminalPortuaria implements CostoServicios
 	private List<Viaje> viajes;
 	private List<Orden> ordenes;
 	private MejorRuta estrategia;
-	private double costoServicioPesaje;
-	private double costoKwConsumido;
-	private double costoAlmacenamientoExcedente;
+
 	
 	public TerminalPortuaria() {
 		
@@ -153,36 +151,7 @@ public class TerminalPortuaria implements CostoServicios
 	 	return this.estrategia.mejorCircuito(this, terminalDestino);
 	 }
 	 
-	 
-	 public double getCostoServicioPesaje()
-	 	{
-			return costoServicioPesaje;
-		}
 
-		public double setCostoServicioPesaje(double costoServicioPesaje)
-		{
-			this.costoServicioPesaje = costoServicioPesaje;
-		}
-
-		public double getCostoKwConsumido()
-		{
-			return costoKwConsumido;
-		}
-
-		public double setCostoKwConsumido(double costoKwConsumido)
-		{
-			this.costoKwConsumido = costoKwConsumido;
-		}
-
-		public double getCostoAlmacenamientoExcedente()
-		{
-			return costoAlmacenamientoExcedente;
-		}
-
-		public double setCostoAlmacenamientoExcedente(double costoAlmacenamientoExcedente)
-		{
-			this.costoAlmacenamientoExcedente = costoAlmacenamientoExcedente;
-		}
 
 
 

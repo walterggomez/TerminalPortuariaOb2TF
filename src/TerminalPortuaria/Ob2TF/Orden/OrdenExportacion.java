@@ -11,23 +11,10 @@ import TerminalPortuaria.Ob2TF.Servicios.*;
 public class OrdenExportacion extends Orden
 {
 
-
 	public OrdenExportacion( Cliente cliente, Viaje viaje, Container container, TransporteAsignado transporte, boolean servicioLavado)
 	{
 		super( cliente, viaje, container, transporte, servicioLavado );
-		servicios.add( new Pesado( viaje.getpuertoOrigen().getCostoServicioPesaje() ) );
+		servicios.add( new Pesado() );
 	}
-
-	@Override
-	protected void evaluarServicioReefer() 
-	{
-		if( container instanceof  Reefer )
-		{
-			servicios.add( new Electricidad( viaje.getpuertoOrigen().getCostoKwConsumido() ) );
-		}
-		
-	}
-
-
 	
 }

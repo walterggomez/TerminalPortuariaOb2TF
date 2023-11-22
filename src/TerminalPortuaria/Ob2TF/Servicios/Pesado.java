@@ -3,17 +3,18 @@ import TerminalPortuaria.Ob2TF.Orden.*;
 
 public class Pesado implements Servicios // Se intancia en todas las ordenes de exportación.
 {
-	private double costoPesaje;
+	private double costoPesaje = 50;
 	
-	public Pesado( double d )
+	
+	public void setCostoPesaje(double costoPesaje) 
 	{
-		this.costoPesaje = d;
+		this.costoPesaje = costoPesaje;
 	}
 	
 	@Override
 	public double costoServicio(Orden orden )
 	{
-		return costoPesaje;
+		return this.costoPesaje;
 	}
 
 }

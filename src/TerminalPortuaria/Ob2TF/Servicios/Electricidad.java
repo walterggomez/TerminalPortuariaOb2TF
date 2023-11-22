@@ -4,12 +4,9 @@ import TerminalPortuaria.Ob2TF.Container.*;
 
 public class Electricidad implements Servicios // Se instancia en containers reefer.
 {
-	double costoKwHora;
+	double costoKwHora = 50;
 	
-	public Electricidad( double d )
-	{
-		this.costoKwHora = d;
-	}
+
 	
 	@Override
 	public double costoServicio( Orden orden )
@@ -17,5 +14,10 @@ public class Electricidad implements Servicios // Se instancia en containers ree
 		return costoKwHora * orden.getContainer().getPeso();
 	}
 	
-
+	public void setCostoKwHora( double nuevoPrecio)
+	{
+		this.costoKwHora = nuevoPrecio;
+	}
+	
+	
 }

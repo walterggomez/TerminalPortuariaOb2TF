@@ -1,5 +1,6 @@
 package TerminalPortuaria.Ob2TF.Orden;
 import TerminalPortuaria.Ob2TF.Container.*;
+import TerminalPortuaria.Ob2TF.Servicios.Electricidad;
 import TerminalPortuaria.Ob2TF.Servicios.Lavado;
 import TerminalPortuaria.Ob2TF.Servicios.Servicios;
 import TerminalPortuaria.Ob2TF.Buque.Buque;
@@ -43,7 +44,15 @@ public abstract class Orden
 		}
 	}
 	
-	protected abstract void evaluarServicioReefer();
+	
+	protected void evaluarServicioReefer()
+	{
+		if( container instanceof  Reefer )
+		{
+			servicios.add( new Electricidad() );
+		}
+	}
+	
 	
 	public Viaje getViaje()
 	{

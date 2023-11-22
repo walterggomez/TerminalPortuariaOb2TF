@@ -15,17 +15,10 @@ public class OrdenImportacion extends Orden
 	public OrdenImportacion( Cliente cliente, Viaje viaje, Container container, TransporteAsignado transporte, boolean servicioLavado)
 	{
 		super( cliente, viaje, container, transporte, servicioLavado );
-		servicios.add( new AlmacenamientoExcedente( viaje.getpuertoDestino().getCostoAlmacenamientoExcedente() ) );
+		servicios.add( new AlmacenamientoExcedente() );
 		
 	}
 	
-	@Override
-	protected void evaluarServicioReefer() 
-	{
-		if( container instanceof  Reefer )
-		{
-			servicios.add( new Electricidad( viaje.getpuertoDestino().getCostoKwConsumido() ) );
-		}
-	}
+
 	
 }
