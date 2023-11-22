@@ -7,13 +7,14 @@ import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 
 public class OperadorOR implements Componente {
 
-	String nombre;
-	List<Componente> hijos = new ArrayList<Componente>();
+	protected String nombre;
+	protected List<Componente> hijos;
 	
 	public OperadorOR(String nombre) {
-	this.nombre = nombre;
-	// TODO Auto-generated constructor stub
-}
+		this.nombre = nombre;
+		this.hijos = new ArrayList<>();
+		// TODO Auto-generated constructor stub
+	    }
 
 	@Override
 	public void Agregar(Componente componente) {
@@ -36,5 +37,10 @@ public class OperadorOR implements Componente {
 		}
 		return viajesFiltrados;
 	}
+
+	public List<Componente> getHijos() {
+		return hijos;
+	}
+	
 	
 }

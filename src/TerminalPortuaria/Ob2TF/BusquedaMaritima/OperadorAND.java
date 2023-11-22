@@ -9,13 +9,13 @@ import TerminalPortuaria.Ob2TF.Circuito.*;
 public class OperadorAND implements Componente {
 
 		String nombre;
-		List<Componente> hijos = new ArrayList<Componente>();
+		List<Componente> hijos;
 		
 		public OperadorAND(String nombre) {
 		this.nombre = nombre;
 		this.hijos = new ArrayList<>();
 		// TODO Auto-generated constructor stub
-	}
+	    }
 
 		@Override
 		public void Agregar(Componente componente) {
@@ -39,5 +39,10 @@ public class OperadorAND implements Componente {
 			}
 			return viajesFiltrados;
 		}
+		
+		public List<Componente> getHijos() {
+			return hijos;
+		}
+		
 
 }

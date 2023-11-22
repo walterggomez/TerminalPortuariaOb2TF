@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class OperadorAND {
+class FiltroFechaLlegadaTest {
 
 	@Test
 	void test() {

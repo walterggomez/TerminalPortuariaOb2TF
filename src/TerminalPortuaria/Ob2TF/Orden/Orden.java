@@ -23,6 +23,8 @@ public class Orden
 		this.buque = buque;
 	}
 
+	
+	
 	public Buque getbuque() {
 		return this.buque;
 	}

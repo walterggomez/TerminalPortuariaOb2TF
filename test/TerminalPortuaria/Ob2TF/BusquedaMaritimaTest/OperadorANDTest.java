@@ -1,37 +1,29 @@
 package TerminalPortuaria.Ob2TF.BusquedaMaritimaTest;
 
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import TerminalPortuaria.Ob2TF.Circuito.*;
-
-import TerminalPortuaria.Ob2TF.Naviera.Naviera;
+import TerminalPortuaria.Ob2TF.BusquedaMaritima.FiltroPuertoDestino;
+import TerminalPortuaria.Ob2TF.BusquedaMaritima.OperadorAND;
+import TerminalPortuaria.Ob2TF.BusquedaMaritima.OperadorOR;
+import TerminalPortuaria.Ob2TF.Circuito.Circuito;
+import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
-import TerminalPortuaria.Ob2TF.BusquedaMaritima.*;
 
+class OperadorANDTest {
 
-import org.junit.jupiter.api.Test;
+	//OPERADORES OR
+	OperadorAND compo1;
+	OperadorAND compo2;
+	OperadorAND compo3;
 
-class BusquedaMaritimaTest {
-
-	//OPERADORES AND
-	OperadorOR compo1;
-	OperadorOR compo2;
-	OperadorOR compo3;
-	
-	//FiltrosPuertoDestino
-	FiltroPuertoDestino destinoAMontevideo;
-	FiltroPuertoDestino destinoALima;
-	FiltroPuertoDestino destinoABsAs;
 	
 	
 	// Circuitos
@@ -58,6 +50,7 @@ class BusquedaMaritimaTest {
 	List<Viaje> viajes1;
 	List<Viaje> viajes2;
 	List<Viaje> viajes3;
+	List<Viaje> listaSinViajes;
 	
 	List<Viaje> viajesABsAs;
 	List<Viaje> viajeAMonteYLima;
@@ -76,13 +69,16 @@ class BusquedaMaritimaTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		
+		compo1 = new OperadorAND("Operador1");
+		compo2 = new OperadorAND("Operador2");
+		compo3 = new OperadorAND("Operador3");
 		viajeBsAsSanPabloMonteVideo = mock(Viaje.class);
 		viajeAsuncionLimaSantiago = mock(Viaje.class);
 		viajeLimaSantiagoLaPaz = mock(Viaje.class);
 		viajeBsAsMontevideoLima = mock(Viaje.class);
 		viajeSanPabloMontevideoLima = mock(Viaje.class);
 		
+		listaSinViajes = new ArrayList<>();
 		viajesABsAs = new ArrayList<>();
 		viajeAMonteYLima = new ArrayList<>();
 		viajeAMonte = new ArrayList<>();
@@ -102,10 +98,7 @@ class BusquedaMaritimaTest {
 		viajes3.add(viajeBsAsMontevideoLima);
 		viajes3.add(viajeSanPabloMontevideoLima);
 
-		
-		compo1 = new OperadorOR("BusquedaDestinoMonteVideoYLima");
-		compo2 = new OperadorOR("BusquedaDestinoLimaYSantiago");
-		compo3 = new OperadorOR("BusquedaDestinoLaPazYBsAs");
+	
 		
 		
 		viajeAMontevideo = mock(FiltroPuertoDestino.class);
@@ -128,7 +121,7 @@ class BusquedaMaritimaTest {
 		when(viajeBsAsMontevideoLima.getpuertoDestino()).thenReturn(lima);
 		when(viajeSanPabloMontevideoLima.getpuertoDestino()).thenReturn(lima);
 		
-//		when(viajeAMontevideo.filtrar(viajes1)).thenReturn(viajeAMonte);
+		when(viajeAMontevideo.filtrar(viajes1)).thenReturn(viajeAMonte);
 		
 //		FiltroPuertoDestino viajeAMontevideo;
 //		FiltroPuertoDestino viajeASantiago;
@@ -138,13 +131,32 @@ class BusquedaMaritimaTest {
 		
 	}
 	
+	//AGREGO ELEMENTOS COMPUESTOS DE FILTRO PUERTO DESTINO A MONTEVIDEO Y LIMA
 	@Test
-	void test() {
+	void testResultadoOR() {
 		compo1.Agregar(viajeAMontevideo);
 		compo1.Agregar(viajeALima);
-		assertEquals(compo1.filtrar(viajes1), viajeAMonteYLima);
+		assertEquals(compo1.filtrar(viajes1), listaSinViajes);
 	}
-
 	
+	
+	//TEST AGREGAR HIJOS
+	@Test
+	void testAgregar() {
+		compo1.Agregar(viajeAMontevideo);
+		compo1.Agregar(viajeALima);
+		assertEquals(compo1.getHijos().size(), 2);
+	}
+	
+	
+	//TEST ELIMINAR HIJOS
+	@Test
+	void testEliminar() {
+		compo1.Agregar(viajeAMontevideo);
+		compo1.Agregar(viajeALima);
+		assertEquals(compo1.getHijos().size(), 2);
+		compo1.Remover(viajeALima);
+		assertEquals(compo1.getHijos().size(), 1);
+	}
 
 }
