@@ -223,9 +223,9 @@ public class Circuito {
 //	}
 
 	public int cantidadDeEscalas()
-    {
-        return this.listaDeTramo.size() - 1;
-    }
+	{
+		return this.listaDeTramo.size() - 1;
+	}
 
 
 
@@ -238,5 +238,6 @@ public class Circuito {
 		}
 		return duracionCircuito;
 	}
+
 
 }
