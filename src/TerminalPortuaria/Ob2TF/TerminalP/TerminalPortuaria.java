@@ -131,7 +131,7 @@ public class TerminalPortuaria
 	}
 	
 	
-	 private void setMejorCircuito( MejorRuta estrategia )
+	 public void setMejorCircuito( MejorRuta estrategia )
 	 {
 	 	this.estrategia = estrategia;
 	 }

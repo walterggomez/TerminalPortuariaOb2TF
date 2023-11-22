@@ -222,10 +222,10 @@ public class Circuito {
 //		return this.listaDeTramo.stream().anyMatch(t -> t.getPuertoDestino() == puertoDestino );
 //	}
 
-	public int cantidadDeEscalas ( Tramo tramoOr, Tramo tramoDe)
-	{
-		return (this.construirCircuitoReducido(tramoOr, tramoDe)).getListaDeTramo().size() - 1;
-	}
+	public int cantidadDeEscalas()
+    {
+        return this.listaDeTramo.size() - 1;
+    }
 
 
 
