@@ -109,11 +109,11 @@ public class TerminalPortuaria
 		return this.ordenes.stream().filter( v -> v.getViaje().getBuqueViaje() == viaje.getBuqueViaje()).toList();
 	}
 	
+	/*
 	public double emitirFactura( Cliente cliente, Orden orden )
 	{
 		
-	}
-	
+	*/
 	
 	private void validarEntregaTerrestreExp(Orden orden, Camion camion, Chofer chofer) throws Exception 
 	{
@@ -171,7 +171,21 @@ public class TerminalPortuaria
 	 }
 	 
 
+	 public List<Orden> getOrdenes() 
+	 {
+		return ordenes;
+	}
 
+	 public Orden buscarOrdenPorBuqueYViaje(Viaje viaje, Buque buque) 
+	 {
+		    return this.getOrdenes()
+		            .stream()
+		            .filter(o -> o.getViaje().equals(viaje) && o.getViaje().getBuqueViaje().equals(buque))
+		            .findFirst()
+		            .orElse(null);
+		}
+
+	 
 
 
 
