@@ -1,6 +1,7 @@
 package TerminalPortuaria.Ob2TF.Buque;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -25,6 +26,7 @@ class BuqueTest {
 	Point2D posicionTerBsAs;
 
 	Viaje viajeBsAsHongKong;
+	Viaje viajeHongKongMadrid;
 
 	GPS garminDrive;
 
@@ -45,6 +47,7 @@ class BuqueTest {
 		hongKong = mock(TerminalPortuaria.class);
 
 		viajeBsAsHongKong = mock(Viaje.class);
+		viajeHongKongMadrid = mock(Viaje.class);
 
 		posicionAraBouchard = mock(Point2D.class);
 		posicionTerBsAs = mock(Point2D.class);
@@ -82,10 +85,22 @@ class BuqueTest {
 		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Outbound"));
 
 	}
+	@Test
+	void setViajeActualTest() {
+		araBouchard.setViajeActual(viajeHongKongMadrid);
+		assertEquals(viajeHongKongMadrid, araBouchard.getViajeActual());
+	}
+	@Test
+	void puedeDescargarbuequeTest() {
+		assertFalse(araBouchard.getsePuedeDescargar());
+		araBouchard.setsePuedeDescargar();
+		assertTrue(araBouchard.getsePuedeDescargar());
+	}
 
 	@Test
 	void pasarDelEstadoOutboundAlEstadoInboundTest() {
 		when(garminDrive.distanciaEntrePuntos(posicionAraBouchard, posicionTerBsAs)).thenReturn(40.0);
+		assertFalse(araBouchard.getEstadoActual().estoyEnEstado("Inbound"));
 		araBouchard.actualizarEstado();
 		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Inbound"));
 
@@ -99,6 +114,7 @@ class BuqueTest {
 		// Posiciono al buque en el puerto
 		araBouchard.setPosicionActual(posicionTerBsAs);  
 		when(bsAs.getUbicacion()).thenReturn(posicionTerBsAs);
+		assertFalse(araBouchard.getEstadoActual().estoyEnEstado("Arrived"));
 		araBouchard.actualizarEstado();
 		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Arrived"));
 
@@ -113,6 +129,7 @@ class BuqueTest {
 		when(bsAs.getUbicacion()).thenReturn(posicionTerBsAs);
 		araBouchard.actualizarEstado(); // Aca estoy en estado Arrived
 		bsAs = spy(TerminalPortuaria.class);
+		assertFalse(araBouchard.getEstadoActual().estoyEnEstado("Working"));
 		bsAs.trabajoCargaYDescarga(araBouchard);
 		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Working"));
 		
@@ -128,6 +145,7 @@ class BuqueTest {
 		araBouchard.actualizarEstado(); 
 		bsAs = spy(TerminalPortuaria.class);
 		bsAs.trabajoCargaYDescarga(araBouchard);// Aca estoy en estado Working
+		assertFalse(araBouchard.getEstadoActual().estoyEnEstado("Departing"));
 		bsAs.depart(araBouchard);
 		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Departing"));
 		
@@ -146,6 +164,7 @@ class BuqueTest {
 		bsAs.depart(araBouchard); // Aca estoy en estado Departing
 		araBouchard.setPosicionActual(posicionAraBouchard);  
 		when(garminDrive.distanciaEntrePuntos(posicionAraBouchard, posicionTerBsAs)).thenReturn(5.0);
+		assertFalse(araBouchard.getEstadoActual().estoyEnEstado("Outbound"));
 		araBouchard.actualizarEstado(); 
 		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Outbound"));
 	}
