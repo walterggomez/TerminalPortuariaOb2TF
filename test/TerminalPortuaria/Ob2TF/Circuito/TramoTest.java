@@ -18,7 +18,7 @@ import TerminalPortuaria.Ob2TF.Buque.*;
 
 class TramoTest
 {
-	public static void main(String[] args)
+	/*public static void main(String[] args)
 	{
 		// return this.fechaYHoraSalida.plus(this.duracionTramo, ChronoUnit.HOURS);
 		
@@ -136,6 +136,52 @@ class TramoTest
 */
 	
 	
+TerminalPortuaria puertoOrigen = mock(TerminalPortuaria.class);
+TerminalPortuaria puertoDestino = mock(TerminalPortuaria.class);
+
+LocalDateTime fecha1;
+LocalDateTime fecha2;
+LocalDateTime fecha3;
+LocalDateTime fecha4;
+LocalDateTime fecha5;
+LocalDateTime fecha6;
+
+Tramo tramo;
+
+@BeforeEach
+void setUp() throws Exception {
+
+	LocalDateTime fecha1 = LocalDateTime.of(2023, 10, 22, 10, 30);
+	//LocalDateTime fecha2 = LocalDateTime.of(2023, 9, 22, 10, 30);
+	tramo = new Tramo(puertoOrigen, puertoDestino, fecha1, 1000, 50);
+}
+
+@Test
+void duracionDeTramo() {
+	assertEquals(tramo.getDuracionTramo(), 50);
+}
+
+@Test
+void puertoDestino() {
+	assertEquals(tramo.getPuertoDestino(), puertoDestino);
+}
+
+@Test
+void puertoOrigen() {
+	assertEquals(tramo.getPuertoOrigen(), puertoOrigen);
+}
+
+@Test
+void costoDeTramo() {
+	assertEquals(tramo.getCostoDetramo(), 1000);
+}
+
+@Test
+void mostrarFechaDeSalidaEnString() {
+	LocalDateTime fecha2 = LocalDateTime.of(2023, 9, 22, 10, 30);
+	tramo.setFechaYHoraSalida(fecha2);
+	assertEquals(tramo.mostrarFechaYHoraSalida(), "22 septiembre 2023, 10:30");
+}
 	
 	
 }
