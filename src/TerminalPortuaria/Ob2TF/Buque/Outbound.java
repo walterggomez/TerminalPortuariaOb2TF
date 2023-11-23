@@ -14,6 +14,7 @@ public class Outbound implements EstadoBuque {
 		}
 	}
 
+	// asd
 	@Override
 	public boolean estoyEnEstado(String string) 
 	{
