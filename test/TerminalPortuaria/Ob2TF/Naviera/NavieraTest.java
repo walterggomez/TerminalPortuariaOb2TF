@@ -1,14 +1,14 @@
 package TerminalPortuaria.Ob2TF.Naviera;
 
 import static org.junit.jupiter.api.Assertions.*;
-import java.awt.Point;
+
 import java.awt.geom.Point2D;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import TerminalPortuaria.Ob2TF.Buque.*;
 import TerminalPortuaria.Ob2TF.Circuito.Circuito;
@@ -20,14 +20,19 @@ class NavieraTest
 {
 	
 	public static void main(String[] args)
+	
 	{
+		Point2D posicionBsAS = new Point2D.Double(-23.5475, -46.63611);
+		Point2D posicionSaoPablo  = new Point2D.Double(-34.61315, -58.37723);
 		// return this.fechaYHoraSalida.plus(this.duracionTramo, ChronoUnit.HOURS);
 		
-		TerminalPortuaria buenosAires = new TerminalPortuaria( new Point2D.Double(-23.5475, -46.63611) );
-		TerminalPortuaria saoPablo = new TerminalPortuaria( new Point2D.Double(-34.61315, -58.37723) );
+		GPS garminDrive = new GPS();
+		
+		TerminalPortuaria buenosAires = new TerminalPortuaria("Buenos Aires", posicionBsAS);
+		TerminalPortuaria saoPablo = new TerminalPortuaria("Sao Pablo", posicionSaoPablo );
 		// Tramo buenosAiresSaoPablo = new Tramo( buenosAires, saoPablo, LocalDateTime.of(2023, 11, 05, 17, 10), 49, 1000 );
 
-		System.out.println( GPS.distanciaEntrePuntos(buenosAires.getUbicacion(), saoPablo.getUbicacion()) );
+		System.out.println( garminDrive.distanciaEntrePuntos(buenosAires.getUbicacion(), saoPablo.getUbicacion()) );
 		// System.out.println( buenosAiresSaoPablo.getFechaYHoraLlegada() );	
 	}
 	
