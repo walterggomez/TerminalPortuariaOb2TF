@@ -1,6 +1,9 @@
 package TerminalPortuaria.Ob2TF.Buque;
 import java.awt.geom.Point2D;
+import java.util.List;
+
 import TerminalPortuaria.Ob2TF.Circuito.*;
+import TerminalPortuaria.Ob2TF.Cliente.Suscriptor;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 
@@ -80,8 +83,9 @@ public class Buque
 		this.estadoActual = estado;
 	}
 	
-	public void avisarTerminalPortuaria(TerminalPortuaria puertoGestionado){
-		puertoGestionado.avisarClientes( this.viajeActual );
+	public void avisarTerminalPortuaria(TerminalPortuaria puertoGestionado, List<Suscriptor> listaSuscriptores, String mensaje)
+	{
+		puertoGestionado.avisarClientes( this.viajeActual,  listaSuscriptores,  mensaje);
 	}
 	
 	public void setsePuedeDescargar() {

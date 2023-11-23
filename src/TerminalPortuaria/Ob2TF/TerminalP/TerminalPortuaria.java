@@ -11,6 +11,7 @@ import TerminalPortuaria.Ob2TF.BusquedaMaritima.*;
 import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.Cliente.Cliente;
+import TerminalPortuaria.Ob2TF.Cliente.Suscriptor;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Camion;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Chofer;
 import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MejorRuta;
@@ -91,39 +92,10 @@ public class TerminalPortuaria
 	}
 	
 	
-	public void avisarClientes( Viaje viaje,  ) 
+	public void avisarClientes( Viaje viaje, List<Suscriptor> listaSuscriptores, String mensaje ) 
 	{
-		viaje.notify();
-		/*
-		 		El viaje cumple la función de publisher
-		 		Los suscriptores son los shippers.
-		 		Al crear una orden, se agrega un nuevo suscriptor, (shipper), a la lista de suscriptores del viaje en cuestión.
-		 		
-		 		Viaje...
-				List<Shipper> listaDeShippers;
-				public suscribe( Shipper c ){}...
-		
-				<<Suscriptor>>
-				public notificarme();
-		
-		
-				Cliente(shipper) implements Suscriptor
-				@Override
-				public notificarme()
-				{	
-					...
-				}
-		
-				Terminal
-				generarOrden()
-				{
-					suscribir( Shipper c )
-					{
-						viaje.suscribe( c )
-					}		
-		 */
+		viaje.notify( listaSuscriptores, mensaje );
 	}
-	
 	
 	
 	//CONVERTIR LISTA DE ORDENES A LISTA DE CLIENTES
