@@ -2,6 +2,8 @@ package TerminalPortuaria.Ob2TF.ClienteTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +14,14 @@ class ClienteTest {
 	
 	Consignee federico;
 	Shipper natalia;
+	
+	LocalDateTime turno;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		federico = new Consignee ("Federico",1001);
 		natalia = new Shipper ("Natalia",2005);
+		turno = LocalDateTime.of(2023, 12, 28, 15, 00);
 	}
 
 	@Test
@@ -33,6 +38,12 @@ class ClienteTest {
 	void soyTest() {
 		assertTrue(federico.soy("Consignee"));
 		assertTrue(natalia.soy("Shipper"));
+	}
+	@Test
+	void turnoTest() {
+		federico.setTurno(turno);
+		assertEquals(turno,federico.getTurno());
+		
 	}
 
 
