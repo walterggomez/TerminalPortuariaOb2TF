@@ -97,6 +97,11 @@ public class TerminalPortuaria
 		viaje.notify( listaSuscriptores, mensaje );
 	}
 	
+	/*
+	 		Facturación:
+	 			puerto destino
+	 			
+	 */
 	
 	//CONVERTIR LISTA DE ORDENES A LISTA DE CLIENTES
 	private List<Orden> filtrarLista(Viaje viaje) 
@@ -104,6 +109,10 @@ public class TerminalPortuaria
 		return this.ordenes.stream().filter( v -> v.getViaje().getBuqueViaje() == viaje.getBuqueViaje()).toList();
 	}
 	
+	public double emitirFactura( Cliente cliente, Orden orden )
+	{
+		
+	}
 	
 	
 	private void validarEntregaTerrestreExp(Orden orden, Camion camion, Chofer chofer) throws Exception 

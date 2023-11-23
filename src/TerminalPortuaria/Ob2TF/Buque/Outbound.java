@@ -9,6 +9,7 @@ public class Outbound implements EstadoBuque {
 		{
 			buque.avisarTerminalPortuaria(buque.getViajeActual().getpuertoDestino(), buque.getViajeActual().getConsignees(), "Su carga está llegando");
 			buque.setestadoBuque(new Inbound());
+			
 		}
 	}
 
