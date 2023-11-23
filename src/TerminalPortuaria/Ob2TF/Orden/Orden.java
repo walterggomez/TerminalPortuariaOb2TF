@@ -38,8 +38,14 @@ public abstract class Orden
 		this.evaluarServicioLavado();
 		this.evaluarServicioReefer();
 	}
+	
+	
 
 	
+	public List<Servicios> getServicios() {
+		return servicios;
+	}
+
 	private void evaluarServicioLavado()
 	{
 		if( servicioLavado )

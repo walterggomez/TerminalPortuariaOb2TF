@@ -20,8 +20,8 @@ public class Departing implements EstadoBuque {
         	{
             buque.avisarTerminalPortuaria(buque.getViajeActual().getpuertoOrigen(), buque.getViajeActual().getShippers(), "Su carga ha salido de la terminal");
             buque.setestadoBuque(new Outbound());
-        	buque.getViajeActual().unsubscribe(buque.getViajeActual().getShippers(), 
-        			buque.puertoOrigen().buscarOrdenPorBuqueYViaje(buque.getViajeActual(), buque).getCliente());
+//        	buque.getViajeActual().unsubscribe(buque.getViajeActual().getShippers(), 
+//        			buque.puertoOrigen().buscarOrdenPorBuqueYViaje(buque.getViajeActual(), buque).getCliente());
         	}
             
         }
