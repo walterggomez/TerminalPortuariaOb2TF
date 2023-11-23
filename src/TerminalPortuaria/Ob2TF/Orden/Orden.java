@@ -24,7 +24,10 @@ public abstract class Orden
 	protected LocalDateTime entregaContainer;
 	protected LocalDateTime salidaContainer;
 	
-
+	public Orden() {
+		
+	}
+	
 	public Orden(Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa, boolean servicioLavado)
 	{
 		this.cliente = cliente;

@@ -24,5 +24,32 @@ public class EmpresaTransportista
 		return new TransporteAsignado( orden, camionAsignado, choferAsignado );
 	}
 
+
+	public void agregarNuevoCamion(Camion camion) {
+		if (!camiones.contains(camion)) {
+			camiones.add(camion);
+		}
+		
+	}
+	
+	public void agregarNuevoChofer(Chofer chofer) {
+		if (!choferes.contains(chofer)) {
+			choferes.add(chofer);
+		}
+		
+	}
+
+
+	public Object getCamiones() {
+		// TODO Auto-generated method stub
+		return camiones;
+	}
+
+
+	public Object getChoferes() {
+		// TODO Auto-generated method stub
+		return choferes;
+	}
+
 	
 }
