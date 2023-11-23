@@ -3,7 +3,8 @@ package TerminalPortuaria.Ob2TF.Buque;
 public class Inbound implements EstadoBuque {
 
 	@Override
-	public void actualizarEstado(Buque buque) {
+	public void actualizarEstado(Buque buque) 
+	{
 		if (buque.getPosicionActual() == buque.puertoDestino().getUbicacion()) {
 			buque.setestadoBuque(new Arrived());
 		}
