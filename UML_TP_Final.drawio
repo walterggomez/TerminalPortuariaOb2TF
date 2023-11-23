@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2023-11-23T18:30:00.440Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.1 Chrome/112.0.5615.87 Electron/24.1.2 Safari/537.36" etag="VfrNiclkzIKAHoYKiNQD" version="21.2.1" type="device" pages="3">
+<mxfile host="Electron" modified="2023-11-23T18:34:12.440Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.1 Chrome/112.0.5615.87 Electron/24.1.2 Safari/537.36" etag="yujdVx_8VcArL2Js-cCu" version="21.2.1" type="device" pages="3">
   <diagram name="Página-1" id="ohWhJ8pz_Yb-bU1cgV1I">
     <mxGraphModel dx="1685" dy="1685" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -354,7 +354,7 @@
           <mxGeometry x="730" y="182" width="30" height="30" as="geometry" />
         </mxCell>
         <mxCell id="mLnSrJATvyeAz6sMhdUF-29" value="&lt;i style=&quot;font-weight: normal;&quot;&gt;EstadoBuque&lt;/i&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="140" y="970" width="190" height="86" as="geometry" />
+          <mxGeometry x="140" y="970" width="190" height="112" as="geometry" />
         </mxCell>
         <mxCell id="mLnSrJATvyeAz6sMhdUF-30" value=". . ." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="mLnSrJATvyeAz6sMhdUF-29" vertex="1">
           <mxGeometry y="26" width="190" height="26" as="geometry" />
@@ -364,6 +364,9 @@
         </mxCell>
         <mxCell id="mLnSrJATvyeAz6sMhdUF-32" value="&lt;i&gt;+ actualizarEstado(Buque): void&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="mLnSrJATvyeAz6sMhdUF-29" vertex="1">
           <mxGeometry y="60" width="190" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="qq_bLavf5a70FFrJv6Gi-12" value="&lt;i&gt;+ actualizarEstado(Buque): void&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="mLnSrJATvyeAz6sMhdUF-29">
+          <mxGeometry y="86" width="190" height="26" as="geometry" />
         </mxCell>
         <mxCell id="mLnSrJATvyeAz6sMhdUF-33" value="Outbound" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-90" y="1180" width="190" height="86" as="geometry" />
