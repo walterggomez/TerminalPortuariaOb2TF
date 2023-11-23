@@ -235,7 +235,7 @@ class NavieraTest
 			naviera1.establecerViaje(buque1, LocalDateTime.of(2023, 11, 07, 17, 20), circuito3);
 		});
 		
-		assertEquals( "Este tramo no es valid", exception.getMessage() );
+		assertEquals( "Este tramo no es valido", exception.getMessage() );
 	}
 
 }
