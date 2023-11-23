@@ -5,17 +5,19 @@ import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.Cliente.Cliente;
 import TerminalPortuaria.Ob2TF.Container.Container;
 import TerminalPortuaria.Ob2TF.Container.Reefer;
+import TerminalPortuaria.Ob2TF.EmpresaTransportista.EmpresaTransportista;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.TransporteAsignado;
 import TerminalPortuaria.Ob2TF.Servicios.*;
 
 public class OrdenExportacion extends Orden
 {
 
-	public OrdenExportacion( Cliente cliente, Viaje viaje, Container container, TransporteAsignado transporte, boolean servicioLavado)
+	public OrdenExportacion( Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa, boolean servicioLavado)
 	{
-		super( cliente, viaje, container, transporte, servicioLavado );
+		super( cliente, viaje, container, empresa, servicioLavado );
 		servicios.add( new Pesado() );
 		this.salidaContainer = viaje.getFechaDeSalida();
+		viaje.suscribe(viaje.getShippers(), cliente);
 	}
 	
 	

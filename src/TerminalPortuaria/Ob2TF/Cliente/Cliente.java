@@ -5,7 +5,8 @@ import java.time.LocalDateTime;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Camion;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Chofer;
 
-public abstract class Cliente {
+public abstract class Cliente implements Suscriptor
+{
 	protected String nombre;
 	protected int codigoCliente;
 	protected LocalDateTime turno;
@@ -34,4 +35,7 @@ public abstract class Cliente {
 		this.turno = turno;
 	}
 
+	@Override
+	public void recibirMail( String mensaje ) {};
+	
 }

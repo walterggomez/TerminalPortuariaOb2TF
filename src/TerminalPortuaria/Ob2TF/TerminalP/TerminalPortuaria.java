@@ -1,11 +1,9 @@
 package TerminalPortuaria.Ob2TF.TerminalP;
-
 import java.awt.geom.Point2D;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
 import TerminalPortuaria.Ob2TF.Orden.Orden;
 import TerminalPortuaria.Ob2TF.Buque.Buque;
@@ -93,7 +91,7 @@ public class TerminalPortuaria
 	}
 	
 	
-	public void avisarClientes( Viaje viaje ) 
+	public void avisarClientes( Viaje viaje,  ) 
 	{
 		viaje.notify();
 		/*
