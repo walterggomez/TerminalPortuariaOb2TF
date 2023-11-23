@@ -4,7 +4,7 @@ import java.util.List;
 import TerminalPortuaria.Ob2TF.Cliente.*;
 import TerminalPortuaria.Ob2TF.Orden.*;
 
-public class EmpresaTransportista 
+public class EmpresaTransportista
 {
 	private List<Camion> camiones = new ArrayList<Camion>();
 	private List<Chofer> choferes = new ArrayList<Chofer>();

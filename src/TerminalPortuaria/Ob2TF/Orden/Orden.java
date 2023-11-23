@@ -25,17 +25,17 @@ public abstract class Orden
 	protected LocalDateTime salidaContainer;
 	
 
-	public Orden(Cliente cliente, Viaje viaje, Container container, TransporteAsignado transporte, boolean servicioLavado)
+	public Orden(Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa, boolean servicioLavado)
 	{
 		this.cliente = cliente;
 		this.viaje = viaje;
 		this.container = container;
-		this.transporteAsignado = transporte;
+		this.transporteAsignado = empresa.asignarTransporte(this);
 		this.servicioLavado = servicioLavado;
 		this.evaluarServicioLavado();
 		this.evaluarServicioReefer();
 	}
-	
+
 	
 	private void evaluarServicioLavado()
 	{
