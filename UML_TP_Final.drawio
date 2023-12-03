@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-12-03T15:02:55.130Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.1 Chrome/112.0.5615.87 Electron/24.1.2 Safari/537.36" etag="D28wiNaW7WKIf7on7QWz" version="21.2.1" type="device" pages="3">
+<mxfile host="Electron" modified="2023-12-03T15:37:41.879Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.1 Chrome/112.0.5615.87 Electron/24.1.2 Safari/537.36" etag="ZZSXAJHD7PI73VZiJR94" version="21.2.1" type="device" pages="3">
   <diagram name="Página-1" id="ohWhJ8pz_Yb-bU1cgV1I">
-    <mxGraphModel dx="1685" dy="1685" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1925" dy="1685" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -197,10 +197,10 @@
         <mxCell id="ZnDKxeMAEIr5S651OsTA-23" value="+&amp;nbsp;duracionCircuito(): long" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="I4CPgBQbWjtv85cgowH--34">
           <mxGeometry y="476" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="I4CPgBQbWjtv85cgowH--38" value="Tramos" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="ZnDKxeMAEIr5S651OsTA-17" target="ZnDKxeMAEIr5S651OsTA-24" edge="1">
+        <mxCell id="I4CPgBQbWjtv85cgowH--38" value="Tramos" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="ZnDKxeMAEIr5S651OsTA-17" target="ZnDKxeMAEIr5S651OsTA-24" edge="1">
           <mxGeometry x="-0.0647" y="-28" width="80" relative="1" as="geometry">
             <mxPoint x="1010" y="840" as="sourcePoint" />
-            <mxPoint x="793.2800000000002" y="1065.8139999999999" as="targetPoint" />
+            <mxPoint x="1010" y="990" as="targetPoint" />
             <mxPoint as="offset" />
             <Array as="points">
               <mxPoint x="1010" y="690" />
