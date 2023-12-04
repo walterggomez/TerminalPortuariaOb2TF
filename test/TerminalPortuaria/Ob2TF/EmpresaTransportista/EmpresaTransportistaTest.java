@@ -1,4 +1,4 @@
-package TerminalPortuariaOb2TF.EmpresaTransportista;
+package TerminalPortuaria.Ob2TF.EmpresaTransportista;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;

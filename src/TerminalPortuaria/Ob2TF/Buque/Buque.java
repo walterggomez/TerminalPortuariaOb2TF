@@ -19,6 +19,10 @@ public class Buque
 	//private boolean sePuedeDescargar = false;
 	private boolean sePuedeDescargar; 
 	
+	public Buque() {
+		
+	}
+	
 	public Buque(Point2D posicionActual, GPS miGps, Viaje viajeActual) {
 		super();
 		this.posicionActual = posicionActual;
@@ -58,6 +62,7 @@ public class Buque
 		this.viajeActual = viajeActual;
 	}
 
+	
 
 	public Point2D getPosicionActual()
 	{
@@ -72,21 +77,15 @@ public class Buque
 		this.posicionActual.setLocation(x, y);
 	}*/
 	
-	
-	public void actualizarEstado() {
-		this.estadoActual.actualizarEstado(this);
-	}
-	
-
 
 	public void setestadoBuque(EstadoBuque estado) {
 		this.estadoActual = estado;
 	}
 	
-	public void avisarTerminalPortuaria(TerminalPortuaria puertoGestionado, List<Suscriptor> listaSuscriptores, String mensaje)
-	{
-		puertoGestionado.avisarClientes( this.viajeActual,  listaSuscriptores,  mensaje);
-	}
+//	public void avisarTerminalPortuaria(TerminalPortuaria puertoGestionado, List<Suscriptor> listaSuscriptores, String mensaje)
+//	{
+//		puertoGestionado.avisarClientes( this.viajeActual,  listaSuscriptores,  mensaje);
+//	}
 	
 	public void setsePuedeDescargar() {
 		this.sePuedeDescargar = true;
@@ -94,6 +93,11 @@ public class Buque
 	
 	public boolean getsePuedeDescargar() {
 		return this.sePuedeDescargar;
+	}
+	
+	//Este metodo se envia cada 1 minuto y el estado se encarga de evaluar la distancia a la terminal destino
+	public void informarPosicion() {
+		estadoActual.evaluar(this);
 	}
 	
 	

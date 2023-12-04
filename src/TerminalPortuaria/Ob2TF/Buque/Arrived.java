@@ -6,6 +6,7 @@ public class Arrived implements EstadoBuque {
 	public void actualizarEstado(Buque buque) {
 		buque.setestadoBuque(new Working());
 	}
+	
 
 	@Override
 	public boolean estoyEnEstado(String string) {
@@ -15,5 +16,20 @@ public class Arrived implements EstadoBuque {
 			return false;
 		}
 	}
+
+
+	@Override
+	public double distanciaATerminal(Buque buque) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public void evaluar(Buque buque) {
+	}
+
+
+
 
 }

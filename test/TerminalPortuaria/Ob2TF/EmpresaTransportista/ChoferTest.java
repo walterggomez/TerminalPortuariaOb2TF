@@ -1,4 +1,4 @@
-package TerminalPortuariaOb2TF.EmpresaTransportista;
+package TerminalPortuaria.Ob2TF.EmpresaTransportista;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -7,12 +7,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Camion;
+import TerminalPortuaria.Ob2TF.EmpresaTransportista.Chofer;
 import TerminalPortuaria.Ob2TF.Orden.Orden;
 
-class CamionTest {
+class ChoferTest {
 
-	//Camiones
-	Camion camion;
+	//Chofer
+	Chofer chofer;
 	
 	//Ordenes
 	Orden orden1;
@@ -24,7 +25,7 @@ class CamionTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		camion = new Camion("HDR001");
+		chofer = new Chofer("JuanCarlos");
 		orden1 = mock(Orden.class);
 		orden2 = mock(Orden.class);
 		orden3 = mock(Orden.class);
@@ -32,23 +33,20 @@ class CamionTest {
 	}
 	
 	@Test
-	void verificaQueCamionNoTieneOrdenAsignada() {
-		assertFalse (camion.tieneOrdenAsignada());
+	void verificaQueChoferNoTieneOrdenAsignada() {
+		assertFalse (chofer.tieneOrdenAsignada());
+	}
+	
+	
+	@Test
+	void seAgregaOrden() {
+		chofer.setOrdenAsignada(orden1);
+		assertTrue(chofer.tieneOrdenAsignada());
 	}
 	
 	@Test
-	void setOrdenEnCamion() {
-		assertFalse (camion.tieneOrdenAsignada());
-		camion.setOrdenAsignada(orden1);
-		assertTrue (camion.tieneOrdenAsignada());
+	void seVerificaElNombre() {
+		assertEquals(chofer.getNombre(), "JuanCarlos");
 	}
-	
-	@Test
-	void patenteDeCamion() {
-		assertEquals(camion.getPatente(), "HDR001");
-	}
-	
-
-
 
 }

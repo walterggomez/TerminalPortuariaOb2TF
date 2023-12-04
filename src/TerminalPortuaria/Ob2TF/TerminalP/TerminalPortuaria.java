@@ -81,13 +81,15 @@ public class TerminalPortuaria
 	public void trabajoCargaYDescarga(Buque buque)
 	{
 		//posible verificacion de estado arrived
-		buque.actualizarEstado();
+		//DEBE AVISAR DIRECTO AL ESTADO O AL BUQUE?
+		buque.getEstadoActual().actualizarEstado(buque);
 	}
 	
 	public void depart(Buque buque) 
 	{
 		//posible verificacion de estado working
-		buque.actualizarEstado();
+		//DEBE AVISAR DIRECTO AL ESTADO O AL BUQUE?
+		buque.getEstadoActual().actualizarEstado(buque);
 		// Orden debe establecer llegada del container
 	}
 	

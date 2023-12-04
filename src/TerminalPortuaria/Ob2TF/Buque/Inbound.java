@@ -5,9 +5,14 @@ public class Inbound implements EstadoBuque {
 	@Override
 	public void actualizarEstado(Buque buque) 
 	{
-		if (buque.getPosicionActual() == buque.puertoDestino().getUbicacion()) {
+		if (this.distanciaATerminal(buque) == 0) {
 			buque.setestadoBuque(new Arrived());
 		}
+	}
+	
+	public double distanciaATerminal(Buque buque) {
+		//Implementacion de distancia buque a terminal
+		return 100;
 	}
 
 	@Override
@@ -18,5 +23,13 @@ public class Inbound implements EstadoBuque {
 			return false;
 		}
 	}
+
+	@Override
+	public void evaluar(Buque buque) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }

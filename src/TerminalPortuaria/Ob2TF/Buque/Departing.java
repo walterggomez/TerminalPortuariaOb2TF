@@ -15,10 +15,9 @@ public class Departing implements EstadoBuque {
 	@Override
     public void actualizarEstado(Buque buque) 
 	{
-        if (buque.getMiGps().distanciaEntrePuntos(buque.getPosicionActual(),
-                buque.puertoOrigen().getUbicacion()) > 1) 
+        if (this.distanciaATerminal(buque) > 1.0) 
         	{
-            buque.avisarTerminalPortuaria(buque.getViajeActual().getpuertoOrigen(), buque.getViajeActual().getShippers(), "Su carga ha salido de la terminal");
+//            buque.avisarTerminalPortuaria(buque.getViajeActual().getpuertoOrigen(), buque.getViajeActual().getShippers(), "Su carga ha salido de la terminal");
             buque.setestadoBuque(new Outbound());
 //        	buque.getViajeActual().unsubscribe(buque.getViajeActual().getShippers(), 
 //        			buque.puertoOrigen().buscarOrdenPorBuqueYViaje(buque.getViajeActual(), buque).getCliente());
@@ -26,7 +25,10 @@ public class Departing implements EstadoBuque {
             
         }
     
-	
+	public double distanciaATerminal(Buque buque) {
+		//Implementacion de distancia buque a terminal
+		return 100;
+	}
 	
 	@Override
 	public boolean estoyEnEstado(String string)
@@ -39,5 +41,14 @@ public class Departing implements EstadoBuque {
 			return false;
 		}
 	}
+
+	@Override
+	public void evaluar(Buque buque) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 
 }

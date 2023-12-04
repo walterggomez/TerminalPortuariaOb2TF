@@ -2,19 +2,30 @@ package TerminalPortuaria.Ob2TF.Buque;
 
 public class Outbound implements EstadoBuque {
 
+
 	@Override
 	public void actualizarEstado(Buque buque) {
-		if (buque.getMiGps().distanciaEntrePuntos(buque.getPosicionActual(),
-				buque.puertoDestino().getUbicacion()) < 50) 
-		{
-			buque.avisarTerminalPortuaria(buque.getViajeActual().getpuertoDestino(), buque.getViajeActual().getConsignees(), "Su carga está llegando");
+		
+//			buque.avisarTerminalPortuaria(buque.getViajeActual().getpuertoDestino(), buque.getViajeActual().getConsignees(), "Su carga está llegando");
 			buque.setestadoBuque(new Inbound());
 //        	buque.getViajeActual().unsubscribe(buque.getViajeActual().getConsignees(), 
 //        			buque.puertoOrigen().buscarOrdenPorBuqueYViaje(buque.getViajeActual(), buque).getCliente());
-		}
 	}
 
-	// asd
+	
+	public double distanciaATerminal(Buque buque) {
+		return 100;
+	}
+	
+	public void evaluar(Buque buque) {
+		if (this.distanciaATerminal(buque) < 50) {
+			this.actualizarEstado(buque);
+		}
+	}
+	
+	
+	
+
 	@Override
 	public boolean estoyEnEstado(String string) 
 	{

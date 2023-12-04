@@ -16,4 +16,18 @@ public class Working implements EstadoBuque {
 		}
 	}
 
+	@Override
+	public double distanciaATerminal(Buque buque) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void evaluar(Buque buque) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }

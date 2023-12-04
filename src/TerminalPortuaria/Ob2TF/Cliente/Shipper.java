@@ -7,13 +7,17 @@ public class Shipper extends Cliente {
 	}
 
 	@Override
-	public boolean soy(String string) {
-		if (string == "Shipper") {
-			return true;
-		}
-		else {
-			return false;
-		}
+	public boolean soyConsignee() {
+		return false;
 	}
+	
+	@Override
+	public boolean soyShipper() {
+		return true;
+	}
+
+
+
+	
 	
 }

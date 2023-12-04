@@ -16,8 +16,7 @@ public abstract class Cliente implements Suscriptor
 		this.nombre = nombre;
 		this.codigoCliente = codigoCliente;
 	}
-
-	public abstract boolean soy(String string);
+	
 
 	public String getNombre() {
 		return nombre;
@@ -37,5 +36,8 @@ public abstract class Cliente implements Suscriptor
 
 	@Override
 	public void recibirMail( String mensaje ) {};
+	
+	public abstract boolean soyConsignee();
+	public abstract boolean soyShipper();
 	
 }
