@@ -40,7 +40,8 @@ class MenorCantidadTerminalTest {
 	Circuito circuito2; // [tramo4,tramo5,tramo6]-> bsAs - cartagena - shanghai - singapur
 						//                               3d           5d         1d    = 9d   
 	Circuito circuito3; // [tramo7,tramo8,tramo9]-> bsAs - longBeach - saoPablo - cartagena
-						//                               5d          4d          1     = 10d    	
+						//                               5d          4d          1     = 10d   
+	Circuito circuito4;
 	
 	Tramo tramo1; // bsAs-saoPablo
 	Tramo tramo2; // saoPablo-busan
@@ -65,6 +66,7 @@ class MenorCantidadTerminalTest {
 	List<Tramo> tramosCir1;
 	List<Tramo> tramosCir2;
 	List<Tramo> tramosCir3;
+	List<Tramo> tramosCir4;
 	
 
 	@BeforeEach
@@ -92,6 +94,7 @@ class MenorCantidadTerminalTest {
 		circuito1 = mock(Circuito.class);
 		circuito2 = mock(Circuito.class);
 		circuito3 = mock(Circuito.class);
+		circuito4 = mock(Circuito.class);
 		
 		//Tramo
 		tramo1 = mock(Tramo.class);
@@ -110,12 +113,13 @@ class MenorCantidadTerminalTest {
 		circuitosN1 = Arrays.asList(circuito1, circuito2);
 		circuitosN2 = Arrays.asList(circuito3); 
 		
-		todoCircuito = Arrays.asList(circuito1, circuito2, circuito3);
+		todoCircuito = Arrays.asList(circuito1, circuito2, circuito3,circuito4);
 		
 		// Lista de Tramos
 		tramosCir1 = Arrays.asList(tramo1, tramo2,tramo3);
 		tramosCir2 = Arrays.asList(tramo4, tramo5,tramo6);
 		tramosCir3 = Arrays.asList(tramo7,tramo8,tramo9);
+		tramosCir4 = Arrays.asList(tramo1, tramo5);
 		
 		// Set un valor Mockito
 		when(bsAs.getMisNavieras()).thenReturn(navieras);
@@ -146,8 +150,11 @@ class MenorCantidadTerminalTest {
 		when(circuito2.duracionCircuito()).thenReturn((long) 9);
 		when(circuito3.duracionCircuito()).thenReturn((long) 10);
 		
-		when(circuito1.cantidadDeEscalas()).thenReturn(0);// si el puerto destino es SaoPablo
-		when(circuito3.cantidadDeEscalas()).thenReturn(1);// si el puerto destino es SaoPablo
+		when(circuito1.construirCircuitoDesdeHasta(bsAs, saoPablo)).thenReturn(circuito4);
+		when(circuito3.construirCircuitoDesdeHasta(bsAs, saoPablo)).thenReturn(circuito2);
+		
+		when(circuito1.cantidadDeEscalas()).thenReturn(1);// si el puerto destino es SaoPablo
+		when(circuito3.cantidadDeEscalas()).thenReturn(2);// si el puerto destino es SaoPablo
 	
 	}
 
@@ -155,11 +162,9 @@ class MenorCantidadTerminalTest {
 	void tieneMenosEscalasTest() {
 		assertTrue(mejorRuta2.tieneMenosEscalas(circuito1, circuito3));
 	}
-
     @Test
     void mejorCircuitoParaMenorCantidadDeEscalasTest() {
-        assertEquals(circuito1, mejorRuta2.mejorCircuito(bsAs, saoPablo));
+        assertEquals(circuito3, mejorRuta2.mejorCircuito(bsAs, saoPablo));
     }
-    
 	
 }

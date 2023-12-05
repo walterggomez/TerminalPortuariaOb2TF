@@ -12,13 +12,14 @@ public class MenorCantidadTerminal extends  MejorRuta{
     public Circuito mejorCircuito(TerminalPortuaria puertoOrigen, TerminalPortuaria puertoDestino) {
         List<Circuito> circuitosConDestino = this.listaDeCircuitos(puertoOrigen,puertoDestino);
         Circuito cirConMenorEscala = circuitosConDestino.get(0);
-        for (Circuito circ: circuitosConDestino) {
-               if (!this.tieneMenosEscalas(cirConMenorEscala, circ))
-               {
-                   cirConMenorEscala = circ;
-               }
-        }
-        return cirConMenorEscala;
+     for (Circuito circ: circuitosConDestino) {
+      if (!this.tieneMenosEscalas(cirConMenorEscala.construirCircuitoDesdeHasta(puertoOrigen, puertoDestino),
+              circ.construirCircuitoDesdeHasta(puertoOrigen, puertoDestino)))
+     {
+          cirConMenorEscala = circ;
+      }
+    }
+    return cirConMenorEscala;
 
 
     }
@@ -26,14 +27,5 @@ public class MenorCantidadTerminal extends  MejorRuta{
         return primerCircuito.cantidadDeEscalas() < segundoCircuito.cantidadDeEscalas();
     }
 
-//  for (Circuito circ: circuitosConDestino) {
-//  if (!this.tieneMenosEscalas(cirConMenorEscala.construirCircuitoDesdeHasta(puertoOrigen, puertoDestino),
-//          circ.construirCircuitoDesdeHasta(puertoOrigen, puertoDestino)))
-//  {
-//      cirConMenorEscala = circ;
-//  }
-//}
-//return cirConMenorEscala;
 
-// me tiene re podrido este tp
 }
