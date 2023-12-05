@@ -3,7 +3,10 @@ import java.awt.geom.Point2D;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
 import TerminalPortuaria.Ob2TF.Orden.Orden;
 import TerminalPortuaria.Ob2TF.Buque.Buque;
@@ -24,7 +27,7 @@ public class TerminalPortuaria
 	private Point2D  ubicacion;
 	private List<Naviera> misNavieras;
 	private List<Viaje> viajes;
-	private List<Orden> ordenes;
+	private Set<Orden> ordenes;
 	private MejorRuta estrategia;
 
 	
@@ -32,12 +35,13 @@ public class TerminalPortuaria
 		
 	}
 
-	public TerminalPortuaria(String nombre, Point2D ubicacion) {
+	public TerminalPortuaria(String nombre, Point2D ubicacion)
+	{
 		this.nombre = nombre;
 		this.ubicacion = ubicacion;
 		this.misNavieras = new ArrayList<Naviera>();
 		this.viajes = new ArrayList<Viaje>();
-		this.ordenes = new ArrayList<Orden>();
+		this.ordenes = new HashSet<Orden>();
 	}
 
 	public Point2D getUbicacion()
@@ -52,25 +56,30 @@ public class TerminalPortuaria
 	}
 
 	
-
 	public List<Viaje> getMisViajes()
 	{
 		return viajes;
 	}
 	
-	public void registrasNuevaOrden(Orden orden) {
+	public void registrasNuevaOrden(Orden orden) 
+	{
 		//VERIFICAR SI NECESITA VALIDACION
 		this.ordenes.add(orden);
 	}
 
-	public void registrarNuevaNaviera(Naviera nav) {
-		if (this.estoyEnUnCircuitoDeLaNaviera(nav)) {
+	
+	public void registrarNuevaNaviera(Naviera nav)
+	{
+		if ( this.estoyEnUnCircuitoDeLaNaviera(nav) ) 
+		{
 			this.getMisNavieras().add(nav);
-		}else{
-			System.out.println("Naviera no valida para registrar");			
 		}
-		
+		else
+		{
+			System.out.println("Naviera no valida para registrar");			
+		}	
 	}
+	
 
 	public boolean estoyEnUnCircuitoDeLaNaviera(Naviera nav) 
 	{
@@ -173,7 +182,7 @@ public class TerminalPortuaria
 	 }
 	 
 
-	 public List<Orden> getOrdenes() 
+	 public Set<Orden> getOrdenes() 
 	 {
 		return ordenes;
 	}

@@ -9,7 +9,10 @@ import TerminalPortuaria.Ob2TF.Cliente.*;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import TerminalPortuaria.Ob2TF.Container.*;
 
 
@@ -18,7 +21,7 @@ public abstract class Orden
 	protected Cliente cliente;
 	protected Viaje viaje;
 	protected Container container;
-	protected List<Servicios> servicios = new ArrayList<Servicios>();
+	protected Set<Servicios> servicios = new HashSet<Servicios>();
 	protected TransporteAsignado transporteAsignado;
 	protected boolean servicioLavado;
 	protected LocalDateTime entregaContainer;
@@ -42,10 +45,12 @@ public abstract class Orden
 	
 
 	
-	public List<Servicios> getServicios() {
+	public Set<Servicios> getServicios()
+	{
 		return servicios;
 	}
 
+	
 	private void evaluarServicioLavado()
 	{
 		if( servicioLavado )

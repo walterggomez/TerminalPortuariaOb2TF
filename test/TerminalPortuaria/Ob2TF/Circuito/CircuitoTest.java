@@ -367,17 +367,15 @@ class CircuitoTest
 		
 
 		// Circuitos
-		Circuito circuito1 = new Circuito( listaTramosNro1, LocalDateTime.of(2023, 11, 18, 11, 00) );
-    	
+		Circuito circuito1 = new Circuito( listaTramosNro1, LocalDateTime.of(2023, 11, 18, 11, 00) ); // El circuito con la lista de tramos original
 		
-		// Lista de tramos reducida y lista esperada
-		List<Tramo> tramosEsperados = Arrays.asList(montevideoAsuncion, asuncionLima, limaSantiagoDeChile);
-		Circuito montevideoChile = circuito1.construirCircuitoDesdeHasta(montevideo, santiagoDeChile);
-		List<Tramo> tramosDelNuevoCircuito = montevideoChile.getListaDeTramo();
+		List<Tramo> tramosEsperados = Arrays.asList(montevideoAsuncion, asuncionLima, limaSantiagoDeChile); // La lista de tramos esperada
 		
+		Circuito montevideoChile = circuito1.construirCircuitoDesdeHasta(montevideo, santiagoDeChile); // Un nuevo circuito con la lista de tramos reducida
 		
-        // Verificar que la lista de tramos sea la esperada
-		assertEquals(tramosEsperados, tramosDelNuevoCircuito);
+		List<Tramo> tramosDelNuevoCircuito = montevideoChile.getListaDeTramo(); // Guardamos la nueva lista de tramos en un array.
+		
+		assertEquals(tramosEsperados, tramosDelNuevoCircuito); // Comparamos las dos listas para corroborar que sean iguales
     }
     
     

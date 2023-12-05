@@ -6,14 +6,16 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import TerminalPortuaria.Ob2TF.TerminalP.*;
 import java.util.Map;
+import java.util.Set;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Naviera
 {
 	private List<Circuito> misCircuitos = new ArrayList<>();
 	// private Map<Circuito, LocalDateTime> listaCircuitosSalidas = new HashMap<>();
-	private List<Buque> buques = new ArrayList<>();
-	private List<Viaje> viajes = new ArrayList<>();
+	private Set<Buque> misBuques = new HashSet<>();
+	private Set<Viaje> viajes = new HashSet<>();
 	
 
 	public List<Circuito> getMisCircuitos()
@@ -21,7 +23,7 @@ public class Naviera
 		return misCircuitos;
 	}
 	
-	public List<Viaje> getViajes()
+	public Set<Viaje> getViajes()
 	{
 		return viajes;
 	}
@@ -52,15 +54,15 @@ public class Naviera
 	{
 		if ( ! misCircuitos.contains(circuito) )
 		{
-			throw new Exception("Este tramo no es valido");
+			throw new Exception("Este circuito no se encuentra en las ofertas de la naviera");
 		}
 	}
 	
 	public void validarBuque(Buque buque) throws Exception
 	{
-		if ( buques.contains(buque) )
+		if ( ! misBuques.contains(buque) )
 		{
-			throw new Exception("Este buque no es valido");
+			throw new Exception("Este buque no existe en la naviera");
 		}
 	}
 	
