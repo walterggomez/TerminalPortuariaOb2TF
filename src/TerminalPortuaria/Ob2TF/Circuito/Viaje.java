@@ -43,7 +43,7 @@ public class Viaje
 	{
 		return fechaDeLlegada;
 	}
-	
+	 
 	public Buque getBuqueViaje() {
 		return buqueViaje;
 	}

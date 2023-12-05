@@ -17,7 +17,6 @@ public class OrdenExportacion extends Orden
 		super( cliente, viaje, container, empresa, servicioLavado );
 		servicios.add( new Pesado() );
 		this.salidaContainer = viaje.getFechaDeSalida();
-		viaje.suscribe(viaje.getShippers(), cliente);
 	}
 	
 	@Override

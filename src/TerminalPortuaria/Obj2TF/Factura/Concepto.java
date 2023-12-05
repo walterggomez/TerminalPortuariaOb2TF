@@ -30,4 +30,10 @@ public class Concepto
 	{
 		return monto;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return "Nombre: " + nombre + "\tfecha: " + fecha + "\tmonto: " + monto;
+	}
 }

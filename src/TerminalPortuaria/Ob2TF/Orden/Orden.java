@@ -26,7 +26,7 @@ public abstract class Orden
 	protected LocalDateTime entregaContainer;
 	protected LocalDateTime salidaContainer;
     public UUID codigoUnico;
-	
+	 
 	public Orden() {}
 	
 	public Orden(Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa, boolean servicioLavado)
@@ -127,14 +127,6 @@ public abstract class Orden
 	{
 		return codigoUnico;
 	}
-	
-//	public Servicios getServicioElectricidad() 
-//	{
-//	    return this.servicios.stream()
-//	            .filter(servicio -> servicio instanceof Electricidad)
-//	            .findFirst()
-//	            .orElse(null);
-//	}
 	
 	public Electricidad getServicioElectricidad()
 	{

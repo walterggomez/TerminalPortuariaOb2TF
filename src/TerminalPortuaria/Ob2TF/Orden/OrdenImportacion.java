@@ -18,9 +18,8 @@ public class OrdenImportacion extends Orden
 		super( cliente, viaje, container, empresa, servicioLavado );
 		servicios.add( new AlmacenamientoExcedente() );
 		this.entregaContainer = viaje.getFechaDeLlegada();
-		viaje.suscribe(viaje.getConsignees(), cliente);
 	}
-	
+	 
 	@Override
 	public double precioTotal()
 	{
