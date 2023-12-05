@@ -17,9 +17,7 @@ public class Viaje
 	LocalDateTime fechaDeLlegada;
 	TerminalPortuaria puertoOrigen;
 	TerminalPortuaria puertoDestino;
-    // private Map<String, List<Suscriptor>> listeners = new HashMap<>();      
-    private List<Suscriptor> shippers = new ArrayList<Suscriptor>();
-    private List<Suscriptor> consignees = new ArrayList<Suscriptor>();
+
     
 	
 	public Viaje( Buque buqueViaje, Circuito circuitoViaje, LocalDateTime fechaDeSalida)
@@ -84,39 +82,6 @@ public class Viaje
 	{
 		return this.circuitoViaje.costoTotalDelCircuito();
 	}
-	
-    public void suscribe(List<Suscriptor> suscriptores, Cliente cliente)
-    {
-    	suscriptores.add(cliente);
-     }
-
-    public void unsubscribe(List<Suscriptor> suscriptores, Cliente cliente)
-    {
-    	suscriptores.remove(cliente);
-    }
-    
-    public void notify(List<Suscriptor> suscriptores, String mensaje) 
-    {
-            for ( Suscriptor suscriptor : suscriptores ) 
-            {
-            	suscriptor.recibirMail( mensaje );
-            }
-    }
-
-	public List<Suscriptor> getShippers()
-	{
-		return shippers;
-	}
-
-	public List<Suscriptor> getConsignees() 
-	{
-		return consignees;
-	}
-	
-	/*
-	 		Podría hacer que dentro de viaje, un método para crear un viaje con el circuito reducido para una facturación más precisa.
-	 		
-	 */
 	
 	public boolean validarSiTerminalExisteEnViaje(TerminalPortuaria terminal)
 	{

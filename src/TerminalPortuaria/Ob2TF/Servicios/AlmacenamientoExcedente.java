@@ -18,11 +18,13 @@ public class AlmacenamientoExcedente implements Servicios // Se instancia en tod
 	}
 
 	@Override
-	public double costoServicio(Orden orden) {
+	public double costoServicio(Orden orden) 
+	{
 		return costoPorDia * ChronoUnit.HOURS.between(orden.getSalidaContainer(), orden.getEntregaContainer());
 	}
 
-	public double getCostoPorDia() {
+	public double getCostoPorDia() 
+	{
 		return costoPorDia;
 	}
 	

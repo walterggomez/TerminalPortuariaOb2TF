@@ -130,6 +130,51 @@ public abstract class Orden
 		return codigoUnico;
 	}
 	
+//	public Servicios getServicioElectricidad() 
+//	{
+//	    return this.servicios.stream()
+//	            .filter(servicio -> servicio instanceof Electricidad)
+//	            .findFirst()
+//	            .orElse(null);
+//	}
+	
+	public Electricidad getServicioElectricidad()
+	{
+	    return servicios.stream()
+	            .filter(servicio -> servicio instanceof Electricidad)
+	            .findFirst()
+	            .map(servicio -> (Electricidad) servicio)
+	            .orElse(null);
+	}
+	
+	public Lavado getServicioLavado()
+	{
+	    return servicios.stream()
+	            .filter(servicio -> servicio instanceof Lavado)
+	            .findFirst()
+	            .map(servicio -> (Lavado) servicio)
+	            .orElse(null);
+	}
+	
+	public Pesado getServicioPesado()
+	{
+	    return servicios.stream()
+	            .filter(servicio -> servicio instanceof Pesado)
+	            .findFirst()
+	            .map(servicio -> (Pesado) servicio)
+	            .orElse(null);
+	}
+	
+	public Electricidad getServicioElectricidad()
+	{
+	    return servicios.stream()
+	            .filter(servicio -> servicio instanceof Electricidad)
+	            .findFirst()
+	            .map(servicio -> (Electricidad) servicio)
+	            .orElse(null);
+	}
+	
+	
 	
 	
 }

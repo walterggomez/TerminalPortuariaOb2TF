@@ -24,7 +24,8 @@ public class Electricidad implements Servicios // Se instancia en containers ree
 		this.costoKwHora = nuevoPrecio;
 	}
 
-	public double getCostoKwHora() {
+	public double getCostoKwHora() 
+	{
 		return costoKwHora;
 	}
 	
