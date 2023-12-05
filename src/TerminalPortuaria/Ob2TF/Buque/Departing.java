@@ -10,22 +10,22 @@ import TerminalPortuaria.Ob2TF.EmpresaTransportista.EmpresaTransportista;
 import TerminalPortuaria.Ob2TF.Servicios.AlmacenamientoExcedente;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
-public class Departing implements EstadoBuque {
+public class Departing implements EstadoBuque 
+{
 
 	@Override
     public void actualizarEstado(Buque buque) 
 	{
         if (this.distanciaATerminal(buque) > 1.0) 
         	{
-//            buque.avisarTerminalPortuaria(buque.getViajeActual().getpuertoOrigen(), buque.getViajeActual().getShippers(), "Su carga ha salido de la terminal");
             buque.setestadoBuque(new Outbound());
-//        	buque.getViajeActual().unsubscribe(buque.getViajeActual().getShippers(), 
-//        			buque.puertoOrigen().buscarOrdenPorBuqueYViaje(buque.getViajeActual(), buque).getCliente());
-        	}
-            
+            buque.getViajeActual().getpuertoOrigen().darAvisoShippers( buque.getViajeActual() );
+
+        	}      
         }
     
-	public double distanciaATerminal(Buque buque) {
+	public double distanciaATerminal(Buque buque)
+	{
 		//Implementacion de distancia buque a terminal
 		return 100;
 	}

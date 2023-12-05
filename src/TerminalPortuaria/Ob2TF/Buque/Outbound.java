@@ -4,21 +4,22 @@ public class Outbound implements EstadoBuque {
 
 
 	@Override
-	public void actualizarEstado(Buque buque) {
-		
-//			buque.avisarTerminalPortuaria(buque.getViajeActual().getpuertoDestino(), buque.getViajeActual().getConsignees(), "Su carga está llegando");
-			buque.setestadoBuque(new Inbound());
-//        	buque.getViajeActual().unsubscribe(buque.getViajeActual().getConsignees(), 
-//        			buque.puertoOrigen().buscarOrdenPorBuqueYViaje(buque.getViajeActual(), buque).getCliente());
+	public void actualizarEstado(Buque buque)
+	{
+			buque.setestadoBuque( new Inbound() );
+			buque.getViajeActual().getpuertoDestino().darAvisoConsignees( buque.getViajeActual() );
 	}
 
-	
-	public double distanciaATerminal(Buque buque) {
+
+	public double distanciaATerminal(Buque buque) 
+	{
 		return 100;
 	}
 	
-	public void evaluar(Buque buque) {
-		if (this.distanciaATerminal(buque) < 50) {
+	public void evaluar(Buque buque) 
+	{
+		if (this.distanciaATerminal(buque) < 50) 
+		{
 			this.actualizarEstado(buque);
 		}
 	}

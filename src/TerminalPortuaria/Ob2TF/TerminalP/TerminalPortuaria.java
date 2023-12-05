@@ -6,8 +6,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
-
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
 import TerminalPortuaria.Ob2TF.Orden.*;
 import TerminalPortuaria.Ob2TF.Buque.Buque;
@@ -41,7 +41,7 @@ public class TerminalPortuaria
 		this.nombre = nombre;
 		this.ubicacion = ubicacion;
 		this.misNavieras = new ArrayList<Naviera>();
-		this.viajes = new ArrayList<Viaje>(); // No debería ser un atributo. Debería pedirle a la lista de Navieras los viajes en los que la termianal está incluída.
+		// this.viajes = new ArrayList<Viaje>(); // No debería ser un atributo. Debería pedirle a la lista de Navieras los viajes en los que la termianal está incluída.
 		this.ordenes = new HashSet<Orden>();
 	}
 
@@ -78,7 +78,23 @@ public class TerminalPortuaria
 	{
 		return new OrdenImportacion( cliente, viaje, container, empresa, servicioLavado );
 	}
+
 	
+	public void darAvisoShippers( Viaje viaje )
+	{
+		List<Orden> ordenesExportacion = ordenes.stream().filter( o -> o.esOrdenExportacion() ).toList();
+		List<Cliente> listaConsignees = ordenesExportacion.stream().filter( o -> o.getViaje() == viaje ).map( v -> v.getCliente() ).toList();
+		
+		listaConsignees.stream().forEach( c -> c.recibirMail("Su carga está llegando") );
+	}
+	
+	public void darAvisoConsignees( Viaje viaje )
+	{
+		List<Orden> ordenesImportacion = ordenes.stream().filter( o -> o.esOrdenImportacion() ).toList();
+		List<Cliente> listaConsignees = ordenesImportacion.stream().filter( o -> o.getViaje() == viaje ).map( v -> v.getCliente() ).toList();
+		
+		listaConsignees.stream().forEach( c -> c.recibirMail("Su carga ha salido de la terminal") );
+	}
 	
 	public void registrasNuevaOrden(Orden orden) 
 	{

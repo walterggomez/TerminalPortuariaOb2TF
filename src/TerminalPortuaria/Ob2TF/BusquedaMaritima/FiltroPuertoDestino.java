@@ -18,7 +18,8 @@ public class FiltroPuertoDestino implements Componente {
 	
 	
 
-	public TerminalPortuaria getPuertoDestino() {
+	public TerminalPortuaria getPuertoDestino() 
+	{
 		return puertoDestino;
 	}
 

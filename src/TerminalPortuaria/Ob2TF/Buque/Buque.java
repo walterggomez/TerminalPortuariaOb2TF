@@ -17,7 +17,7 @@ public class Buque
 	private EstadoBuque estadoActual;
 	private Viaje viajeActual;
 	//private boolean sePuedeDescargar = false;
-	private boolean sePuedeDescargar; 
+	private boolean sePuedeDescargar;
 	
 	public Buque() {}
 	
@@ -86,7 +86,8 @@ public class Buque
 //		puertoGestionado.avisarClientes( this.viajeActual,  listaSuscriptores,  mensaje);
 //	}
 	
-	public void setsePuedeDescargar() {
+	public void setsePuedeDescargar() 
+	{
 		this.sePuedeDescargar = true;
 	}
 	

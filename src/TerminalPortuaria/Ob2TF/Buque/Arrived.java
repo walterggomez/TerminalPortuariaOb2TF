@@ -4,7 +4,8 @@ public class Arrived implements EstadoBuque {
 
 	//Comentario para pushear
 	@Override
-	public void actualizarEstado(Buque buque) {
+	public void actualizarEstado(Buque buque) 
+	{
 		buque.setestadoBuque(new Working());
 	}
 	
