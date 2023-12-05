@@ -27,4 +27,16 @@ public class OrdenImportacion extends Orden
 		return super.precioTotal() + this.viaje.getCircuito().costoTotalDelCircuito();
 	}
 
+	@Override
+	public boolean esOrdenImportacion()
+	{
+		return true;
+	}
+
+	@Override
+	public boolean esOrdenExportacion()
+	{
+		return false;
+	}
+
 }

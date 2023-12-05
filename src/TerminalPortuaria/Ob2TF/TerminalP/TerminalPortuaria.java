@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
 import TerminalPortuaria.Ob2TF.Orden.*;
 import TerminalPortuaria.Ob2TF.Buque.Buque;
@@ -27,7 +29,7 @@ public class TerminalPortuaria
 	private String nombre;
 	private Point2D  ubicacion;
 	private List<Naviera> misNavieras;
-	private List<Viaje> viajes;
+	// private List<Viaje> viajes;
 	private Set<Orden> ordenes;
 	private MejorRuta estrategia;
 
@@ -39,7 +41,7 @@ public class TerminalPortuaria
 		this.nombre = nombre;
 		this.ubicacion = ubicacion;
 		this.misNavieras = new ArrayList<Naviera>();
-		this.viajes = new ArrayList<Viaje>();
+		this.viajes = new ArrayList<Viaje>(); // No debería ser un atributo. Debería pedirle a la lista de Navieras los viajes en los que la termianal está incluída.
 		this.ordenes = new HashSet<Orden>();
 	}
 
@@ -55,9 +57,12 @@ public class TerminalPortuaria
 	}
 
 	
-	public List<Viaje> getMisViajes()
+	public Set<Viaje> getMisViajes()
 	{
-		return viajes;
+	    return this.misNavieras.stream()
+	            .flatMap(n -> n.getViajes().stream()) // Convierte los sets de viajes de todas las navieras en un solo stream
+	            .filter(viaje -> viaje.validarSiTerminalExisteEnViaje(this)) // Filtra los viajes que contienen la terminal
+	            .collect(Collectors.toSet()); // Recolecta los viajes en un conjunto y devuelve el conjunto
 	}
 	
 
@@ -66,8 +71,8 @@ public class TerminalPortuaria
 	{
 		return new OrdenExportacion( cliente, viaje, container, empresa, servicioLavado );
 	}
-	
 
+	
 	public OrdenImportacion generarOrdenImportacion( Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa,
 			boolean servicioLavado)
 	{

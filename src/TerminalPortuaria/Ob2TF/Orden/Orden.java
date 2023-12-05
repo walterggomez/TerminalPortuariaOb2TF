@@ -27,9 +27,7 @@ public abstract class Orden
 	protected LocalDateTime entregaContainer;
 	protected LocalDateTime salidaContainer;
 	
-	public Orden() {
-		
-	}
+	public Orden() {}
 	
 	public Orden(Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa, boolean servicioLavado)
 	{
@@ -42,7 +40,8 @@ public abstract class Orden
 		this.evaluarServicioReefer();
 	}
 	
-	
+	public abstract boolean esOrdenImportacion();	
+	public abstract boolean esOrdenExportacion();
 
 	
 	public Set<Servicios> getServicios()

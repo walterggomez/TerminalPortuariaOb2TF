@@ -20,6 +20,16 @@ public class OrdenExportacion extends Orden
 		viaje.suscribe(viaje.getShippers(), cliente);
 	}
 	
+	@Override
+	public boolean esOrdenImportacion()
+	{
+		return false;
+	}
 	
+	@Override
+	public boolean esOrdenExportacion()
+	{
+		return true;
+	}
 	
 }
