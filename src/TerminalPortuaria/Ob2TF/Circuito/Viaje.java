@@ -70,6 +70,21 @@ public class Viaje
 		return this.circuitoViaje;
 	}
 	
+	public long duracionViaje()
+	{
+		return this.circuitoViaje.duracionCircuito();
+	}
+	
+	public int cantidadEscalas()
+	{
+		return this.circuitoViaje.cantidadDeEscalas();
+	}
+	
+	public double costoViaje()
+	{
+		return this.circuitoViaje.costoTotalDelCircuito();
+	}
+	
     public void suscribe(List<Suscriptor> suscriptores, Cliente cliente)
     {
     	suscriptores.add(cliente);

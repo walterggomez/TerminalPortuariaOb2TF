@@ -63,6 +63,7 @@ public class ViajeTest
 	List<Tramo> listaTramosNro1;
 	List<Tramo> listaTramosNro2;
 	List<Tramo> listaTramosNro3;
+	List<Tramo> listaTramosReducida;
 	
 	
 	// Navieras
@@ -173,6 +174,15 @@ public class ViajeTest
 		when( limaSantiagoDeChile.getDuracionTramo() ).thenReturn(1.0);
 		when( santiagoDeChileLaPaz.getDuracionTramo() ).thenReturn(1.0);
 		
+		
+		// Costos de los tramos
+		when( bsAsSaoPablo.getCostoDetramo() ).thenReturn(1.0);
+		when( saoPabloMontevideo.getCostoDetramo() ).thenReturn(1.0);
+		when( montevideoAsuncion.getCostoDetramo() ).thenReturn(1.0);
+		when( asuncionLima.getCostoDetramo() ).thenReturn(1.0);
+		when( limaSantiagoDeChile.getCostoDetramo() ).thenReturn(1.0);
+		when( santiagoDeChileLaPaz.getCostoDetramo() ).thenReturn(1.0);
+		
 		// TerminalPortuaria montevideo = new TerminalPortuaria( new Point2D.Double(-34.90328, -56.18816) );
 		// TerminalPortuaria santiagoDeChile = new TerminalPortuaria( new Point2D.Double(-33.45694, -70.64827) );
 		
@@ -203,6 +213,16 @@ public class ViajeTest
 				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
 				(
 						limaBsAs, bsAsSantiagoDeChile, santiagoDeChileAsuncion, asuncionSaoPablo, saoPabloMontevideo, montevideoLaPaz
+				)
+		);
+		
+		
+		// Lista de tramos nro 1° reducida a dos tramos
+		listaTramosReducida = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
+		(
+				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
+				(
+						montevideoAsuncion, asuncionLima
 				)
 		);
 
@@ -236,22 +256,36 @@ public class ViajeTest
 	
 	@Test
 	void viajeCircuito1ReducidoContieneLosTramosMontevideoAsuncionYAsuncionLima()
-	{
-		List<Tramo>listaTramosReducida = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
-		(
-				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
-				(
-						montevideoAsuncion, asuncionLima
-				)
-		);
-		
+	{	
 		assertEquals( listaTramosReducida, viajeCircuito1Reducido.getCircuito().getListaDeTramo() );
+	}
+	
+	@Test
+	void fechaSalidaViajeTramoReducidoSeCorrespondeAFechaSalidaTramoCorrespondienteAlViajeOriginal()
+	{
+		LocalDateTime fechaTramoOriginal = viajeCircuito1PrimeraFecha.getCircuito().getListaDeTramo().get(2).getFechaYHoraSalida();
+		LocalDateTime fechaViajeReducido = viajeCircuito1Reducido.getFechaDeSalida();
+		assertEquals( fechaTramoOriginal,  fechaViajeReducido);
+	}
+	
+	@Test
+	void duracionViajeReducidoEsDe2HorasPorContenerDosTramos()
+	{
+		assertEquals( 2, viajeCircuito1Reducido.duracionViaje() );
+	}
+	
+	@Test
+	void cantidadEscalasDeViajeReducidoEsDe2()
+	{
+		assertEquals( 1, viajeCircuito1Reducido.cantidadEscalas() );
+	}
+	
+	@Test
+	void validarQueCostoDelViajeReducidoSea2()
+	{
+		assertEquals( 2.0, viajeCircuito1Reducido.costoViaje(), 0 ); // El cero es la máxima diferencia permitida.
 	}
 	
 	
 	
-	
-	
-		
-
 }

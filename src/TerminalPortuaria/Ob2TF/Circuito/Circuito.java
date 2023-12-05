@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 
-public class Circuito {
+public class Circuito
+{
 	int idCircuito;
 	LocalDateTime fechaYHoraSalida;
 	private List<Tramo> listaDeTramo = new ArrayList<Tramo>();
@@ -175,7 +176,7 @@ public class Circuito {
     {
         OptionalInt index = IntStream.range(0, listaDeTramo.size())
                 .filter(i -> listaDeTramo.get(i).getPuertoOrigen() == puerto || listaDeTramo.get(i).getPuertoDestino() == puerto)
-                .findFirst();
+                .findFirst(); // También se podía usar indexOf que es más sencillo y devuelve la primer coincidencia.
         
         return index.getAsInt();
     }
@@ -201,12 +202,13 @@ public class Circuito {
     	return new Circuito(listaTramoReducida, listaTramoReducida.get(0).getFechaYHoraSalida());
     }
 
+    
     public boolean validarSiTerminalExisteEnCircuito(TerminalPortuaria terminal)
     {
         return listaDeTramo.stream().anyMatch(t -> t.getPuertoDestino() == terminal || t.getPuertoOrigen() == terminal);
     }
-
-
+    
+    
 /*
 	//POSIBLE SOLUCION PENSADA POR LAS VIVENCIAS EN EDD
 	public List<Tramo> circuitoHasta(TerminalPortuaria terminalPortuaria) {
