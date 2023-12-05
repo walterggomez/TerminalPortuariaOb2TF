@@ -1,8 +1,6 @@
 package TerminalPortuaria.Ob2TF.Orden;
 import TerminalPortuaria.Ob2TF.Container.*;
-import TerminalPortuaria.Ob2TF.Servicios.Electricidad;
-import TerminalPortuaria.Ob2TF.Servicios.Lavado;
-import TerminalPortuaria.Ob2TF.Servicios.Servicios;
+import TerminalPortuaria.Ob2TF.Servicios.*;
 import TerminalPortuaria.Ob2TF.Buque.Buque;
 import TerminalPortuaria.Ob2TF.Circuito.*;
 import TerminalPortuaria.Ob2TF.Cliente.*;
@@ -165,16 +163,13 @@ public abstract class Orden
 	            .orElse(null);
 	}
 	
-	public Electricidad getServicioElectricidad()
+	public AlmacenamientoExcedente getServicioAlmacenamientoExcedente()
 	{
 	    return servicios.stream()
-	            .filter(servicio -> servicio instanceof Electricidad)
+	            .filter(servicio -> servicio instanceof AlmacenamientoExcedente)
 	            .findFirst()
-	            .map(servicio -> (Electricidad) servicio)
+	            .map(servicio -> (AlmacenamientoExcedente) servicio)
 	            .orElse(null);
 	}
-	
-	
-	
-	
+
 }
