@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import TerminalPortuaria.Ob2TF.Container.*;
 
@@ -26,6 +27,7 @@ public abstract class Orden
 	protected boolean servicioLavado;
 	protected LocalDateTime entregaContainer;
 	protected LocalDateTime salidaContainer;
+    public UUID codigoUnico;
 	
 	public Orden() {}
 	
@@ -38,6 +40,7 @@ public abstract class Orden
 		this.servicioLavado = servicioLavado;
 		this.evaluarServicioLavado();
 		this.evaluarServicioReefer();
+		this.codigoUnico = UUID.randomUUID();
 	}
 	
 	public abstract boolean esOrdenImportacion();	
@@ -121,5 +124,12 @@ public abstract class Orden
 	{
 		return this.servicios.stream().mapToDouble( s -> s.costoServicio(this)  ).sum();
 	}
+
+	public UUID getCodigoUnico() 
+	{
+		return codigoUnico;
+	}
+	
+	
 	
 }

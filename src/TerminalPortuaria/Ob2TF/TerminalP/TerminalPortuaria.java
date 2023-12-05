@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
@@ -138,29 +139,6 @@ public class TerminalPortuaria
 	}
 	
 	
-	public void avisarClientes( Viaje viaje, List<Suscriptor> listaSuscriptores, String mensaje ) 
-	{
-		viaje.notify( listaSuscriptores, mensaje );
-	}
-	
-	/*
-	 		Facturación:
-	 			puerto destino
-	 			
-	 */
-	
-	//CONVERTIR LISTA DE ORDENES A LISTA DE CLIENTES
-	private List<Orden> filtrarLista(Viaje viaje) 
-	{
-		return this.ordenes.stream().filter( v -> v.getViaje().getBuqueViaje() == viaje.getBuqueViaje()).toList();
-	}
-	
-	/*
-	public double emitirFactura( Cliente cliente, Orden orden )
-	{
-		
-	*/
-	
 	private void validarEntregaTerrestreExp(Orden orden, Camion camion, Chofer chofer) throws Exception 
 	{
 		this.validarCamion(camion, orden);
@@ -169,12 +147,28 @@ public class TerminalPortuaria
 		orden.registrarEntregaContainer();
 	}
 	
+	
 	private void validarEntregaTerrestreImp(Orden orden, Camion camion, Chofer chofer) throws Exception 
 	{
 		this.validarCamion(camion, orden);
 		this.validarChofer(chofer, orden);
-		orden.registrarSalidaContainer();
+		this.buscarOrden(orden).registrarEntregaContainer();
 	}
+	
+	
+	private Orden buscarOrden( Orden orden )
+	{
+		UUID codigoOrdenBuscada = orden.codigoUnico;
+		for( Orden o: this.ordenes  )
+		{
+			if( o.getCodigoUnico().equals(codigoOrdenBuscada) )
+			{
+				return o;
+			}
+		}
+		return null;
+	}
+	
 	
 	private void validarHorarioDeEntrega(Orden orden) throws Exception 
 	{
@@ -222,13 +216,13 @@ public class TerminalPortuaria
 		return ordenes;
 	}
 
-	 public Orden buscarOrdenPorBuqueYViaje(Viaje viaje, Buque buque) 
-	 {
-		    return this.getOrdenes()
-		            .stream()
-		            .filter(o -> o.getViaje().equals(viaje) && o.getViaje().getBuqueViaje().equals(buque))
-		            .findFirst()
-		            .orElse(null);
-	}
+//	 public Orden buscarOrdenPorBuqueYViaje(Viaje viaje, Buque buque) 
+//	 {
+//		    return this.getOrdenes()
+//		            .stream()
+//		            .filter(o -> o.getViaje().equals(viaje) && o.getViaje().getBuqueViaje().equals(buque))
+//		            .findFirst()
+//		            .orElse(null);
+//	}
 	 
 }
