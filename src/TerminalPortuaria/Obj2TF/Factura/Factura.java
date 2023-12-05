@@ -19,6 +19,16 @@ public class Factura
 		this.costoServicioLavado();
 		this.costoServicioAlmacenamientoExcedente();
 		this.costoServicioPesado();
+		this.costoCircuito();
+		this.conceptos.add( new Concepto( "Monto total del servicio:", LocalDateTime.now(), ordenFacturada.precioTotal() ) );
+	}
+	
+	private void costoCircuito()
+	{
+		if( this.ordenFacturada.esOrdenImportacion() )
+		{
+			this.conceptos.add( new Concepto( "Monto total del circuito", ordenFacturada.getSalidaContainer(), ordenFacturada.getViaje().costoViaje() ) );
+		}
 	}
 	
 	private void costoServicioElectricidad()

@@ -30,13 +30,10 @@ public class Buque
 		this.viajeActual = viajeActual;
 		this.sePuedeDescargar = false;
 	}
-
-	//ASD
-
+ 
 	public Viaje getViajeActual()
 	{
 		return viajeActual;
-		
 	}
 
 	public GPS getMiGps() {
