@@ -6,17 +6,18 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
-import TerminalPortuaria.Ob2TF.Orden.Orden;
+import TerminalPortuaria.Ob2TF.Orden.*;
 import TerminalPortuaria.Ob2TF.Buque.Buque;
 import TerminalPortuaria.Ob2TF.BusquedaMaritima.*;
 import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.Cliente.Cliente;
 import TerminalPortuaria.Ob2TF.Cliente.Suscriptor;
+import TerminalPortuaria.Ob2TF.Container.Container;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Camion;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Chofer;
+import TerminalPortuaria.Ob2TF.EmpresaTransportista.EmpresaTransportista;
 import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MejorRuta;
 
 
@@ -60,7 +61,18 @@ public class TerminalPortuaria
 	}
 	
 
-	// public void generarOrdenExportacion( TerminalPortuaria terminalDestino,  )
+	public OrdenExportacion generarOrdenExportacion( Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa,
+			boolean servicioLavado)
+	{
+		return new OrdenExportacion( cliente, viaje, container, empresa, servicioLavado );
+	}
+	
+
+	public OrdenImportacion generarOrdenImportacion( Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa,
+			boolean servicioLavado)
+	{
+		return new OrdenImportacion( cliente, viaje, container, empresa, servicioLavado );
+	}
 	
 	
 	public void registrasNuevaOrden(Orden orden) 
