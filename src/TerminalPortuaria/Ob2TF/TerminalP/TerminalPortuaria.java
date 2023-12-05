@@ -154,8 +154,8 @@ public class TerminalPortuaria
 		this.validarChofer(chofer, orden);
 		this.buscarOrden(orden).registrarEntregaContainer();
 	}
-	
-	
+
+
 	private Orden buscarOrden( Orden orden )
 	{
 		UUID codigoOrdenBuscada = orden.codigoUnico;
