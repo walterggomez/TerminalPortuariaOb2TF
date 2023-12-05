@@ -12,7 +12,8 @@ public class Circuito {
 	LocalDateTime fechaYHoraSalida;
 	private List<Tramo> listaDeTramo = new ArrayList<Tramo>();
 
-	public List<Tramo> getListaDeTramo() {
+	public List<Tramo> getListaDeTramo() 
+	{
 		return listaDeTramo;
 	}
 

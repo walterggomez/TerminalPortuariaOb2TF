@@ -19,11 +19,10 @@ public class Buque
 	//private boolean sePuedeDescargar = false;
 	private boolean sePuedeDescargar; 
 	
-	public Buque() {
-		
-	}
+	public Buque() {}
 	
-	public Buque(Point2D posicionActual, GPS miGps, Viaje viajeActual) {
+	public Buque(Point2D posicionActual, GPS miGps, Viaje viajeActual)
+	{
 		super();
 		this.posicionActual = posicionActual;
 		this.miGps = miGps;
