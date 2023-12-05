@@ -13,8 +13,7 @@ public class MenorCantidadTerminal extends  MejorRuta{
         List<Circuito> circuitosConDestino = this.listaDeCircuitos(puertoOrigen,puertoDestino);
         Circuito cirConMenorEscala = circuitosConDestino.get(0);
         for (Circuito circ: circuitosConDestino) {
-               if (!this.tieneMenosEscalas(cirConMenorEscala.construirCircuitoDesdeHasta(puertoOrigen, puertoDestino),
-                       circ.construirCircuitoDesdeHasta(puertoOrigen, puertoDestino)))
+               if (!this.tieneMenosEscalas(cirConMenorEscala, circ))
                {
                    cirConMenorEscala = circ;
                }
@@ -27,7 +26,14 @@ public class MenorCantidadTerminal extends  MejorRuta{
         return primerCircuito.cantidadDeEscalas() < segundoCircuito.cantidadDeEscalas();
     }
 
-
+//  for (Circuito circ: circuitosConDestino) {
+//  if (!this.tieneMenosEscalas(cirConMenorEscala.construirCircuitoDesdeHasta(puertoOrigen, puertoDestino),
+//          circ.construirCircuitoDesdeHasta(puertoOrigen, puertoDestino)))
+//  {
+//      cirConMenorEscala = circ;
+//  }
+//}
+//return cirConMenorEscala;
 
 
 }

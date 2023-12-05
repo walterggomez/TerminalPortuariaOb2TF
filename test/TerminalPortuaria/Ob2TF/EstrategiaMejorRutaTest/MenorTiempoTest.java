@@ -1,11 +1,9 @@
 package TerminalPortuaria.Ob2TF.EstrategiaMejorRutaTest;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-import java.awt.geom.Point2D;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,8 +18,8 @@ import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MenorTiempo;
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
-class MejorRutaTest {
-	
+class MenorTiempoTest {
+
 	MenorPrecio mejorRuta1;
 	MenorCantidadTerminal mejorRuta2;
 	MenorTiempo mejorRuta3;
@@ -149,27 +147,19 @@ class MejorRutaTest {
 		when(circuito2.duracionCircuito()).thenReturn((long) 9);
 		when(circuito3.duracionCircuito()).thenReturn((long) 10);
 		
-		//when(circuito1.cantidadDeEscalas()).thenReturn(0);// si el puerto destino es SaoPablo
-		//when(circuito3.cantidadDeEscalas()).thenReturn(1);// si el puerto destino es SaoPablo
 	
 	}
 
-	@Test
-	void navierasDelPuertoTest() {
-		assertEquals(navieras, mejorRuta1.navierasDelPuerto(bsAs));
-	}
 
 	@Test
-	void todosLosCircuitosMaritimosTest() {
-		assertEquals(todoCircuito, mejorRuta1.todosLosCircuitosMaritimos(navieras));
+	void tieneMenorTiempo() {
+		assertTrue(mejorRuta3.tieneMenorTiempo(circuito2, circuito3));
+	}
 
-	}
+	
 	@Test
-	void listaDeCircuitosTest() {
-		List<Circuito> circuitosASaoPablo= Arrays.asList(circuito1,circuito3);
-		assertEquals(circuitosASaoPablo, mejorRuta1.listaDeCircuitos(bsAs, saoPablo));
-		List<Circuito> circuitosAShanghai= Arrays.asList(circuito2);
-		assertEquals(circuitosAShanghai, mejorRuta1.listaDeCircuitos(bsAs, shanghai));
+	void mejorCircuitoParaMenorTiempoTest() {
+		assertEquals(circuito2,mejorRuta3.mejorCircuito(bsAs, cartagena));
 	}
-	 
+	
 }
