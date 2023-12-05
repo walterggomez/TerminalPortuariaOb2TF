@@ -251,6 +251,15 @@ class CircuitoTest
 		
 	}
 	
+	
+	// assertTrue( circuito1.validarSiTerminalExisteEnCircuito( asuncion) );
+	@Test
+	void validarQueOrigenVengaAntesQueDestino()
+	{
+		assertTrue( circuito1.validarSiPuertoOrigenEstaAntesQuePuertoDestino(montevideo, santiagoDeChile) );
+	}
+	
+	
 	// AssertEquals( Expected, Actual )
 	@Test
 	void seteoFechaDeSalidaEnTramo() 

@@ -193,12 +193,13 @@ class TerminalPortuariaTest
 				)
 		);
 
-		
-		// Lista de tramos vacía
-		listaTramosNro2 = new ArrayList<Tramo>();
 	
 		// Spy de los circuitos
 		circuito1 = spy( new Circuito(listaTramosNro1, LocalDateTime.now()) );
+		circuito2 = spy( new Circuito(listaTramosNro2, LocalDateTime.now()) );
+		circuito3 = spy( new Circuito(listaTramosNro3, LocalDateTime.now()) );
+		
+		
 		
 		
 		

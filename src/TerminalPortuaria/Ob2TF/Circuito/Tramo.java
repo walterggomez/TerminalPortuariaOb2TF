@@ -95,6 +95,10 @@ public class Tramo
 		return this.fechaYHoraSalida.plus( (long) this.getDuracionTramo(), ChronoUnit.HOURS);
 	}
 	
-
+//	public int indexDePuerto( TerminalPortuaria puerto )
+//	{
+//		return this.
+//	}
+	
 	
 }

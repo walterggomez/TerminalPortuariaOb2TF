@@ -1,5 +1,7 @@
 package TerminalPortuaria.Ob2TF.Circuito;
 import java.util.List;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
@@ -122,7 +124,7 @@ public class Circuito {
             Tramo tramoOrigen = obtenerTramoPorPuertoOrigen(terminalOrigen);
             Tramo tramoDestino = obtenerTramoPorPuertoDestino(terminalDestino);
 
-            if (origenEstaAntesQueDestino(tramoOrigen, tramoDestino))
+            if (validarSiOrigenEstaAntesQueDestino(tramoOrigen, tramoDestino))
             {
                 return construirCircuitoReducido(tramoOrigen, tramoDestino);
             }
@@ -155,12 +157,28 @@ public class Circuito {
     }
 
     
-    boolean origenEstaAntesQueDestino(Tramo tramoOrigen, Tramo tramoDestino)
+    boolean validarSiOrigenEstaAntesQueDestino(Tramo tramoOrigen, Tramo tramoDestino)
     {
         return listaDeTramo.indexOf(tramoOrigen) < listaDeTramo.indexOf(tramoDestino) ||
         		listaDeTramo.indexOf(tramoOrigen) == listaDeTramo.indexOf(tramoDestino);
     }
 
+    
+    boolean validarSiPuertoOrigenEstaAntesQuePuertoDestino( TerminalPortuaria puertoOrigen, TerminalPortuaria puertoDestino )
+    {
+    	return this.primerIndexPuerto(puertoOrigen) < this.primerIndexPuerto(puertoDestino);
+    }
+    
+    
+    private int primerIndexPuerto( TerminalPortuaria puerto )
+    {
+        OptionalInt index = IntStream.range(0, listaDeTramo.size())
+                .filter(i -> listaDeTramo.get(i).getPuertoOrigen() == puerto || listaDeTramo.get(i).getPuertoDestino() == puerto)
+                .findFirst();
+        
+        return index.getAsInt();
+    }
+    
     
     
 //    private Circuito construirCircuitoReducido(Tramo tramoOrigen, Tramo tramoDestino)

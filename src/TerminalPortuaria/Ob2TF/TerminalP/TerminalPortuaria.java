@@ -31,9 +31,7 @@ public class TerminalPortuaria
 	private MejorRuta estrategia;
 
 	
-	public TerminalPortuaria() {
-		
-	}
+	public TerminalPortuaria() {}
 
 	public TerminalPortuaria(String nombre, Point2D ubicacion)
 	{
@@ -60,6 +58,10 @@ public class TerminalPortuaria
 	{
 		return viajes;
 	}
+	
+
+	// public void generarOrdenExportacion( TerminalPortuaria terminalDestino,  )
+	
 	
 	public void registrasNuevaOrden(Orden orden) 
 	{
@@ -194,11 +196,6 @@ public class TerminalPortuaria
 		            .filter(o -> o.getViaje().equals(viaje) && o.getViaje().getBuqueViaje().equals(buque))
 		            .findFirst()
 		            .orElse(null);
-		}
-
+	}
 	 
-
-
-
-
 }

@@ -97,7 +97,28 @@ public class Viaje
 	{
 		return consignees;
 	}
-    
+	
+	/*
+	 		Podría hacer que dentro de viaje, un método para crear un viaje con el circuito reducido para una facturación más precisa.
+	 		
+	 */
+	
+	public boolean validarSiTerminalExisteEnViaje(TerminalPortuaria terminal)
+	{
+		return this.circuitoViaje.validarSiTerminalExisteEnCircuito(terminal);
+	}
+	
+	public boolean validarSiTerminalOrigenEstaAntesQueDestino( TerminalPortuaria origen, TerminalPortuaria destino )
+	{
+		return this.circuitoViaje.validarSiPuertoOrigenEstaAntesQuePuertoDestino(origen, destino);
+	}
+	
+	public Viaje generarViajeConTramosDeInteres( TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino )
+	{
+		Circuito nuevoCircuito = circuitoViaje.construirCircuitoDesdeHasta(terminalOrigen, terminalDestino);
+		LocalDateTime fechaSalida = nuevoCircuito.getFechaYHoraSalida();
+		return new Viaje( this.buqueViaje, nuevoCircuito, fechaSalida);
+	}
     
 	
 }
