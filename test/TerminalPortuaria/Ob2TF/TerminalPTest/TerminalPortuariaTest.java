@@ -548,6 +548,10 @@ class TerminalPortuariaTest
 		verify( ordenImportacion, times(1) ).registrarSalidaContainer();
 		
 	}
+	@Test
+	void darAvisoShippersTest() {
+		
+	}
 	
 }
 	
