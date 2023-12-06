@@ -146,7 +146,7 @@ public class TerminalPortuaria
 	
 	
 	
-	private void entregaTerrestreExp(Orden orden, Camion camion, Chofer chofer) throws Exception 
+	public void entregaTerrestreExp(Orden orden, Camion camion, Chofer chofer) throws Exception 
 	{
 		this.validarCamion(camion, orden);
 		this.validarChofer(chofer, orden);
@@ -155,7 +155,7 @@ public class TerminalPortuaria
 	}
 	
 	
-	private void validarEntregaTerrestreImp(Orden orden, Camion camion, Chofer chofer) throws Exception 
+	public void validarEntregaTerrestreImp(Orden orden, Camion camion, Chofer chofer) throws Exception 
 	{
 		this.validarCamion(camion, orden);
 		this.validarChofer(chofer, orden);
