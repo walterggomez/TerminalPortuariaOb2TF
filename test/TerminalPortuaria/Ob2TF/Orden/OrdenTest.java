@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import TerminalPortuaria.Ob2TF.Orden.*;
 import TerminalPortuaria.Ob2TF.Servicios.AlmacenamientoExcedente;
-import TerminalPortuaria.Ob2TF.Servicios.Servicios;
+import TerminalPortuaria.Ob2TF.Servicios.*;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.Cliente.Cliente;
 import TerminalPortuaria.Ob2TF.Container.Dry;
@@ -36,13 +36,19 @@ class OrdenTest {
 	EmpresaTransportista plumar;
 	TransporteAsignado transporteAsig;
 	Servicios servicio;
+	Electricidad Electricidad;
+	Lavado Lavado;
+	Pesado Pesado;
+	AlmacenamientoExcedente almacenamientoExcedente;
 	List<Servicios> listaEvaluadora;
 	AlmacenamientoExcedente servicioEx;
+	
 	@BeforeEach
 	void setUp() throws Exception {
 		containerDry = mock(Dry.class);
 		containerReefer = mock(Reefer.class);
 		containerTanque = mock (Tanque.class);
+		almacenamientoExcedente = mock(AlmacenamientoExcedente.class );
 		transporteAsig = mock(TransporteAsignado.class);
 		viaje = mock(Viaje.class);
 		cliente = mock(Cliente.class);
@@ -52,7 +58,10 @@ class OrdenTest {
 		LocalDateTime fecha2 = LocalDateTime.of(2023, 12, 22, 10, 30);
 		when(viaje.getFechaDeSalida()).thenReturn(fecha1);
 		when(viaje.getFechaDeLlegada()).thenReturn(fecha2);
+		
+		
 		orden = new OrdenImportacion(cliente,viaje,containerDry,plumar,false);
+
 		
 	}
 	
@@ -82,5 +91,35 @@ class OrdenTest {
 //	void costoServicios() {
 //		assertEquals(orden.precioTotal(), 1000);
 //	}
+	
+	@Test
+	void servicioElectricidad() {
+		assertEquals(null, orden.getServicioElectricidad());
+	}
+	
+	@Test
+	void servicioLavado() {
+		assertEquals(null, orden.getServicioLavado());
+	}
+	
+	@Test
+	void servicioPesado() {
+		assertEquals(null, orden.getServicioPesado());
+	}
+	
+	@Test
+	void servicioAlmacenamiento() {
+		assertTrue(orden.getServicioAlmacenamientoExcedente() instanceof AlmacenamientoExcedente);
+	}
+	
+	@Test
+	void esOrdenDeImportacion() {
+		assertTrue(orden.esOrdenImportacion());
+	}
+	
+	@Test
+	void esOrdenDeExportacion() {
+		assertFalse(orden.esOrdenExportacion());
+	}
 	
 }
