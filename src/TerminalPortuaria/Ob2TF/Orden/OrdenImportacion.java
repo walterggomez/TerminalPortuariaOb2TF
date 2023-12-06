@@ -13,7 +13,9 @@ import TerminalPortuaria.Ob2TF.Servicios.Lavado;
 public class OrdenImportacion extends Orden
 {
 
-	
+	public OrdenImportacion() {
+		
+	}
 	
 	public OrdenImportacion( Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa, boolean servicioLavado)
 	{

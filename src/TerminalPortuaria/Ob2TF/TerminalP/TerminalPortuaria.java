@@ -177,7 +177,7 @@ public class TerminalPortuaria
 //	}
 	
 	
-	private void validarHorarioDeEntrega(Orden orden) throws Exception 
+	public void validarHorarioDeEntrega(Orden orden) throws Exception 
 	{
 		if ( orden.getCliente().getTurno().getHour() - LocalDateTime.now().getHour() > 3 ) 
 		{
@@ -185,14 +185,14 @@ public class TerminalPortuaria
 		}
 	}
 	
-	private void validarChofer(Chofer chofer, Orden orden) throws Exception {
+	public void validarChofer(Chofer chofer, Orden orden) throws Exception {
 		if ( chofer.getNombre() != orden.getTransporteAsignado().getChoferAsignado().getNombre() ) 
 		{
 			throw new Exception ("El chofer no coincide");
 		}
 	}
 	
-	private void validarCamion(Camion camion, Orden orden) throws Exception 
+	public void validarCamion(Camion camion, Orden orden) throws Exception 
 	{
 		if ( camion.getPatente() != orden.getTransporteAsignado().getCamionAsignado().getPatente() ) 
 		{

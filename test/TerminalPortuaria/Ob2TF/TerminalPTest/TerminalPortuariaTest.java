@@ -22,8 +22,10 @@ import TerminalPortuaria.Ob2TF.Buque.Buque.*;
 import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.Circuito.Tramo;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
+import TerminalPortuaria.Ob2TF.Cliente.Cliente;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Camion;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Chofer;
+import TerminalPortuaria.Ob2TF.EmpresaTransportista.TransporteAsignado;
 import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MejorRuta;
 import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.*;
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
@@ -122,6 +124,9 @@ class TerminalPortuariaTest
 	MenorPrecio estrategiaMenorPrecio;
 	MenorTiempo estrategiaMenorTiempo;
 	
+	//Cliente
+	Cliente cliente;
+	
 	
 	
 	@BeforeEach
@@ -136,6 +141,9 @@ class TerminalPortuariaTest
 		lima = mock(TerminalPortuaria.class);
 		santiagoDeChile = mock(TerminalPortuaria.class);
 		laPaz = mock(TerminalPortuaria.class);
+		
+		//mock cliente
+		cliente = mock(Cliente.class);
 		
 		//mock de estrategia
 		estrategiaMenorCantidad = mock(MenorCantidadTerminal.class);
@@ -325,6 +333,10 @@ class TerminalPortuariaTest
 		// Naviera 3
 		naviera3 = spy( new Naviera() );		
 		
+		
+		//Generacion de orden
+		ordenImportacion = spy(OrdenImportacion.class);
+		ordenExportacion = spy(OrdenExportacion.class);
 	
 		//Generacion de orden
 //		when(bsAs.generarOrdenExportacion(null, viajeCircuito1PrimeraFecha, null, null, false)).thenReturn(ordenExportacion);
@@ -467,6 +479,49 @@ class TerminalPortuariaTest
 
 	}
 	
+	@Test
+	void validarHorarioDeEntregaFueTarde() {
+		LocalDateTime turno = LocalDateTime.of(1980, 12, 18, 22, 00);
+		when(ordenExportacion.getCliente()).thenReturn(cliente);
+		when(cliente.getTurno()).thenReturn(turno);
+		Exception error = assertThrows( Exception.class, () -> 
+		{
+			bsAs.validarHorarioDeEntrega(ordenExportacion);
+		} );
+		assertEquals( "Llegaste tarde", error.getMessage() );
+	}
+	
+	@Test
+	void validarQueChoferNoCoincide() {
+		TransporteAsignado transporte = mock(TransporteAsignado.class);
+		Chofer chofer1 = mock(Chofer.class);
+		when(chofer1.getNombre()).thenReturn("Carlos");
+		Chofer chofer2 = mock(Chofer.class);
+		when(chofer2.getNombre()).thenReturn("Raul");
+		when(transporte.getChoferAsignado()).thenReturn(chofer1);
+		when(ordenExportacion.getTransporteAsignado()).thenReturn(transporte);
+		Exception error = assertThrows( Exception.class, () -> 
+		{
+			bsAs.validarChofer(chofer2, ordenExportacion);
+		} );
+		assertEquals( "El chofer no coincide", error.getMessage() );
+	}
+	
+	@Test
+	void validarCamionNoEsElCorrecto() {
+		TransporteAsignado transporte = mock(TransporteAsignado.class);
+		Camion camion1 = mock(Camion.class);
+		when(camion1.getPatente()).thenReturn("ABC");
+		Camion camion2 = mock(Camion.class);
+		when(camion2.getPatente()).thenReturn("123");
+		when(transporte.getCamionAsignado()).thenReturn(camion1);
+		when(ordenExportacion.getTransporteAsignado()).thenReturn(transporte);
+		Exception error = assertThrows( Exception.class, () -> 
+		{
+			bsAs.validarCamion(camion2, ordenExportacion);
+		} );
+		assertEquals( "El camión no coincide", error.getMessage() );
+	}
 	
 }
 	

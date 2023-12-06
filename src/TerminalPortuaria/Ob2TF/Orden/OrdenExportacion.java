@@ -12,6 +12,10 @@ import TerminalPortuaria.Ob2TF.Servicios.*;
 public class OrdenExportacion extends Orden
 {
 
+	public OrdenExportacion() {
+		
+	}
+	
 	public OrdenExportacion( Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa, boolean servicioLavado)
 	{
 		super( cliente, viaje, container, empresa, servicioLavado );
