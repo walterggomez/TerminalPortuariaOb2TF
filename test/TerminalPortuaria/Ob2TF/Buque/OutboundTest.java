@@ -1,8 +1,11 @@
 package TerminalPortuaria.Ob2TF.Buque;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.awt.geom.Point2D;
@@ -19,6 +22,10 @@ class OutboundTest {
 	
 	Buque araBouchard;
 	
+	GPS gpsBarco;
+	GPS gpsPuerto;
+	GPS distancia;
+	
 	
 
 	TerminalPortuaria bsAs;
@@ -26,6 +33,7 @@ class OutboundTest {
 
 	Point2D posicionAraBouchard;
 	Point2D posicionTerBsAs;
+	Point2D posicionHongKong;
 
 	Viaje viajeBsAsHongKong;
 	Viaje viajeHongKongMadrid;
@@ -39,39 +47,47 @@ class OutboundTest {
 		
 		//Estados
 		
-		bsAs = mock(TerminalPortuaria.class);
+		bsAs = spy(TerminalPortuaria.class);
 		hongKong = mock(TerminalPortuaria.class);
 
 		viajeBsAsHongKong = mock(Viaje.class);
 		viajeHongKongMadrid = mock(Viaje.class);
 		
-		outbound = new Outbound();
+		outbound = spy(new Outbound());
 
 		posicionAraBouchard = mock(Point2D.class);
 		posicionTerBsAs = mock(Point2D.class);
+		posicionHongKong = mock(Point2D.class);
 		
 		araBouchard = spy(Buque.class);
+		
 
 //		araBouchard = new Buque(posicionAraBouchard, garminDrive, viajeBsAsHongKong);
 		when(viajeBsAsHongKong.getpuertoDestino()).thenReturn(bsAs);
-		when(viajeBsAsHongKong.getpuertoOrigen()).thenReturn(bsAs);
+		when(viajeBsAsHongKong.getpuertoOrigen()).thenReturn(hongKong);
 		when(bsAs.getUbicacion()).thenReturn(posicionTerBsAs);
+		when(araBouchard.getPosicionActual()).thenReturn(posicionAraBouchard);
+		when(araBouchard.getViajeActual()).thenReturn(viajeBsAsHongKong);
+		doNothing().when(bsAs).darAvisoConsignees(viajeBsAsHongKong);
+		when(garminDrive.distanciaEntrePuntos(posicionTerBsAs, posicionAraBouchard)).thenReturn(0.6);
+		when(araBouchard.getMiGps()).thenReturn(garminDrive);
 		araBouchard.setestadoBuque(outbound);
+		
 	
 	}
+
+	
 	@Test
-	void estoyEnEstado() {
-		assertTrue(outbound.estoyEnEstado("Outbound"));
+	void distanciaATerminal() {
+		assertEquals(67.0 , outbound.distanciaATerminal(araBouchard, bsAs));
 	}
 	
 	@Test
-	void actualizar() {
-		assertEquals(araBouchard.getEstadoActual(), outbound);
-		outbound.actualizarEstado(araBouchard);
-		when(araBouchard.distanciaATerminal()).thenReturn(40.0);
-		outbound.actualizarEstado(araBouchard);
-		assertFalse(araBouchard.getEstadoActual().estoyEnEstado("Outbound"));
-		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Inbound"));
+	void evaluarEstado() {
+		when(garminDrive.distanciaEntrePuntos(posicionTerBsAs, posicionAraBouchard)).thenReturn(0.3);
+		outbound.evaluar(araBouchard, bsAs);
+		verify( outbound, times(1) ).actualizarEstado(araBouchard);
 	}
+	
 
 }

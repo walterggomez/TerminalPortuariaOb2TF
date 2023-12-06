@@ -105,11 +105,6 @@ class BuqueTest {
 	}
 
 	@Test
-	void estoyEnEstadoOutboundTest() {
-		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Outbound"));
-
-	}
-	@Test
 	void setViajeActualTest() {
 		araBouchard.setViajeActual(viajeHongKongMadrid);
 		assertEquals(viajeHongKongMadrid, araBouchard.getViajeActual());

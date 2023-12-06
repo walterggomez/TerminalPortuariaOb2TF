@@ -133,16 +133,17 @@ public class TerminalPortuaria
 	{
 		//posible verificacion de estado arrived
 		//DEBE AVISAR DIRECTO AL ESTADO O AL BUQUE?
-		buque.getEstadoActual().actualizarEstado(buque);
+		buque.trabajando();
 	}
 	
 	public void depart(Buque buque) 
 	{
 		//posible verificacion de estado working
 		//DEBE AVISAR DIRECTO AL ESTADO O AL BUQUE?
-		buque.getEstadoActual().actualizarEstado(buque);
+		buque.partiendo();
 		// Orden debe establecer llegada del container
 	}
+	
 	
 	
 	private void validarEntregaTerrestreExp(Orden orden, Camion camion, Chofer chofer) throws Exception 

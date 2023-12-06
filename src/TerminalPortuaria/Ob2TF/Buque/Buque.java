@@ -93,9 +93,18 @@ public class Buque
 	}
 	
 	//Este metodo se envia cada 1 minuto y el estado se encarga de evaluar la distancia a la terminal destino
-	public void informarPosicion() {
-		estadoActual.evaluar(this);
+	public void informarPosicion(TerminalPortuaria puertoGestionado) {
+		estadoActual.evaluar(this, puertoGestionado);
 	}
+	
+	public void trabajando() {
+		this.estadoActual.actualizarEstado(this);
+	}
+	
+	public void partiendo() {
+		this.estadoActual.actualizarEstado(this);
+	}
+
 	
 	
 }

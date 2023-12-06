@@ -1,5 +1,7 @@
 package TerminalPortuaria.Ob2TF.Buque;
 
+import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
+
 public class Outbound implements EstadoBuque {
 
 
@@ -11,31 +13,19 @@ public class Outbound implements EstadoBuque {
 	}
 
 
-	public double distanciaATerminal(Buque buque) 
+	public void evaluar(Buque buque, TerminalPortuaria puertoGestionado) 
 	{
-		return 100;
-	}
-	
-	public void evaluar(Buque buque) 
-	{
-		if (this.distanciaATerminal(buque) < 50) 
+		if (this.distanciaATerminal(buque,puertoGestionado) < 50) 
 		{
 			this.actualizarEstado(buque);
 		}
 	}
-	
-	
-	
 
-	@Override
-	public boolean estoyEnEstado(String string) 
-	{
-		if (string == "Outbound") 
-		{
-			return true;
-		} else 
-		{
-			return false;
-		}
+
+	public double distanciaATerminal(Buque buque, TerminalPortuaria puertoGestionado) {
+		// TODO Auto-generated method stub
+		return buque.getMiGps().distanciaEntrePuntos(buque.getPosicionActual(), puertoGestionado.getUbicacion());
 	}
+
+	
 }

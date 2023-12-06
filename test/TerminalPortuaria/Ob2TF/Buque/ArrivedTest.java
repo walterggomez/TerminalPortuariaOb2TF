@@ -1,8 +1,11 @@
 package TerminalPortuaria.Ob2TF.Buque;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.awt.geom.Point2D;
@@ -21,6 +24,10 @@ class ArrivedTest {
 	
 	Buque araBouchard;
 	
+	GPS gpsBarco;
+	GPS gpsPuerto;
+	GPS distancia;
+	
 	
 
 	TerminalPortuaria bsAs;
@@ -28,6 +35,7 @@ class ArrivedTest {
 
 	Point2D posicionAraBouchard;
 	Point2D posicionTerBsAs;
+	Point2D posicionHongKong;
 
 	Viaje viajeBsAsHongKong;
 	Viaje viajeHongKongMadrid;
@@ -47,33 +55,35 @@ class ArrivedTest {
 		viajeBsAsHongKong = mock(Viaje.class);
 		viajeHongKongMadrid = mock(Viaje.class);
 		
-		arrived = new Arrived();
+		arrived = spy(new Arrived());
 
-		posicionAraBouchard = spy(Point2D.class);
-		posicionTerBsAs = spy(Point2D.class);
+		posicionAraBouchard = mock(Point2D.class);
+		posicionTerBsAs = mock(Point2D.class);
+		posicionHongKong = mock(Point2D.class);
 		
 		araBouchard = spy(Buque.class);
+		
 
 //		araBouchard = new Buque(posicionAraBouchard, garminDrive, viajeBsAsHongKong);
 		when(viajeBsAsHongKong.getpuertoDestino()).thenReturn(bsAs);
-		when(viajeBsAsHongKong.getpuertoOrigen()).thenReturn(bsAs);
+		when(viajeBsAsHongKong.getpuertoOrigen()).thenReturn(hongKong);
 		when(bsAs.getUbicacion()).thenReturn(posicionTerBsAs);
+		when(araBouchard.getPosicionActual()).thenReturn(posicionAraBouchard);
+		when(araBouchard.getViajeActual()).thenReturn(viajeBsAsHongKong);
+		doNothing().when(bsAs).darAvisoConsignees(viajeBsAsHongKong);
+		when(garminDrive.distanciaEntrePuntos(posicionTerBsAs, posicionAraBouchard)).thenReturn(0.6);
+		when(araBouchard.getMiGps()).thenReturn(garminDrive);
 		araBouchard.setestadoBuque(arrived);
+		
 	
 	
 	}
 	
-	@Test
-	void estoyEnEstado() {
-		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Arrived"));
-	}
 	
 	@Test 
 	void actualizarEstado() {
-		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Arrived"));
 		bsAs.trabajoCargaYDescarga(araBouchard);
-		assertFalse(araBouchard.getEstadoActual().estoyEnEstado("Arrived"));
-		assertTrue(araBouchard.getEstadoActual().estoyEnEstado("Working"));
+		verify( arrived, times(1) ).actualizarEstado(araBouchard);
 	}
 
 }

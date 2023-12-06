@@ -1,5 +1,7 @@
 package TerminalPortuaria.Ob2TF.Buque;
 
+import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
+
 public class Arrived implements EstadoBuque {
 
 	//Comentario para pushear
@@ -11,24 +13,7 @@ public class Arrived implements EstadoBuque {
 	
 
 	@Override
-	public boolean estoyEnEstado(String string) {
-		if (string == "Arrived") {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-
-	@Override
-	public double distanciaATerminal(Buque buque) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public void evaluar(Buque buque) {
+	public void evaluar(Buque buque,TerminalPortuaria puertoGestionado) {
 	}
 
 
