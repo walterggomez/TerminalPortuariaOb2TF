@@ -13,7 +13,7 @@ class FacturaTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		fail("NOO esta implementado este test por eso falla ES TAREA PARA CHANG");
 	}
 
 }

@@ -119,6 +119,14 @@ class TerminalPortuariaTest
 	OrdenImportacion ordenImportacion;
 	OrdenExportacion ordenExportacion;
 	
+	OrdenExportacion ordenExp1;
+	OrdenExportacion ordenExp2;
+	OrdenImportacion ordenImp1;
+	OrdenImportacion ordenImp2;
+	
+	List<Orden> ordenes;
+	
+	
 	//Estrategia
 	MenorCantidadTerminal estrategiaMenorCantidad;
 	MenorPrecio estrategiaMenorPrecio;
@@ -550,6 +558,17 @@ class TerminalPortuariaTest
 	}
 	@Test
 	void darAvisoShippersTest() {
+		ordenExp1 = mock(OrdenExportacion.class);
+		when(ordenExp1.esOrdenExportacion()).thenReturn(true);
+		ordenExp2 = mock(OrdenExportacion.class);
+		when(ordenExp2.esOrdenExportacion()).thenReturn(true);
+		ordenImp1 = mock(OrdenImportacion.class);
+		when(ordenImp1.esOrdenExportacion()).thenReturn(false);
+		ordenImp2 = mock(OrdenImportacion.class);
+		when(ordenImp2.esOrdenExportacion()).thenReturn(false);
+		ordenes = Arrays.asList(ordenExp1,ordenImp1,ordenExp2,ordenImp2);
+		
+		
 		
 	}
 	
@@ -608,6 +627,7 @@ class TerminalPortuariaTest
 //		when(naviera1.getMisCircuitos()).thenReturn(circuitosN1);
 //		when(naviera2.getMisCircuitos()).thenReturn(circuitosN2);
 //		
+
 //		
 //		when(circuito1.validarSiTerminalExisteEnCircuito(bsAs)).thenReturn(true);
 //		when(circuito2.validarSiTerminalExisteEnCircuito(bsAs)).thenReturn(false);
