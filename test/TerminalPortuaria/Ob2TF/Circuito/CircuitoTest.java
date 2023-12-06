@@ -246,8 +246,20 @@ class CircuitoTest
 		// Lista de tramos vacía
 		listaTramosNro2 = new ArrayList<Tramo>();
 		
+		// Lista de tramos 3
+		listaTramosNro3 = new ArrayList<Tramo>
+				(
+						Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
+						(
+								saoPabloMontevideo, montevideoAsuncion, limaSantiagoDeChile, bsAsSaoPablo
+						)
+				);
+		
 		// Circuitos
 		circuito1 = new Circuito( listaTramosNro1, LocalDateTime.of(2023, 11, 18, 11, 00) );
+		
+		
+		
 		
 	}
 	
@@ -259,7 +271,7 @@ class CircuitoTest
 		assertTrue( circuito1.validarSiPuertoOrigenEstaAntesQuePuertoDestino(montevideo, santiagoDeChile) );
 	}
 	
-	 
+	
 	// AssertEquals( Expected, Actual )
 	@Test
 	void seteoFechaDeSalidaEnTramo() 

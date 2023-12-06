@@ -1,5 +1,6 @@
 package TerminalPortuaria.Ob2TF.Circuito;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
@@ -286,6 +287,11 @@ public class ViajeTest
 		assertEquals( 2.0, viajeCircuito1Reducido.costoViaje(), 0 ); // El cero es la máxima diferencia permitida.
 	}
 	
+	@Test
+	void validarQueTerminalExistaEnViaje()
+	{
+		assertTrue( viajeCircuito1PrimeraFecha.validarSiTerminalExisteEnViaje(montevideo) );
+	}
 	
 	
 }
