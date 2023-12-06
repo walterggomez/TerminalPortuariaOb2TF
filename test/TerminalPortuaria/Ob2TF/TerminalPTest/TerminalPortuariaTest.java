@@ -523,6 +523,32 @@ class TerminalPortuariaTest
 		assertEquals( "El camión no coincide", error.getMessage() );
 	}
 	
+	@Test
+	void validarQueCumpleLosRequisitos() throws Exception {
+		TransporteAsignado transporte = mock(TransporteAsignado.class);
+		LocalDateTime turno = LocalDateTime.of(1980, 12, 18, 17, 00);
+		when(cliente.getTurno()).thenReturn(turno);
+		Chofer chofer1 = mock(Chofer.class);
+		when(chofer1.getNombre()).thenReturn("Carlos");
+		Chofer chofer2 = mock(Chofer.class);
+		when(chofer2.getNombre()).thenReturn("Carlos");
+		Camion camion1 = mock(Camion.class);
+		when(camion1.getPatente()).thenReturn("ABC");
+		Camion camion2 = mock(Camion.class);
+		when(camion2.getPatente()).thenReturn("ABC");
+		when(transporte.getCamionAsignado()).thenReturn(camion1);
+		when(transporte.getChoferAsignado()).thenReturn(chofer1);
+		when(ordenExportacion.getTransporteAsignado()).thenReturn(transporte);
+		when(ordenExportacion.getCliente()).thenReturn(cliente);
+		when(ordenImportacion.getTransporteAsignado()).thenReturn(transporte);
+		when(ordenImportacion.getCliente()).thenReturn(cliente);
+		bsAs.entregaTerrestreExp(ordenExportacion, camion2, chofer2);
+		verify( ordenExportacion, times(1) ).registrarEntregaContainer();
+		bsAs.validarEntregaTerrestreImp(ordenImportacion, camion2, chofer2);
+		verify( ordenImportacion, times(1) ).registrarSalidaContainer();
+		
+	}
+	
 }
 	
 	
