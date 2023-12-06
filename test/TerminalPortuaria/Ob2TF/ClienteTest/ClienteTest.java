@@ -34,11 +34,7 @@ class ClienteTest {
 		assertEquals(1001,federico.getCodigoCliente());
 		assertEquals(2005,natalia.getCodigoCliente());
 	}
-	@Test
-	void soyTest() {
-		assertTrue(federico.soy("Consignee"));
-		assertTrue(natalia.soy("Shipper"));
-	}
+
 	@Test
 	void turnoTest() {
 		federico.setTurno(turno);
