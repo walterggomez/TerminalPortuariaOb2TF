@@ -13,7 +13,6 @@ import java.util.HashSet;
 public class Naviera
 {
 	private List<Circuito> misCircuitos = new ArrayList<>();
-	// private Map<Circuito, LocalDateTime> listaCircuitosSalidas = new HashMap<>();
 	Set<Buque> misBuques = new HashSet<>();
 	private Set<Viaje> viajes = new HashSet<>();
 	
@@ -28,8 +27,6 @@ public class Naviera
 		return viajes;
 	}
 	
-	// Viaje( Buque buqueViaje, Circuito circuitoViaje, LocalDateTime fechaDeSalida)
-	
 	public void establecerViaje( Buque buque, LocalDateTime fechaYHora, Circuito circuito ) throws Exception
 	{
 		this.validarCircuito( circuito );
@@ -37,18 +34,15 @@ public class Naviera
 		viajes.add( new Viaje( buque, circuito, fechaYHora ) );
 	}
 	
-	/*
-	private boolean validarCircuito( Circuito circuito )
-	{
-		return this.getMisCircuitos().contains(circuito);
-	}
-	*/
 	
 	public void agregarCircuito( Circuito circuito )
 	{
-		// Agregarle validador
-		misCircuitos.add(circuito);
+		if( ! this.getMisCircuitos().contains(circuito) )
+		{
+			misCircuitos.add(circuito);
+		}
 	}
+	
 	
 	public void validarCircuito(Circuito circuito) throws Exception
 	{

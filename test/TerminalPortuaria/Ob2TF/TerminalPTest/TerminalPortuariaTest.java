@@ -30,6 +30,7 @@ class TerminalPortuariaTest
 	Circuito circuito1;
 	Circuito circuito2;
 	Circuito circuito3;
+	Circuito circuito4;
 	
 	
 	// Puertos
@@ -70,6 +71,7 @@ class TerminalPortuariaTest
 	List<Tramo> listaTramosNro1;
 	List<Tramo> listaTramosNro2;
 	List<Tramo> listaTramosNro3;
+	List<Tramo> listaTramosNro4;
 	List<Tramo> listaTramosReducida;
 	
 	// Listas de circuitos
@@ -82,11 +84,13 @@ class TerminalPortuariaTest
 	Naviera naviera1;
 	Naviera naviera2;
 	Naviera naviera3;
+	Naviera naviera4;
 	
 	// Buques
 	Buque buque1;
 	Buque buque2;
 	Buque buque3;
+	Buque buque4;
 	
 	// Set de los buques
 	Set<Buque> setBuques;
@@ -106,7 +110,8 @@ class TerminalPortuariaTest
 	void setUp() throws Exception 
 	{
 		// Mocks de las terminales
-		bsAs = spy(new TerminalPortuaria() );
+		bsAs = spy( TerminalPortuaria.class );
+		// bsAs = new TerminalPortuaria();
 		saoPablo = mock(TerminalPortuaria.class);
 		montevideo = mock(TerminalPortuaria.class);
 		asuncion = mock(TerminalPortuaria.class);
@@ -127,6 +132,7 @@ class TerminalPortuariaTest
 		buque1 = mock( Buque.class );
 		buque2 = mock( Buque.class );
 		buque3 = mock( Buque.class );
+		buque4 = mock( Buque.class );
 		
 		
 		// Spy de los tramos del circuito 1°
@@ -232,6 +238,16 @@ class TerminalPortuariaTest
 		);
 		
 		
+		// Lista de tramos 4° no contiene a bsAs
+		listaTramosNro4 = new ArrayList<Tramo>
+		(
+				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
+				(
+						santiagoDeChileAsuncion, asuncionSaoPablo, saoPabloMontevideo, montevideoLaPaz
+				)
+		);
+		
+		
 		// Lista de tramos nro 1° reducida a dos tramos
 		listaTramosReducida = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
 		(
@@ -246,6 +262,7 @@ class TerminalPortuariaTest
 		circuito1 = spy( new Circuito(listaTramosNro1, LocalDateTime.now()) );
 		circuito2 = spy( new Circuito(listaTramosNro2, LocalDateTime.now()) );
 		circuito3 = spy( new Circuito(listaTramosNro3, LocalDateTime.now()) );
+		circuito4 = spy( new Circuito( listaTramosNro4, LocalDateTime.now() ) ); // No contiene a bsAs
 		
 		
 		listaCircuitosNaviera1 = new ArrayList<Circuito>
@@ -257,7 +274,7 @@ class TerminalPortuariaTest
 		);
 		
 		
-		listaCircuitosNaviera1 = new ArrayList<Circuito>
+		listaCircuitosNaviera2 = new ArrayList<Circuito>
 		(
 				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
 				(
@@ -281,10 +298,9 @@ class TerminalPortuariaTest
 		when( naviera2.getMisCircuitos() ).thenReturn( listaCircuitosNaviera2 );
 		doReturn(setBuques).when(naviera2).getMisBuques();
 		
-		
-		
-
-		
+		// Naviera 3
+		naviera3 = spy( new Naviera() );
+		naviera3.agregarCircuito(circuito4);
 		
 		
 		// 	public Viaje( Buque buqueViaje, Circuito circuitoViaje, LocalDateTime fechaDeSalida)
@@ -304,10 +320,10 @@ class TerminalPortuariaTest
 	
 	
 	@Test
-	void naviera1PoseeLosCircuitosDeLaLista()
+	void naviera2PoseeLosCircuitosDeLaLista()
 	{
-		doReturn( listaCircuitosNaviera1 ).when(naviera1).getMisCircuitos();
-		assertEquals( naviera1.getMisCircuitos(), listaCircuitosNaviera1 );
+		// doReturn( listaCircuitosNaviera2 ).when(naviera2).getMisCircuitos();
+		assertEquals( naviera2.getMisCircuitos(), listaCircuitosNaviera2 );
 	}
 	
 	@Test
@@ -319,18 +335,70 @@ class TerminalPortuariaTest
 		assertFalse( naviera1.getViajes().isEmpty() );
 	}
 	
+	@Test
+	void errorAlValidarBuque()
+	{
+		Exception error = assertThrows( Exception.class, () -> 
+		{
+			naviera1.validarBuque(buque4);
+		} );
+		
+		assertEquals( "Este buque no existe en la naviera", error.getMessage() );
+	}
+	
+	@Test
+	void errorAlValidarCircuito()
+	{
+		naviera1.agregarCircuito(circuito1);
+		naviera1.agregarCircuito(circuito2);
+		Exception error = assertThrows( Exception.class, () -> 
+		{
+			naviera1.validarCircuito(circuito3);
+		} );
+		
+		assertEquals( "Este circuito no se encuentra en las ofertas de la naviera", error.getMessage() );
+	}
+	
+	@Test
+	void validarQueNoSeAgregueUnCircuitoRepetido()
+	{
+		naviera1.agregarCircuito(circuito1);
+		naviera1.agregarCircuito(circuito1);
+		assertEquals( 1, naviera1.getMisCircuitos().size() );
+	}
+	
+	@Test
+	void validarSiTerminalEstaEnCircuitoDeNaviera()
+	{
+		assertTrue( circuito1.validarSiTerminalExisteEnCircuito(bsAs) );
+	}
+	
+	@ Test
+	void agregarNavieraATerminal()
+	{
+		naviera1.agregarCircuito(circuito1);
+		bsAs.registrarNuevaNaviera(naviera1);
+		assertEquals( 1, bsAs.getMisNavieras().size() );
+	}
+
+	@Test
+	void alAgregarNavieraQueNoContieneATerminalNoOcurreNada()
+	{
+		bsAs.registrarNuevaNaviera(naviera3);
+		assertEquals( 0, bsAs.getMisNavieras().size() );
+	}
 	
 	
-//	@Test
-//	void lanzarExcepciónAlAgregarTramoCuyoPuertoOrigenNoCoincideConElPuertoDestinoDelCircuito() throws Exception
-//	{
-//		Exception error = assertThrows( Exception.class, () -> 
-//		{
-//			circuito1.agregarNuevoTramo(asuncionSaoPablo);
-//		} );
-//		
-//		assertEquals( "El puerto de origen del tramo a agregar no coincide con el puerto destino del último tramo de la lista.", error.getMessage() );
-//	}
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
 	
 }
 	

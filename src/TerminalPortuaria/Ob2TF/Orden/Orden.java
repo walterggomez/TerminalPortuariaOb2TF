@@ -29,7 +29,7 @@ public abstract class Orden
     public UUID codigoUnico;
 	 
 	public Orden() {}
-	
+
 	public Orden(Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa, boolean servicioLavado)
 	{
 		this.cliente = cliente;

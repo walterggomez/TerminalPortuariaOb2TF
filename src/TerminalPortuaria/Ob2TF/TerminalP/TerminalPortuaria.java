@@ -29,7 +29,7 @@ public class TerminalPortuaria
 {
 	private String nombre;
 	private Point2D  ubicacion;
-	private List<Naviera> misNavieras;
+	private List<Naviera> misNavieras = new ArrayList<Naviera>();
 	// private List<Viaje> viajes;
 	private Set<Orden> ordenes;
 	private MejorRuta estrategia;
@@ -41,7 +41,6 @@ public class TerminalPortuaria
 	{
 		this.nombre = nombre;
 		this.ubicacion = ubicacion;
-		this.misNavieras = new ArrayList<Naviera>();
 		// this.viajes = new ArrayList<Viaje>(); // No debería ser un atributo. Debería pedirle a la lista de Navieras los viajes en los que la termianal está incluída.
 		this.ordenes = new HashSet<Orden>();
 	}
@@ -114,15 +113,10 @@ public class TerminalPortuaria
 	{
 		if ( this.estoyEnUnCircuitoDeLaNaviera(nav) ) 
 		{
-			this.getMisNavieras().add(nav);
+			this.misNavieras.add(nav);
 		}
-		else
-		{
-			System.out.println("Naviera no valida para registrar");			
-		}	
 	}
 	
-
 	public boolean estoyEnUnCircuitoDeLaNaviera(Naviera nav) 
 	{
 		List<Circuito> circuitosNaviera = nav.getMisCircuitos();
