@@ -31,7 +31,7 @@ public class TerminalPortuaria
 	private Point2D  ubicacion;
 	private List<Naviera> misNavieras = new ArrayList<Naviera>();
 	// private List<Viaje> viajes;
-	private Set<Orden> ordenes;
+	private Set<Orden> ordenes = new HashSet<Orden>();
 	private MejorRuta estrategia;
 
 	
@@ -41,19 +41,20 @@ public class TerminalPortuaria
 	{
 		this.nombre = nombre;
 		this.ubicacion = ubicacion;
+		this.misNavieras = new ArrayList<Naviera>();
 		// this.viajes = new ArrayList<Viaje>(); // No debería ser un atributo. Debería pedirle a la lista de Navieras los viajes en los que la termianal está incluída.
 		this.ordenes = new HashSet<Orden>();
 	}
 
 	public Point2D getUbicacion()
 	{
-		return ubicacion;
+		return this.ubicacion;
 	}
 
 
 	public List<Naviera> getMisNavieras()
 	{
-		return misNavieras;
+		return this.misNavieras;
 	}
  
 	
@@ -115,8 +116,13 @@ public class TerminalPortuaria
 		{
 			this.misNavieras.add(nav);
 		}
+		else
+		{
+			System.out.println("Naviera no valida para registrar");			
+		}	
 	}
 	
+
 	public boolean estoyEnUnCircuitoDeLaNaviera(Naviera nav) 
 	{
 		List<Circuito> circuitosNaviera = nav.getMisCircuitos();
@@ -140,12 +146,12 @@ public class TerminalPortuaria
 	
 	
 	
-	private void validarEntregaTerrestreExp(Orden orden, Camion camion, Chofer chofer) throws Exception 
+	private void entregaTerrestreExp(Orden orden, Camion camion, Chofer chofer) throws Exception 
 	{
 		this.validarCamion(camion, orden);
 		this.validarChofer(chofer, orden);
 		this.validarHorarioDeEntrega(orden);
-		orden.registrarEntregaContainer();
+		this.buscarOrden(orden).registrarEntregaContainer();
 	}
 	
 	
@@ -153,7 +159,7 @@ public class TerminalPortuaria
 	{
 		this.validarCamion(camion, orden);
 		this.validarChofer(chofer, orden);
-		this.buscarOrden(orden).registrarEntregaContainer();
+		this.buscarOrden(orden).registrarSalidaContainer();
 	}
 
 

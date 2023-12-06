@@ -11,6 +11,10 @@ public abstract class Cliente implements Suscriptor
 	protected int codigoCliente;
 	protected LocalDateTime turno;
 
+	public Cliente() {
+		
+	}
+	
 	public Cliente(String nombre, int codigoCliente) {
 		super();
 		this.nombre = nombre;

@@ -17,6 +17,10 @@ public class Naviera
 	private Set<Viaje> viajes = new HashSet<>();
 	
 
+	public Naviera() {
+		
+	}
+	
 	public List<Circuito> getMisCircuitos()
 	{
 		return misCircuitos;

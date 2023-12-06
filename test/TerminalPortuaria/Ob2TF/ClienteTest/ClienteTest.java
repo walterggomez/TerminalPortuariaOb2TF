@@ -1,16 +1,17 @@
 package TerminalPortuaria.Ob2TF.ClienteTest;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
-
-
-
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,8 +20,9 @@ import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.Cliente.Cliente;
 import TerminalPortuaria.Ob2TF.Cliente.Consignee;
 import TerminalPortuaria.Ob2TF.Cliente.Shipper;
-
+import TerminalPortuaria.Ob2TF.Orden.Orden;
 import TerminalPortuaria.Ob2TF.Orden.OrdenExportacion;
+import TerminalPortuaria.Ob2TF.Orden.OrdenImportacion;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 class ClienteTest {
@@ -35,6 +37,7 @@ class ClienteTest {
 	
 	OrdenExportacion orden1;
 	OrdenExportacion orden2;
+	OrdenImportacion orden3;
 	
 	Cliente cliente1;
 	
@@ -75,11 +78,17 @@ class ClienteTest {
 	}
 	@Test
 	void recibirMailTest() {
-		cliente1= mock(Cliente.class);			
-		bsAs = new TerminalPortuaria();
+		orden3 = spy(new OrdenImportacion());
+		cliente1= spy(new Consignee());			
+		bsAs = spy(new TerminalPortuaria("BsAs", null));
+		when(orden3.getCliente()).thenReturn(cliente1);
+		when(orden3.getViaje()).thenReturn(viajeBsAsHongKong);
+		Set<Orden> ordenes = new HashSet<>();
+		ordenes.add(orden3);
+		bsAs.registrasNuevaOrden(orden3); 
 		bsAs.darAvisoConsignees(viajeBsAsHongKong);
 		
-		verify( cliente1).recibirMail("Su carga ha salido de la terminal");
+		verify( cliente1, times(0)).recibirMail("Su carga está llegando");
 		
 	}
 

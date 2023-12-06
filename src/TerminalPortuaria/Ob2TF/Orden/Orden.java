@@ -28,7 +28,9 @@ public abstract class Orden
 	protected LocalDateTime salidaContainer;
     public UUID codigoUnico;
 	 
-	public Orden() {}
+    public Orden() {
+    	
+    }
 
 	public Orden(Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa, boolean servicioLavado)
 	{
@@ -52,7 +54,7 @@ public abstract class Orden
 	}
 
 	
-	private void evaluarServicioLavado()
+	protected void evaluarServicioLavado()
 	{
 		if( servicioLavado )
 		{
