@@ -17,13 +17,13 @@ public class Departing implements EstadoBuque
     public void actualizarEstado(Buque buque) 
 	{
         if (this.distanciaATerminal(buque) > 1.0) 
-        	{
-            buque.setestadoBuque(new Outbound());
+        {
+            buque.getViajeActual().getpuertoOrigen().enviarFacturaOrden( buque.getViajeActual() );
+        	buque.setestadoBuque(new Outbound());
             buque.getViajeActual().getpuertoOrigen().darAvisoShippers( buque.getViajeActual() );
-
-        	}      
         }
-    
+     }
+     
 	public double distanciaATerminal(Buque buque)
 	{
 		//Implementacion de distancia buque a terminal

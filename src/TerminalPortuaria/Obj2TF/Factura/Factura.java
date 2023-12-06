@@ -22,7 +22,7 @@ public class Factura
 		this.costoCircuito();
 		this.conceptos.add( new Concepto( "Monto total del servicio:", LocalDateTime.now(), ordenFacturada.precioTotal() ) );
 	}
-	
+
 	private void costoCircuito()
 	{
 		if( this.ordenFacturada.esOrdenImportacion() )

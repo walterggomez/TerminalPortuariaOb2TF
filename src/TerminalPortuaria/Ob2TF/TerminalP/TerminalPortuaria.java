@@ -97,6 +97,12 @@ public class TerminalPortuaria
 		listaConsignees.stream().forEach( c -> c.recibirMail("Su carga ha salido de la terminal") );
 	}
 	
+	public void enviarFacturaOrden( Viaje viaje )
+	{
+		List<Orden> ordenesVinculadasAlViaje = this.ordenes.stream().filter( o -> o.getViaje() == viaje ).toList();
+		ordenesVinculadasAlViaje.forEach( o -> o.enviarFacturaPorMail() );
+	}
+	
 	public void registrasNuevaOrden(Orden orden) 
 	{
 		//VERIFICAR SI NECESITA VALIDACION

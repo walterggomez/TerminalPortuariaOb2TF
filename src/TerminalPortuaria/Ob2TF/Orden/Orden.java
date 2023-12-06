@@ -5,6 +5,7 @@ import TerminalPortuaria.Ob2TF.Buque.Buque;
 import TerminalPortuaria.Ob2TF.Circuito.*;
 import TerminalPortuaria.Ob2TF.Cliente.*;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.*;
+import TerminalPortuaria.Obj2TF.Factura.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -164,4 +165,10 @@ public abstract class Orden
 	            .orElse(null);
 	}
 
+	public void enviarFacturaPorMail()
+	{
+		Factura factura = new Factura(this);
+		cliente.recibirMail( factura.toString() );
+	}
+	
 }
