@@ -259,7 +259,7 @@ class CircuitoTest
 		assertTrue( circuito1.validarSiPuertoOrigenEstaAntesQuePuertoDestino(montevideo, santiagoDeChile) );
 	}
 	
-	
+	 
 	// AssertEquals( Expected, Actual )
 	@Test
 	void seteoFechaDeSalidaEnTramo() 

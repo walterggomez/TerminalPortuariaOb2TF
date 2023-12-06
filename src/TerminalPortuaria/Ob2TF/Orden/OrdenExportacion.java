@@ -24,7 +24,7 @@ public class OrdenExportacion extends Orden
 	{
 		return false;
 	}
-	
+	 
 	@Override
 	public boolean esOrdenExportacion()
 	{

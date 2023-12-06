@@ -14,7 +14,7 @@ public class Naviera
 {
 	private List<Circuito> misCircuitos = new ArrayList<>();
 	// private Map<Circuito, LocalDateTime> listaCircuitosSalidas = new HashMap<>();
-	private Set<Buque> misBuques = new HashSet<>();
+	Set<Buque> misBuques = new HashSet<>();
 	private Set<Viaje> viajes = new HashSet<>();
 	
 
@@ -52,7 +52,7 @@ public class Naviera
 	
 	public void validarCircuito(Circuito circuito) throws Exception
 	{
-		if ( ! misCircuitos.contains(circuito) )
+		if ( ! this.getMisCircuitos().contains(circuito) )
 		{
 			throw new Exception("Este circuito no se encuentra en las ofertas de la naviera");
 		}
@@ -60,10 +60,15 @@ public class Naviera
 	
 	public void validarBuque(Buque buque) throws Exception
 	{
-		if ( ! misBuques.contains(buque) )
+		if ( ! this.getMisBuques().contains(buque) )
 		{
 			throw new Exception("Este buque no existe en la naviera");
 		}
+	}
+
+	public Set<Buque> getMisBuques() 
+	{
+		return misBuques;
 	}
 	
 /*

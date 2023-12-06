@@ -1,26 +1,31 @@
 package TerminalPortuaria.Ob2TF.TerminalPTest;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
-
 import java.awt.geom.Point2D;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import TerminalPortuaria.Ob2TF.Buque.Buque;
+import TerminalPortuaria.Ob2TF.Buque.Buque.*;
 import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.Circuito.Tramo;
+import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 class TerminalPortuariaTest
 {
-	
+
 	// Circuitos
 	Circuito circuito1;
 	Circuito circuito2;
@@ -65,6 +70,12 @@ class TerminalPortuariaTest
 	List<Tramo> listaTramosNro1;
 	List<Tramo> listaTramosNro2;
 	List<Tramo> listaTramosNro3;
+	List<Tramo> listaTramosReducida;
+	
+	// Listas de circuitos
+	List<Circuito> listaCircuitosNaviera1;
+	List<Circuito> listaCircuitosNaviera2;
+	
 	
 	
 	// Navieras
@@ -72,14 +83,30 @@ class TerminalPortuariaTest
 	Naviera naviera2;
 	Naviera naviera3;
 	
+	// Buques
+	Buque buque1;
+	Buque buque2;
+	Buque buque3;
 	
+	// Set de los buques
+	Set<Buque> setBuques;
+	
+	
+	// Viaje
+	Viaje viajeCircuito1PrimeraFecha;
+	Viaje viajeCircuito1Reducido;
+	
+	Viaje viajeCircuito1SegundaFecha;
+	Viaje viajeCircuito2;
+	Viaje viajeCircuito3;
+
 	
 	
 	@BeforeEach
 	void setUp() throws Exception 
 	{
 		// Mocks de las terminales
-		bsAs = mock(TerminalPortuaria.class);
+		bsAs = spy(new TerminalPortuaria() );
 		saoPablo = mock(TerminalPortuaria.class);
 		montevideo = mock(TerminalPortuaria.class);
 		asuncion = mock(TerminalPortuaria.class);
@@ -95,6 +122,11 @@ class TerminalPortuariaTest
 		when(lima.getUbicacion()).thenReturn( new Point2D.Double(-12.04318, -77.02824) );
 		when(santiagoDeChile.getUbicacion()).thenReturn( new Point2D.Double(-33.45694, -70.64827) );
 		when(laPaz.getUbicacion()).thenReturn( new Point2D.Double(-16.5, -68.15) );
+		
+		// Mock buques
+		buque1 = mock( Buque.class );
+		buque2 = mock( Buque.class );
+		buque3 = mock( Buque.class );
 		
 		
 		// Spy de los tramos del circuito 1°
@@ -121,10 +153,7 @@ class TerminalPortuariaTest
 		// saoPabloMontevideo = spy( new Tramo() );
 		montevideoLaPaz = spy( new Tramo() );
 		
-		
 
-
-		
 		// Tramo a agregar, sin continuidad con el último puerto del circuito
 		asuncionSaoPablo = spy( Tramo.class );
 		when( asuncionSaoPablo.getPuertoOrigen() ).thenReturn(asuncion);
@@ -153,12 +182,21 @@ class TerminalPortuariaTest
 
 		
 		// Duración de los tramos
-		when( bsAsSaoPablo.getDuracionTramo() ).thenReturn(10.0);
-		when( saoPabloMontevideo.getDuracionTramo() ).thenReturn(10.0);
-		when( montevideoAsuncion.getDuracionTramo() ).thenReturn(10.0);
-		when( asuncionLima.getDuracionTramo() ).thenReturn(10.0);
-		when( limaSantiagoDeChile.getDuracionTramo() ).thenReturn(10.0);
-		when( santiagoDeChileLaPaz.getDuracionTramo() ).thenReturn(10.0);
+		when( bsAsSaoPablo.getDuracionTramo() ).thenReturn(1.0);
+		when( saoPabloMontevideo.getDuracionTramo() ).thenReturn(1.0);
+		when( montevideoAsuncion.getDuracionTramo() ).thenReturn(1.0);
+		when( asuncionLima.getDuracionTramo() ).thenReturn(1.0);
+		when( limaSantiagoDeChile.getDuracionTramo() ).thenReturn(1.0);
+		when( santiagoDeChileLaPaz.getDuracionTramo() ).thenReturn(1.0);
+		
+		
+		// Costos de los tramos
+		when( bsAsSaoPablo.getCostoDetramo() ).thenReturn(1.0);
+		when( saoPabloMontevideo.getCostoDetramo() ).thenReturn(1.0);
+		when( montevideoAsuncion.getCostoDetramo() ).thenReturn(1.0);
+		when( asuncionLima.getCostoDetramo() ).thenReturn(1.0);
+		when( limaSantiagoDeChile.getCostoDetramo() ).thenReturn(1.0);
+		when( santiagoDeChileLaPaz.getCostoDetramo() ).thenReturn(1.0);
 		
 		// TerminalPortuaria montevideo = new TerminalPortuaria( new Point2D.Double(-34.90328, -56.18816) );
 		// TerminalPortuaria santiagoDeChile = new TerminalPortuaria( new Point2D.Double(-33.45694, -70.64827) );
@@ -192,6 +230,16 @@ class TerminalPortuariaTest
 						limaBsAs, bsAsSantiagoDeChile, santiagoDeChileAsuncion, asuncionSaoPablo, saoPabloMontevideo, montevideoLaPaz
 				)
 		);
+		
+		
+		// Lista de tramos nro 1° reducida a dos tramos
+		listaTramosReducida = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
+		(
+				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
+				(
+						montevideoAsuncion, asuncionLima
+				)
+		);
 
 	
 		// Spy de los circuitos
@@ -200,15 +248,89 @@ class TerminalPortuariaTest
 		circuito3 = spy( new Circuito(listaTramosNro3, LocalDateTime.now()) );
 		
 		
+		listaCircuitosNaviera1 = new ArrayList<Circuito>
+		(
+				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
+				(
+						circuito1, circuito2
+				)
+		);
 		
 		
+		listaCircuitosNaviera1 = new ArrayList<Circuito>
+		(
+				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
+				(
+						circuito3
+				)
+		);
+		
+		
+		// Set de los buques
+		setBuques = Set.of(buque1, buque2, buque3);
+		
+		// Navieras 1
+		naviera1 = spy( new Naviera() );
+//		naviera1.agregarCircuito(circuito1);
+//		naviera1.agregarCircuito(circuito2);
+		
+		doReturn(setBuques).when(naviera1).getMisBuques();
+		
+		// Naviera 2
+		naviera2 = spy( new Naviera() );
+		when( naviera2.getMisCircuitos() ).thenReturn( listaCircuitosNaviera2 );
+		doReturn(setBuques).when(naviera2).getMisBuques();
+		
+		
+		
+
+		
+		
+		
+		// 	public Viaje( Buque buqueViaje, Circuito circuitoViaje, LocalDateTime fechaDeSalida)
+		// Viajes
+		viajeCircuito1PrimeraFecha = new Viaje( buque1, circuito1, LocalDateTime.of(2023, 11, 05, 13, 00) );
+		viajeCircuito1SegundaFecha = new Viaje( buque1, circuito1, LocalDateTime.of(2023, 12, 05, 13, 00) );
+				
+//		viajeCircuito2 = new Viaje(  );
+//		
+//		viajeCircuito3 = new Viaje(  );
+		
+		
+		// Creamos un viaje con un circuito que solo contenga a las terminales de interés ...
+		viajeCircuito1Reducido = viajeCircuito1PrimeraFecha.generarViajeConTramosDeInteres( montevideo, lima );
 		
 	}
 	
 	
-
+	@Test
+	void naviera1PoseeLosCircuitosDeLaLista()
+	{
+		doReturn( listaCircuitosNaviera1 ).when(naviera1).getMisCircuitos();
+		assertEquals( naviera1.getMisCircuitos(), listaCircuitosNaviera1 );
+	}
+	
+	@Test
+	void naviera1AgregaUnViajeASuLista() throws Exception
+	{
+		naviera1.agregarCircuito(circuito1);
+		naviera1.agregarCircuito(circuito2);
+		naviera1.establecerViaje(buque1, LocalDateTime.now(), circuito1);
+		assertFalse( naviera1.getViajes().isEmpty() );
+	}
 	
 	
+	
+//	@Test
+//	void lanzarExcepciónAlAgregarTramoCuyoPuertoOrigenNoCoincideConElPuertoDestinoDelCircuito() throws Exception
+//	{
+//		Exception error = assertThrows( Exception.class, () -> 
+//		{
+//			circuito1.agregarNuevoTramo(asuncionSaoPablo);
+//		} );
+//		
+//		assertEquals( "El puerto de origen del tramo a agregar no coincide con el puerto destino del último tramo de la lista.", error.getMessage() );
+//	}
 	
 }
 	
