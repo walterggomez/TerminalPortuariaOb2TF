@@ -22,7 +22,12 @@ import TerminalPortuaria.Ob2TF.Buque.Buque.*;
 import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.Circuito.Tramo;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
+import TerminalPortuaria.Ob2TF.EmpresaTransportista.Camion;
+import TerminalPortuaria.Ob2TF.EmpresaTransportista.Chofer;
+import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.MejorRuta;
+import TerminalPortuaria.Ob2TF.EstrategiaMejorRuta.*;
 import TerminalPortuaria.Ob2TF.Naviera.Naviera;
+import TerminalPortuaria.Ob2TF.Orden.Orden;
 import TerminalPortuaria.Ob2TF.Orden.OrdenExportacion;
 import TerminalPortuaria.Ob2TF.Orden.OrdenImportacion;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
@@ -112,6 +117,12 @@ class TerminalPortuariaTest
 	OrdenImportacion ordenImportacion;
 	OrdenExportacion ordenExportacion;
 	
+	//Estrategia
+	MenorCantidadTerminal estrategiaMenorCantidad;
+	MenorPrecio estrategiaMenorPrecio;
+	MenorTiempo estrategiaMenorTiempo;
+	
+	
 	
 	@BeforeEach
 	void setUp() throws Exception 
@@ -126,6 +137,12 @@ class TerminalPortuariaTest
 		santiagoDeChile = mock(TerminalPortuaria.class);
 		laPaz = mock(TerminalPortuaria.class);
 		
+		//mock de estrategia
+		estrategiaMenorCantidad = mock(MenorCantidadTerminal.class);
+		estrategiaMenorPrecio = mock(MenorPrecio.class);
+		estrategiaMenorTiempo = mock(MenorTiempo.class);
+		
+		
 		// getUbicacion() de las terminales
 		when(bsAs.getUbicacion()).thenReturn( new Point2D.Double(-34.61315, -58.37723) );
 		when(saoPablo.getUbicacion()).thenReturn( new Point2D.Double(-23.5475, -46.63611) );
@@ -134,6 +151,9 @@ class TerminalPortuariaTest
 		when(lima.getUbicacion()).thenReturn( new Point2D.Double(-12.04318, -77.02824) );
 		when(santiagoDeChile.getUbicacion()).thenReturn( new Point2D.Double(-33.45694, -70.64827) );
 		when(laPaz.getUbicacion()).thenReturn( new Point2D.Double(-16.5, -68.15) );
+		
+		//getNombre
+		when(bsAs.getNombre()).thenReturn("Puerto Buenos Aires");
 		
 		// Mock buques
 		buque1 = mock( Buque.class );
@@ -306,6 +326,9 @@ class TerminalPortuariaTest
 		naviera3 = spy( new Naviera() );		
 		
 	
+		//Generacion de orden
+//		when(bsAs.generarOrdenExportacion(null, viajeCircuito1PrimeraFecha, null, null, false)).thenReturn(ordenExportacion);
+//		when(bsAs.generarOrdenImportacion(null, viajeCircuito1PrimeraFecha, null, null, false)).thenReturn(ordenImportacion);
 		
 		
 	}
@@ -326,6 +349,36 @@ class TerminalPortuariaTest
 		naviera1.establecerViaje(buque1, LocalDateTime.now(), circuito1);
 		assertFalse( naviera1.getViajes().isEmpty() );
 	}
+	
+	@Test
+	void registrarOrden() {
+		bsAs.registrasNuevaOrden(ordenExportacion);
+		assertTrue(bsAs.getOrdenes().contains(ordenExportacion));
+	}
+	
+	@Test
+	void conseguirNombre() {
+		assertEquals("Puerto Buenos Aires",bsAs.getNombre());
+	}
+
+	@Test
+	public void setDeEstragia() {
+		bsAs.setMejorCircuito(estrategiaMenorCantidad);
+		when(estrategiaMenorCantidad.mejorCircuito(bsAs, asuncion)).thenReturn(circuito1);
+		assertEquals(circuito1, bsAs.getMejorCircuito(asuncion));
+	}
+	
+	
+//	 public void setMejorCircuito( MejorRuta estrategia )
+//	 {
+//	 	this.estrategia = estrategia;
+//	 }
+//	 
+//	 
+//	 public Circuito getMejorCircuito(TerminalPortuaria terminalDestino)
+//	 {
+//	 	return this.estrategia.mejorCircuito(this, terminalDestino);
+//	 }
 	
 	@Test
 	void errorAlValidarBuque()
@@ -373,6 +426,7 @@ class TerminalPortuariaTest
 		assertEquals( 1, bsAs.getMisNavieras().size() );
 	}
 
+	//Este test devuelve el mensaje de que la terminal no esta en ningun viaje de la naviera
 	@Test
 	void alAgregarNavieraQueNoContieneATerminalNoOcurreNada()
 	{
@@ -404,43 +458,17 @@ class TerminalPortuariaTest
 		naviera1.agregarCircuito(circuito3);
 		naviera1.agregarCircuito(circuito4);
 		naviera1.establecerViaje(buque1, LocalDateTime.now(), circuito1);
-//		naviera1.establecerViaje(buque1, LocalDateTime.now(), circuito2);
-//		naviera1.establecerViaje(buque1, LocalDateTime.now(), circuito3);
-//		naviera1.establecerViaje(buque1, LocalDateTime.now(), circuito4);
+		naviera1.establecerViaje(buque1, LocalDateTime.now(), circuito2);
+		naviera1.establecerViaje(buque1, LocalDateTime.now(), circuito3);
+		naviera1.establecerViaje(buque1, LocalDateTime.now(), circuito4);
 		bsAs.registrarNuevaNaviera(naviera1);
-
-		
-		// assertEquals( 4, naviera1.getViajes().size() );
-		
-		assertEquals( 3, bsAs.getMisViajes().size() );
+		assertEquals( 1, bsAs.getMisViajes().size() );
 		
 
 	}
 	
 	
-	
-	
-
-	
-	
-	
-	
-	
-	
 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

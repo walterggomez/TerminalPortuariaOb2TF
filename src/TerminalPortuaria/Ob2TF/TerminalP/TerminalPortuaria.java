@@ -67,18 +67,18 @@ public class TerminalPortuaria
 	}
 	
 
-	public OrdenExportacion generarOrdenExportacion( Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa,
-			boolean servicioLavado)
-	{
-		return new OrdenExportacion( cliente, viaje, container, empresa, servicioLavado );
-	}
-
-	
-	public OrdenImportacion generarOrdenImportacion( Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa,
-			boolean servicioLavado)
-	{
-		return new OrdenImportacion( cliente, viaje, container, empresa, servicioLavado );
-	}
+//	public OrdenExportacion generarOrdenExportacion( Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa,
+//			boolean servicioLavado)
+//	{
+//		return new OrdenExportacion( cliente, viaje, container, empresa, servicioLavado );
+//	}
+//
+//	
+//	public OrdenImportacion generarOrdenImportacion( Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa,
+//			boolean servicioLavado)
+//	{
+//		return new OrdenImportacion( cliente, viaje, container, empresa, servicioLavado );
+//	}
 
 	
 	public void darAvisoShippers( Viaje viaje )
@@ -103,22 +103,22 @@ public class TerminalPortuaria
 		ordenesVinculadasAlViaje.forEach( o -> o.enviarFacturaPorMail() );
 	}
 	
-	public void registrasNuevaOrden(Orden orden) 
+	
+	public void registrasNuevaOrden(Orden orden)
 	{
-		//VERIFICAR SI NECESITA VALIDACION
 		this.ordenes.add(orden);
 	}
 
 	
 	public void registrarNuevaNaviera(Naviera nav)
 	{
-		if ( this.estoyEnUnCircuitoDeLaNaviera(nav) ) 
+		if ( !this.estoyEnUnCircuitoDeLaNaviera(nav) ) 
 		{
-			this.misNavieras.add(nav);
+			System.out.println("Naviera no valida para registrar");	
 		}
 		else
 		{
-			System.out.println("Naviera no valida para registrar");			
+			this.misNavieras.add(nav);		
 		}	
 	}
 	
@@ -151,7 +151,7 @@ public class TerminalPortuaria
 		this.validarCamion(camion, orden);
 		this.validarChofer(chofer, orden);
 		this.validarHorarioDeEntrega(orden);
-		this.buscarOrden(orden).registrarEntregaContainer();
+		orden.registrarEntregaContainer();
 	}
 	
 	
@@ -159,22 +159,22 @@ public class TerminalPortuaria
 	{
 		this.validarCamion(camion, orden);
 		this.validarChofer(chofer, orden);
-		this.buscarOrden(orden).registrarSalidaContainer();
+		orden.registrarSalidaContainer();
 	}
 
 
-	private Orden buscarOrden( Orden orden )
-	{
-		UUID codigoOrdenBuscada = orden.codigoUnico;
-		for( Orden o: this.ordenes  )
-		{
-			if( o.getCodigoUnico().equals(codigoOrdenBuscada) )
-			{
-				return o;
-			}
-		}
-		return null;
-	}
+//	private Orden buscarOrden( Orden orden )
+//	{
+//		UUID codigoOrdenBuscada = orden.codigoUnico;
+//		for( Orden o: this.ordenes  )
+//		{
+//			if( o.getCodigoUnico().equals(codigoOrdenBuscada) )
+//			{
+//				return o;
+//			}
+//		}
+//		return null;
+//	}
 	
 	
 	private void validarHorarioDeEntrega(Orden orden) throws Exception 

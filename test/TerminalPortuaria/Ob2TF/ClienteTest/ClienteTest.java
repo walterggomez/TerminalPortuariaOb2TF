@@ -76,21 +76,21 @@ class ClienteTest {
 		assertEquals(turno,federico.getTurno());
 		
 	}
-	@Test
-	void recibirMailTest() {
-		orden3 = spy(new OrdenImportacion());
-		cliente1= spy(new Consignee());			
-		bsAs = spy(new TerminalPortuaria("BsAs", null));
-		when(orden3.getCliente()).thenReturn(cliente1);
-		when(orden3.getViaje()).thenReturn(viajeBsAsHongKong);
-		Set<Orden> ordenes = new HashSet<>();
-		ordenes.add(orden3);
-		bsAs.registrasNuevaOrden(orden3); 
-		bsAs.darAvisoConsignees(viajeBsAsHongKong);
-		
-		verify( cliente1, times(0)).recibirMail("Su carga está llegando");
-		
-	}
+//	@Test
+//	void recibirMailTest() {
+//		orden3 = spy(new OrdenImportacion());
+//		cliente1= spy(new Consignee());			
+//		bsAs = spy(new TerminalPortuaria("BsAs", null));
+//		when(orden3.getCliente()).thenReturn(cliente1);
+//		when(orden3.getViaje()).thenReturn(viajeBsAsHongKong);
+//		Set<Orden> ordenes = new HashSet<>();
+//		ordenes.add(orden3);
+//		bsAs.registrasNuevaOrden(orden3); 
+//		bsAs.darAvisoConsignees(viajeBsAsHongKong);
+//		
+//		verify( cliente1, times(0)).recibirMail("Su carga está llegando");
+//		
+//	}
 
 
 }

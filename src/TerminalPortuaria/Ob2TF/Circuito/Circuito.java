@@ -91,32 +91,6 @@ public class Circuito
 	
 
 	
-	/*
-	//POSIBLE SOLUCION PENSADA POR LAS VIVENCIAS EN EDD
-	public List<Tramo> circuitoDesde(TerminalPortuaria terminalPortuaria) {
-	    List<Tramo> nuevaLista = new ArrayList<>();
-	    boolean condicionCumplida = false;
-
-	    for (Tramo tramo : listaDeTramo) {
-	        if (condicionCumplida) {
-	            nuevaLista.add(tramo);
-	        } else {
-	            if (tramo.getPuertoOrigen().equals(terminalPortuaria)) {
-	                condicionCumplida = true;
-	                nuevaLista.add(tramo);
-	            }
-	        }
-	    }
-	    return nuevaLista;
-	}
-	*/
-	
-/*
-			return viaje.getCircuito.construirCircuitoDesdeHasta( terminalOrgen, terminalDestino).costoTotalDelCircuito();
-			
-			
-			
-*/
 	
 	// Deuda refactor validaciones
     public Circuito construirCircuitoDesdeHasta(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino) 
@@ -135,13 +109,13 @@ public class Circuito
     }
     
 
-    private boolean terminalesExistenEnCircuito(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino)
+    public boolean terminalesExistenEnCircuito(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino)
     {
         return validarSiTerminalExisteEnCircuito(terminalOrigen) && validarSiTerminalExisteEnCircuito(terminalDestino);
     }
     
 
-    Tramo obtenerTramoPorPuertoOrigen(TerminalPortuaria puertoOrigen)
+    public Tramo obtenerTramoPorPuertoOrigen(TerminalPortuaria puertoOrigen)
     {
         return listaDeTramo.stream()
                 .filter(t -> t.getPuertoOrigen() == puertoOrigen)

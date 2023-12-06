@@ -12,7 +12,7 @@ public class Outbound implements EstadoBuque {
 			buque.getViajeActual().getpuertoDestino().darAvisoConsignees( buque.getViajeActual() );
 	}
 
-
+	@Override
 	public void evaluar(Buque buque, TerminalPortuaria puertoGestionado) 
 	{
 		if (this.distanciaATerminal(buque,puertoGestionado) < 50) 
