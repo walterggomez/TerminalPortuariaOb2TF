@@ -23,6 +23,7 @@ import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.Circuito.Tramo;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.Cliente.Cliente;
+import TerminalPortuaria.Ob2TF.Cliente.Consignee;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Camion;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Chofer;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.TransporteAsignado;
@@ -113,6 +114,8 @@ class TerminalPortuariaTest
 	Viaje viajeCircuito1SegundaFecha;
 	Viaje viajeCircuito2;
 	Viaje viajeCircuito3;
+	
+	Viaje viajeLunaNueva;
 
 	
 	// Orden
@@ -135,6 +138,7 @@ class TerminalPortuariaTest
 	//Cliente
 	Cliente cliente;
 	
+	Consignee meJodes;	
 	
 	
 	@BeforeEach
@@ -558,15 +562,29 @@ class TerminalPortuariaTest
 	}
 	@Test
 	void darAvisoShippersTest() {
-		ordenExp1 = mock(OrdenExportacion.class);
-		when(ordenExp1.esOrdenExportacion()).thenReturn(true);
-		ordenExp2 = mock(OrdenExportacion.class);
-		when(ordenExp2.esOrdenExportacion()).thenReturn(true);
-		ordenImp1 = mock(OrdenImportacion.class);
-		when(ordenImp1.esOrdenExportacion()).thenReturn(false);
-		ordenImp2 = mock(OrdenImportacion.class);
-		when(ordenImp2.esOrdenExportacion()).thenReturn(false);
+		//ordenExp1 = mock(OrdenExportacion.class);
+		//ordenExp2 = mock(OrdenExportacion.class);
+		//ordenImp2 = mock(OrdenImportacion.class);
+		//ordenImp1 = mock(OrdenImportacion.class);
+		
+		ordenExp1 = spy(new OrdenExportacion());
+		when(ordenExp1.esOrdenImportacion()).thenReturn(false);
+		
+		ordenExp2 = spy(new OrdenExportacion());
+		when(ordenExp2.esOrdenImportacion()).thenReturn(false);
+		
+		ordenImp1 = spy(new OrdenImportacion());
+		when(ordenImp1.esOrdenImportacion()).thenReturn(true);
+		
+		ordenImp2 = spy(new OrdenImportacion());
+		when(ordenImp2.esOrdenImportacion()).thenReturn(true);
 		ordenes = Arrays.asList(ordenExp1,ordenImp1,ordenExp2,ordenImp2);
+		viajeLunaNueva = mock(Viaje.class);
+		when(ordenImp1.getViaje()).thenReturn(viajeLunaNueva);
+		meJodes = mock(Consignee.class);
+		when(ordenImp1.getCliente()).thenReturn(meJodes);
+		bsAs.darAvisoConsignees(viajeLunaNueva);
+		verify(meJodes, times(1) ).recibirMail("Su carga ha salido de la terminal");
 		
 		
 		
