@@ -154,7 +154,8 @@ class TerminalPortuariaTest
 	void setUp() throws Exception 
 	{
 		// Mocks de las terminales
-		bsAs = spy( TerminalPortuaria.class );
+		// bsAs = spy( TerminalPortuaria.class );
+		bsAs = spy( new TerminalPortuaria( "Buenos Aires", new Point2D.Double(-34.61315, -58.37723) ) );
 		// bsAs = new TerminalPortuaria();
 		saoPablo = mock(TerminalPortuaria.class);
 		montevideo = mock(TerminalPortuaria.class);
@@ -606,7 +607,8 @@ class TerminalPortuariaTest
 	
 	
 	@Test
-	void validarHorarioDeEntregaFueTarde() {
+	void validarHorarioDeEntregaFueTarde()
+	{
 		LocalDateTime turno = LocalDateTime.of(1980, 12, 18, 13, 00);
 		when(ordenExportacion.getCliente()).thenReturn(cliente);
 		when(cliente.getTurno()).thenReturn(turno);
@@ -619,63 +621,64 @@ class TerminalPortuariaTest
 	
 	
 	@Test
-	void validarQueChoferNoCoincide() {
-		TransporteAsignado transporte = mock(TransporteAsignado.class);
-		Chofer chofer1 = mock(Chofer.class);
-		when(chofer1.getNombre()).thenReturn("Carlos");
-		Chofer chofer2 = mock(Chofer.class);
-		when(chofer2.getNombre()).thenReturn("Raul");
-		when(transporte.getChoferAsignado()).thenReturn(chofer1);
-		when(ordenExportacion.getTransporteAsignado()).thenReturn(transporte);
-		Exception error = assertThrows( Exception.class, () -> 
-		{
-			bsAs.validarChofer(chofer2, ordenExportacion);
-		} );
-		assertEquals( "El chofer no coincide", error.getMessage() );
-	}
+    void validarQueChoferNoCoincide() throws Exception {
+        TransporteAsignado transporte = mock(TransporteAsignado.class);
+        Chofer chofer1 = mock(Chofer.class);
+        when(chofer1.getNombre()).thenReturn("Carlos");
+        Chofer chofer2 = mock(Chofer.class);
+        when(chofer2.getNombre()).thenReturn("Raul");
+        when(transporte.getChoferAsignado()).thenReturn(chofer1);
+        ordenExportacion.asignarTransporte(transporte);
+        Exception error = assertThrows( Exception.class, () -> 
+        {
+            bsAs.validarChofer(chofer2, ordenExportacion);
+        } );
+        assertEquals( "El chofer no coincide", error.getMessage() );
+    }
 	
-	@Test
-	void validarCamionNoEsElCorrecto() {
-		TransporteAsignado transporte = mock(TransporteAsignado.class);
-		Camion camion1 = mock(Camion.class);
-		when(camion1.getPatente()).thenReturn("ABC");
-		Camion camion2 = mock(Camion.class);
-		when(camion2.getPatente()).thenReturn("123");
-		when(transporte.getCamionAsignado()).thenReturn(camion1);
-		when(ordenExportacion.getTransporteAsignado()).thenReturn(transporte);
-		Exception error = assertThrows( Exception.class, () -> 
-		{
-			bsAs.validarCamion(camion2, ordenExportacion);
-		} );
-		assertEquals( "El camión no coincide", error.getMessage() );
-	}
+    @Test
+    void validarCamionNoEsElCorrecto() throws Exception {
+        TransporteAsignado transporte = mock(TransporteAsignado.class);
+        Camion camion1 = mock(Camion.class);
+        when(camion1.getPatente()).thenReturn("ABC");
+        Camion camion2 = mock(Camion.class);
+        when(camion2.getPatente()).thenReturn("123");
+        when(transporte.getCamionAsignado()).thenReturn(camion1);
+        ordenExportacion.asignarTransporte(transporte);
+        Exception error = assertThrows( Exception.class, () -> 
+        {
+            bsAs.validarCamion(camion2, ordenExportacion);
+        } );
+        assertEquals( "El camión no coincide", error.getMessage() );
+    }
 	
-	@Test
-	void validarQueCumpleLosRequisitos() throws Exception {
-		TransporteAsignado transporte = mock(TransporteAsignado.class);
-		// LocalDateTime turno = LocalDateTime.of(1980, 12, 18, 01, 00);
-		LocalDateTime turno = LocalDateTime.now();
-		when(cliente.getTurno()).thenReturn(turno);
-		Chofer chofer1 = mock(Chofer.class);
-		when(chofer1.getNombre()).thenReturn("Carlos");
-		Chofer chofer2 = mock(Chofer.class);
-		when(chofer2.getNombre()).thenReturn("Carlos");
-		Camion camion1 = mock(Camion.class);
-		when(camion1.getPatente()).thenReturn("ABC");
-		Camion camion2 = mock(Camion.class);
-		when(camion2.getPatente()).thenReturn("ABC");
-		when(transporte.getCamionAsignado()).thenReturn(camion1);
-		when(transporte.getChoferAsignado()).thenReturn(chofer1);
-		when(ordenExportacion.getTransporteAsignado()).thenReturn(transporte);
-		when(ordenExportacion.getCliente()).thenReturn(cliente);
-		when(ordenImportacion.getTransporteAsignado()).thenReturn(transporte);
-		when(ordenImportacion.getCliente()).thenReturn(cliente);
-		bsAs.entregaTerrestreExp(ordenExportacion, camion2, chofer2);
-		verify( ordenExportacion, times(1) ).registrarEntregaContainer();
-		bsAs.validarEntregaTerrestreImp(ordenImportacion, camion2, chofer2);
-		verify( ordenImportacion, times(1) ).registrarSalidaContainer();
-		
-	}
+    @Test
+    void validarQueCumpleLosRequisitos() throws Exception {
+        TransporteAsignado transporte = mock(TransporteAsignado.class);
+        // LocalDateTime turno = LocalDateTime.of(1980, 12, 18, 01, 00);
+        LocalDateTime turno = LocalDateTime.now();
+        when(cliente.getTurno()).thenReturn(turno);
+        Chofer chofer1 = mock(Chofer.class);
+        when(chofer1.getNombre()).thenReturn("Carlos");
+        Chofer chofer2 = mock(Chofer.class);
+        when(chofer2.getNombre()).thenReturn("Carlos");
+        Camion camion1 = mock(Camion.class);
+        when(camion1.getPatente()).thenReturn("ABC");
+        Camion camion2 = mock(Camion.class);
+        when(camion2.getPatente()).thenReturn("ABC");
+        when(transporte.getCamionAsignado()).thenReturn(camion1);
+        when(transporte.getChoferAsignado()).thenReturn(chofer1);
+        when(ordenExportacion.getTransporteAsignado()).thenReturn(transporte);
+        when(ordenExportacion.getCliente()).thenReturn(cliente);
+        ordenExportacion.asignarTransporte(transporte);
+        when(ordenImportacion.getTransporteAsignado()).thenReturn(transporte);
+        when(ordenImportacion.getCliente()).thenReturn(cliente);
+        ordenImportacion.asignarTransporte(transporte);
+        bsAs.entregaTerrestreExp(ordenExportacion, camion2, chofer2);
+        verify( ordenExportacion, times(1) ).registrarEntregaContainer();
+        bsAs.validarEntregaTerrestreImp(ordenImportacion, camion2, chofer2);
+        verify( ordenImportacion, times(1) ).registrarSalidaContainer();
+    }
 	
 	@Test
 	void darAvisoConsignees() {

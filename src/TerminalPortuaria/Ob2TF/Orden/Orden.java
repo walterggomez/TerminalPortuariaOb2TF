@@ -121,6 +121,11 @@ public abstract class Orden
 		return transporteAsignado;
 	}
 	
+	public void asignarTransporte(TransporteAsignado transporte)
+	{
+        this.transporteAsignado = transporte;
+    }
+	
 	public Camion getCamionAsignado()
 	{
 		return this.transporteAsignado.getCamionAsignado();

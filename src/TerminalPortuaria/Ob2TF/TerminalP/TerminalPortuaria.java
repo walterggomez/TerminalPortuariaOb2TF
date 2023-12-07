@@ -1,6 +1,7 @@
 package TerminalPortuaria.Ob2TF.TerminalP;
 import java.awt.geom.Point2D;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -159,12 +160,14 @@ public class TerminalPortuaria
 	
 	public void validarHorarioDeEntrega(Orden orden) throws Exception 
 	{
-		if ( Math.abs (orden.getCliente().getTurno().getHour() - LocalDateTime.now().getHour()) > 3 )
+		if (ChronoUnit.HOURS.between(orden.getCliente().getTurno(), LocalDateTime.now()) > 3)
+		//if ( Math.abs (orden.getCliente().getTurno().getHour() - LocalDateTime.now().getHour()) > 3 )
 			// Está mal que el cliente tenga el horario de entrega. Debería tenerlo la propia orden porque un cliente puede tener multiples ordenes.
 		{
 			throw new Exception ("Llegaste tarde");
 		}
 	}
+	
 	
 	public void validarChofer(Chofer chofer, Orden orden) throws Exception {
 		if ( chofer.getNombre() != orden.getChoferAsignado().getNombre() ) 

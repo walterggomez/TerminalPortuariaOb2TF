@@ -6,6 +6,8 @@ import static org.mockito.Mockito.when;
 
 import java.awt.geom.Point2D;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -110,6 +112,12 @@ class OrdenTestII
 	Tanque containerTanque;
 	
 	
+	// Buques
+	Buque buqueBus;
+	Buque titanic;
+	Buque araSanJuan;
+	
+	
 	
 	
 	@BeforeEach
@@ -152,11 +160,40 @@ class OrdenTestII
 		limaSantiagoDeChile = spy( new Tramo( lima, santiagoDeChile, LocalDateTime.now(), 100, 1) );
 		santiagoDeChileLaPaz = spy( new Tramo( santiagoDeChile, laPaz, LocalDateTime.now(), 100, 1) );
 		
+		// Lista tramo
+		listaDeTramosPrincipal = new ArrayList<Tramo>(Arrays.asList
+				( 
+						bsAsSaoPablo, saoPabloMontevideo, montevideoAsuncion, asuncionLima, limaSantiagoDeChile, santiagoDeChileLaPaz
+				)
+		);
+		
+//		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+		// CIRCUITOS
+		
+		circuitoPrincipal = spy( new Circuito( listaDeTramosPrincipal, LocalDateTime.now() ) );
 		
 		
 		
+//		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+		// VIAJES
 		
+		viajePrincipal = spy( new Viaje(  ) );
 		
+		// 	public Viaje( Buque buqueViaje, Circuito circuitoViaje, LocalDateTime fechaDeSalida)
+		// 	public Buque(Point2D posicionActual, GPS miGps, Viaje viajeActual)
+	
+	
+//		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+		// BUQUES
+		
+		buqueBus = mock( Buque.class);
+		
+	
+	
+	
+	
+	
+	
 	}
 
 	@Test
