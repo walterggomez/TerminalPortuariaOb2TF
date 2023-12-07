@@ -93,7 +93,6 @@ public class TerminalPortuaria
 	{
 		List<Orden> ordenesImportacion = ordenes.stream().filter( o -> o.esOrdenImportacion() ).toList();
 		List<Cliente> listaConsignees = ordenesImportacion.stream().filter( o -> o.getViaje() == viaje ).map( v -> v.getCliente() ).toList();
-		
 		listaConsignees.stream().forEach( c -> c.recibirMail("Su carga ha salido de la terminal") );
 	}
 	
@@ -162,24 +161,10 @@ public class TerminalPortuaria
 		orden.registrarSalidaContainer();
 	}
 
-
-//	private Orden buscarOrden( Orden orden )
-//	{
-//		UUID codigoOrdenBuscada = orden.codigoUnico;
-//		for( Orden o: this.ordenes  )
-//		{
-//			if( o.getCodigoUnico().equals(codigoOrdenBuscada) )
-//			{
-//				return o;
-//			}
-//		}
-//		return null;
-//	}
-	
 	
 	public void validarHorarioDeEntrega(Orden orden) throws Exception 
 	{
-		if ( orden.getCliente().getTurno().getHour() - LocalDateTime.now().getHour() > 3 ) 
+		if ( Math.abs (orden.getCliente().getTurno().getHour() - LocalDateTime.now().getHour()) > 3 ) 
 		{
 			throw new Exception ("Llegaste tarde");
 		}
@@ -223,13 +208,5 @@ public class TerminalPortuaria
 		return ordenes;
 	}
 
-//	 public Orden buscarOrdenPorBuqueYViaje(Viaje viaje, Buque buque) 
-//	 {
-//		    return this.getOrdenes()
-//		            .stream()
-//		            .filter(o -> o.getViaje().equals(viaje) && o.getViaje().getBuqueViaje().equals(buque))
-//		            .findFirst()
-//		            .orElse(null);
-//	}
 	 
 }

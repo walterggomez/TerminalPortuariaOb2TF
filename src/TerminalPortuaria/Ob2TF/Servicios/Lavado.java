@@ -17,5 +17,10 @@ public class Lavado implements Servicios // Se instancia de forma opcional en cu
 			return 30;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "Lavado";
+	}
 
 }

@@ -18,5 +18,9 @@ public class Pesado implements Servicios // Se intancia en todas las ordenes de 
 		return costoPesaje;
 	}
 	
+	@Override
+	public String toString() {
+		return "Pesado";
+	}
 
 }

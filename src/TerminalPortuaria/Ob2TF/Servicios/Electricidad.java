@@ -29,6 +29,11 @@ public class Electricidad implements Servicios // Se instancia en containers ree
 		return costoKwHora;
 	}
 	
+	@Override
+	public String toString() {
+		return "Electricidad";
+	}
+	
 	
 	
 }

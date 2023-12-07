@@ -69,6 +69,9 @@ public class Naviera
 		return misBuques;
 	}
 	
+	public void agregarBuque(Buque buque) {
+		this.misBuques.add(buque);
+	}
 /*
 		public Viaje( Buque buqueViaje, Circuito circuitoViaje, LocalDateTime fechaDeSalida)
 	{

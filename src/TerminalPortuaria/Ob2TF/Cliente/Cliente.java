@@ -11,6 +11,7 @@ public abstract class Cliente implements Suscriptor
 	protected int codigoCliente;
 	protected LocalDateTime turno;
 
+
 	public Cliente() {
 		
 	}

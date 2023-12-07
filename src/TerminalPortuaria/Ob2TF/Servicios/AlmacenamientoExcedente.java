@@ -28,6 +28,10 @@ public class AlmacenamientoExcedente implements Servicios // Se instancia en tod
 		return costoPorDia;
 	}
 	
+	public String toString() {
+		return "Almacenamiento excedente";
+	}
+	
 	 
 }
 

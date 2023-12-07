@@ -12,6 +12,7 @@ import java.awt.geom.Point2D;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,6 +25,7 @@ import TerminalPortuaria.Ob2TF.Circuito.Tramo;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.Cliente.Cliente;
 import TerminalPortuaria.Ob2TF.Cliente.Consignee;
+import TerminalPortuaria.Ob2TF.Cliente.Shipper;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Camion;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Chofer;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.TransporteAsignado;
@@ -139,6 +141,7 @@ class TerminalPortuariaTest
 	Cliente cliente;
 	
 	Consignee meJodes;	
+	Shipper meJodes2;
 	
 	
 	@BeforeEach
@@ -493,7 +496,7 @@ class TerminalPortuariaTest
 	
 	@Test
 	void validarHorarioDeEntregaFueTarde() {
-		LocalDateTime turno = LocalDateTime.of(1980, 12, 18, 22, 00);
+		LocalDateTime turno = LocalDateTime.of(1980, 12, 18, 13, 00);
 		when(ordenExportacion.getCliente()).thenReturn(cliente);
 		when(cliente.getTurno()).thenReturn(turno);
 		Exception error = assertThrows( Exception.class, () -> 
@@ -538,7 +541,7 @@ class TerminalPortuariaTest
 	@Test
 	void validarQueCumpleLosRequisitos() throws Exception {
 		TransporteAsignado transporte = mock(TransporteAsignado.class);
-		LocalDateTime turno = LocalDateTime.of(1980, 12, 18, 17, 00);
+		LocalDateTime turno = LocalDateTime.of(1980, 12, 18, 01, 00);
 		when(cliente.getTurno()).thenReturn(turno);
 		Chofer chofer1 = mock(Chofer.class);
 		when(chofer1.getNombre()).thenReturn("Carlos");
@@ -560,40 +563,47 @@ class TerminalPortuariaTest
 		verify( ordenImportacion, times(1) ).registrarSalidaContainer();
 		
 	}
+	
 	@Test
 	void darAvisoConsignees() {
-		//ordenExp1 = mock(OrdenExportacion.class);
-		//ordenExp2 = mock(OrdenExportacion.class);
-		//ordenImp2 = mock(OrdenImportacion.class);
-		//ordenImp1 = mock(OrdenImportacion.class);
 		
 		ordenExp1 = spy(new OrdenExportacion());
 		ordenExp2 = spy(new OrdenExportacion());
 		ordenImp1 = spy(new OrdenImportacion());
 		ordenImp2 = spy(new OrdenImportacion());
-		
-		when(ordenExp1.esOrdenImportacion()).thenReturn(false);
-		when(ordenExp2.esOrdenImportacion()).thenReturn(false);
-		when(ordenImp1.esOrdenImportacion()).thenReturn(true);
-		when(ordenImp2.esOrdenImportacion()).thenReturn(true);
-		
-		ordenes = Arrays.asList(ordenExp1,ordenImp1,ordenExp2,ordenImp2);
-		viajeLunaNueva = mock(Viaje.class);
+		viajeLunaNueva = spy(Viaje.class);
+		meJodes = spy(new Consignee("Carlos", 0));
 		when(ordenImp1.getViaje()).thenReturn(viajeLunaNueva);
-		meJodes = mock(Consignee.class);
 		when(ordenImp1.getCliente()).thenReturn(meJodes);
+		bsAs.registrasNuevaOrden(ordenExp1);
+		bsAs.registrasNuevaOrden(ordenExp2);
+		bsAs.registrasNuevaOrden(ordenImp1);
+		bsAs.registrasNuevaOrden(ordenImp2);
 		bsAs.darAvisoConsignees(viajeLunaNueva);
 		verify(meJodes, times(1) ).recibirMail("Su carga ha salido de la terminal");
+		}
+	
+	@Test
+	void darAvisoShipper() {
 		
-		
-		
-	}
-	
-}
-	
-	
-	
-	
+		ordenExp1 = spy(new OrdenExportacion());
+		ordenExp2 = spy(new OrdenExportacion());
+		ordenImp1 = spy(new OrdenImportacion());
+		ordenImp2 = spy(new OrdenImportacion());
+		viajeLunaNueva = spy(Viaje.class);
+		meJodes2 = spy(new Shipper("Pepe",0));
+		when(ordenExp1.getViaje()).thenReturn(viajeLunaNueva);
+		when(ordenExp1.getCliente()).thenReturn(meJodes2);
+		bsAs.registrasNuevaOrden(ordenExp1);
+		bsAs.registrasNuevaOrden(ordenExp2);
+		bsAs.registrasNuevaOrden(ordenImp1);
+		bsAs.registrasNuevaOrden(ordenImp2);
+		bsAs.darAvisoShippers(viajeLunaNueva);
+		verify(meJodes2, times(1) ).recibirMail("Su carga está llegando");
+		}
+}	
+
+
 //	
 //	TerminalPortuaria bsAs;
 //	TerminalPortuaria saoPablo;

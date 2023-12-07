@@ -18,6 +18,9 @@ public class Viaje
 	TerminalPortuaria puertoOrigen;
 	TerminalPortuaria puertoDestino;
 
+	public Viaje() {
+		
+	}
 	
 	public Viaje( Buque buqueViaje, Circuito circuitoViaje, LocalDateTime fechaDeSalida)
 	{

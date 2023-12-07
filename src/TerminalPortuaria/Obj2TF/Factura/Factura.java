@@ -15,15 +15,15 @@ public class Factura
 	public Factura( Orden ordenFacturada )
 	{
 		conceptos = new HashSet<Concepto>();
-		this.costoServicioElectricidad();
-		this.costoServicioLavado();
-		this.costoServicioAlmacenamientoExcedente();
-		this.costoServicioPesado();
-		this.costoCircuito();
+//		this.costoServicioElectricidad();
+//		this.costoServicioLavado();
+//		this.costoServicioAlmacenamientoExcedente();
+//		this.costoServicioPesado();
+//		this.costoCircuito();
 		this.conceptos.add( new Concepto( "Monto total del servicio:", LocalDateTime.now(), ordenFacturada.precioTotal() ) );
 	}
 
-	private void costoCircuito()
+	public void costoCircuito()
 	{
 		if( this.ordenFacturada.esOrdenImportacion() )
 		{
@@ -31,41 +31,52 @@ public class Factura
 		}
 	}
 	
-	private void costoServicioElectricidad()
-	{
-		if( this.ordenFacturada.getServicioElectricidad() != null )
-		{
-			Electricidad servicio = this.ordenFacturada.getServicioElectricidad();
-			this.conceptos.add( new Concepto( "Electricidad", ordenFacturada.getSalidaContainer(), servicio.costoServicio(ordenFacturada) ) );
+	public void imprimirCostoPorCadaServicio() {
+		for (Servicios servicio : this.ordenFacturada.getServicios()) {
+			this.imprimirCostoServicio(servicio);
 		}
 	}
 	
-	private void costoServicioLavado()
-	{
-		if( this.ordenFacturada.getServicioLavado() != null )
-		{
-			Lavado servicio = this.ordenFacturada.getServicioLavado();
-			this.conceptos.add( new Concepto( "Lavado", ordenFacturada.getSalidaContainer(), servicio.costoServicio(ordenFacturada) ) );
-		}
+	public String imprimirCostoServicio(Servicios servicio) {
+		return servicio.toString() + ":" + " " + servicio.costoServicio(this.ordenFacturada) + "\n";
 	}
 	
-	private void costoServicioAlmacenamientoExcedente()
-	{
-		if( this.ordenFacturada.getServicioAlmacenamientoExcedente() != null )
-		{
-			AlmacenamientoExcedente servicio = this.ordenFacturada.getServicioAlmacenamientoExcedente();
-			this.conceptos.add( new Concepto( "Almacenamiento excedente", ordenFacturada.getSalidaContainer(), servicio.costoServicio(ordenFacturada) ) );
-		}
-	}
 	
-	private void costoServicioPesado()
-	{
-		if( this.ordenFacturada.getServicioPesado() != null )
-		{
-			Pesado servicio = this.ordenFacturada.getServicioPesado();
-			this.conceptos.add( new Concepto( "Pesado", ordenFacturada.getSalidaContainer(), servicio.costoServicio(ordenFacturada) ) );
-		}
-	}
+//	private void costoServicioElectricidad()
+//	{
+//		if( this.ordenFacturada.getServicioElectricidad() != null )
+//		{
+//			Electricidad servicio = this.ordenFacturada.getServicioElectricidad();
+//			this.conceptos.add( new Concepto( "Electricidad", ordenFacturada.getSalidaContainer(), servicio.costoServicio(ordenFacturada) ) );
+//		}
+//	}
+//	
+//	private void costoServicioLavado()
+//	{
+//		if( this.ordenFacturada.getServicioLavado() != null )
+//		{
+//			Lavado servicio = this.ordenFacturada.getServicioLavado();
+//			this.conceptos.add( new Concepto( "Lavado", ordenFacturada.getSalidaContainer(), servicio.costoServicio(ordenFacturada) ) );
+//		}
+//	}
+//	
+//	private void costoServicioAlmacenamientoExcedente()
+//	{
+//		if( this.ordenFacturada.getServicioAlmacenamientoExcedente() != null )
+//		{
+//			AlmacenamientoExcedente servicio = this.ordenFacturada.getServicioAlmacenamientoExcedente();
+//			this.conceptos.add( new Concepto( "Almacenamiento excedente", ordenFacturada.getSalidaContainer(), servicio.costoServicio(ordenFacturada) ) );
+//		}
+//	}
+//	
+//	private void costoServicioPesado()
+//	{
+//		if( this.ordenFacturada.getServicioPesado() != null )
+//		{
+//			Pesado servicio = this.ordenFacturada.getServicioPesado();
+//			this.conceptos.add( new Concepto( "Pesado", ordenFacturada.getSalidaContainer(), servicio.costoServicio(ordenFacturada) ) );
+//		}
+//	}
 	
 	@Override
 	public String toString()

@@ -8,8 +8,10 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
-
+import java.util.Set;
 import java.util.Arrays;
+import java.util.HashSet;
+
 import TerminalPortuaria.Ob2TF.Buque.*;
 import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.Circuito.Tramo;
@@ -119,7 +121,10 @@ class NavieraTest
 	// Buques
 	Buque buque1;
 	Buque buque2;
+	Buque buque3;
+	Buque buque4;
 	
+	Set<Buque> buques = new HashSet<>();
 	
 	
 	@BeforeEach
@@ -168,6 +173,9 @@ class NavieraTest
 		tramosCir1 = Arrays.asList(tramo1, tramo2,tramo3);
 		tramosCir2 = Arrays.asList(tramo4, tramo5,tramo6);
 		tramosCir3 = Arrays.asList(tramo7,tramo8,tramo9);
+		
+		buques.add(buque1);
+		buques.add(buque2);
 		
 		/*
 		TerminalPortuaria saoPablo = new TerminalPortuaria( new Point2D.Double(-23.5475, -46.63611) );
@@ -236,6 +244,13 @@ class NavieraTest
 		});
 		
 		assertEquals( "Este circuito no se encuentra en las ofertas de la naviera", exception.getMessage() );
+	}
+	
+	@Test
+	void getBuques() {
+		naviera1.agregarBuque(buque1);
+		naviera1.agregarBuque(buque2);
+		assertEquals(naviera1.getMisBuques(),buques);
 	}
 
 }

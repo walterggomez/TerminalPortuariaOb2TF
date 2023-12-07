@@ -182,6 +182,9 @@ public class Circuito
         return listaDeTramo.stream().anyMatch(t -> t.getPuertoDestino() == terminal || t.getPuertoOrigen() == terminal);
     }
     
+    public long conocerDuracionDeCircuitoDesdeHasta(TerminalPortuaria origen, TerminalPortuaria destino) {
+    	return this.construirCircuitoDesdeHasta(origen, destino).duracionCircuito();
+    }
     
 /*
 	//POSIBLE SOLUCION PENSADA POR LAS VIVENCIAS EN EDD
