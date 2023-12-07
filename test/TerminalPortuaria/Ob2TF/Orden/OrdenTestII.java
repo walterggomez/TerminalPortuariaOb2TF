@@ -28,6 +28,8 @@ import TerminalPortuaria.Ob2TF.Servicios.*;
 class OrdenTestII 
 {
 	EmpresaTransportista expresoLider;
+	TransporteAsignado transporteAsignadoI;
+	TransporteAsignado transporteAsignadoII;
 	Camion scaniaI;
 	Chofer redBarclay;
 	
@@ -140,16 +142,16 @@ class OrdenTestII
 //		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 		// VIAJES
 		
-		viajePrincipal = spy( new Viaje( buqueBus, circuitoPrincipal, LocalDateTime.now() ) );
+		viajePrincipal = spy( new Viaje( buqueBus, circuitoPrincipal, LocalDateTime.of(2023, 12, 01, 13, 00) ) );
 
 	
 	
 //		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 		// BUQUES
 		
-		buqueBus = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), viajePrincipal ) );
-		titanic = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), viajePrincipal ) );
-		araSanJuan = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), viajePrincipal ) );
+		buqueBus = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), new GPS(), viajePrincipal ) );
+		titanic = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), new GPS(), viajePrincipal ) );
+		araSanJuan = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), new GPS(), viajePrincipal ) );
 		
 		
 		
@@ -174,6 +176,12 @@ class OrdenTestII
 		
 		
 //		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+		// TRANSPORTE ASIGNADO
+		transporteAsignadoI = spy( new TransporteAsignado() );
+		transporteAsignadoII;
+		// TransporteAsignado( orden, camionAsignado, choferAsignado );
+		
+//		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 		// CLIENTES
 		
 		albertoFernandez = spy( new Consignee("Alberto", 5) );
@@ -184,16 +192,46 @@ class OrdenTestII
 		// ORDENES
 		
 		ordenImportacion = new OrdenImportacion( albertoFernandez, viajePrincipal, containerReefer, expresoLider, true );
+		when( ordenImportacion.getSalidaContainer() ).thenReturn( LocalDateTime.now() );
+		
 		
 		ordenExportacion = new OrdenExportacion( albertoFernandez, viajePrincipal, containerTanque, expresoLider, false );
-			
+		when( ordenExportacion.getEntregaContainer() ).thenReturn( LocalDateTime.now() );
+		
+		
+		
+
+
+
+		
+
+		
+		//		public LocalDateTime getEntregaContainer() 
+//		{
+//			return entregaContainer;
+//		}
+//
+//		public LocalDateTime getSalidaContainer() 
+//		{
+//			return salidaContainer;
+//		}
+		
+		
 	}
 
 	@Test
-	void test()
+	void precioTotalDeOrdenImportacionEs()
 	{
 		
-		fail("Not yet implemented");
+		assertEquals( 100.0, ordenImportacion.precioTotal() );
 	}
 
 }
+
+
+
+
+
+
+
+

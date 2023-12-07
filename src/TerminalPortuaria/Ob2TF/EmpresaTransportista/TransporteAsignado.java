@@ -16,6 +16,8 @@ public class TransporteAsignado
 		this.choferAsignado = choferAsignado;
 	}
 	
+	public TransporteAsignado() {};
+	
 	public Camion getCamionAsignado() 
 	{
 		return camionAsignado;

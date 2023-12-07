@@ -21,50 +21,6 @@ import static org.mockito.Mockito.*;
 class NavieraTest
 {
 	
-	public static void main(String[] args)
-	
-	{
-		Point2D posicionBsAS = new Point2D.Double(-23.5475, -46.63611);
-		Point2D posicionSaoPablo  = new Point2D.Double(-34.61315, -58.37723);
-		// return this.fechaYHoraSalida.plus(this.duracionTramo, ChronoUnit.HOURS);
-		
-		GPS garminDrive = new GPS();
-		
-		TerminalPortuaria buenosAires = new TerminalPortuaria("Buenos Aires", posicionBsAS);
-		TerminalPortuaria saoPablo = new TerminalPortuaria("Sao Pablo", posicionSaoPablo );
-		// Tramo buenosAiresSaoPablo = new Tramo( buenosAires, saoPablo, LocalDateTime.of(2023, 11, 05, 17, 10), 49, 1000 );
-
-		System.out.println( garminDrive.distanciaEntrePuntos(buenosAires.getUbicacion(), saoPablo.getUbicacion()) );
-		// System.out.println( buenosAiresSaoPablo.getFechaYHoraLlegada() );	
-	}
-	
-	// TerminalPortuaria buenosAires = new TerminalPortuaria( new Point2D.Double(-34.61315, -58.37723) );
-	/*
-	
-	-
-	TerminalPortuaria saoPablo = new TerminalPortuaria( new Point2D.Double(-23.5475, -46.63611) );
-	TerminalPortuaria montevideo = new TerminalPortuaria( new Point2D.Double(-34.90328, -56.18816) );
-	TerminalPortuaria asuncion = new TerminalPortuaria( new Point2D.Double(-25.28646, -57.647) );
-	TerminalPortuaria lima = new TerminalPortuaria( new Point2D.Double(-12.04318, -77.02824) );
-	TerminalPortuaria santiagoDeChile = new TerminalPortuaria( new Point2D.Double(-33.45694, -70.64827) );
-	TerminalPortuaria laPaz = new TerminalPortuaria( new Point2D.Double(-16.5, -68.15) );
-	*/
-	
-
-	
-	
-	/*
-	@Test
-	public void whenITryToCutACarrotThenTrue()
-	{
-	   Knife knife = mock( Knife.class );
-	   doReturn( true ).when( knife ).cut( "carrot" ); // Booleanos
-	   
-
-	   assertEquals( knife.cut("carrot"), true );
-	}
-	*/
-	
 	// Puertos
 	TerminalPortuaria bsAs;
 	TerminalPortuaria saoPablo;

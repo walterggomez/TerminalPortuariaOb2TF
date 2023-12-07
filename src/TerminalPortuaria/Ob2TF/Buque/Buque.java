@@ -12,7 +12,7 @@ public class Buque
 {
 	//private Point2D  posicionActual = new Point2D.Double(0, 0);
 	private Point2D  posicionActual;
-	private GPS miGps = new GPS();
+	private GPS miGps;
 	//protected EstadoBuque estadoActual = new Outbound();
 	private EstadoBuque estadoActual;
 	private Viaje viajeActual;
@@ -21,12 +21,11 @@ public class Buque
 	
 	public Buque() {}
 	
-	// public Buque(Point2D posicionActual, GPS miGps, Viaje viajeActual)
-	public Buque(Point2D posicionActual, Viaje viajeActual)
+	public Buque(Point2D posicionActual, GPS miGps, Viaje viajeActual)
 	{
 		super();
 		this.posicionActual = posicionActual;
-		// this.miGps = miGps;
+		this.miGps = miGps;
 		this.estadoActual = new Outbound();
 		this.viajeActual = viajeActual;
 		this.sePuedeDescargar = false;

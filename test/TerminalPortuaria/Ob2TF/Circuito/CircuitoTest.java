@@ -33,66 +33,66 @@ class CircuitoTest
 		que quiero agregar. OK.
 */
 	
-	public static void main(String[] args)
-	{
-		// return this.fechaYHoraSalida.plus(this.duracionTramo, ChronoUnit.HOURS);
-		
-	
-		
-		TerminalPortuaria bsAs = new TerminalPortuaria( "Buenos Aires", new Point2D.Double(-34.61315, -58.37723) );
-		TerminalPortuaria saoPablo = new TerminalPortuaria( "Sao Pablo", new Point2D.Double(-23.5475, -46.63611) );
-		TerminalPortuaria montevideo = new TerminalPortuaria( "Montevideo", new Point2D.Double(-34.90328, -56.18816) );
-		TerminalPortuaria asuncion = new TerminalPortuaria( "Asuncion", new Point2D.Double(-25.28646, -57.647) );
-		TerminalPortuaria lima = new TerminalPortuaria( "Lima", new Point2D.Double(-12.04318, -77.02824) );
-		TerminalPortuaria santiagoDeChile = new TerminalPortuaria( "Santiago de Chile", new Point2D.Double(-33.45694, -70.64827) );
-		TerminalPortuaria laPaz = new TerminalPortuaria( "La Paz", new Point2D.Double(-16.5, -68.15) );
-
-		Tramo bsAsSaoPablo = new Tramo(bsAs, saoPablo, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10);
-		Tramo saoPabloMontevideo  = new Tramo(saoPablo, montevideo, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
-		Tramo montevideoAsuncion  = new Tramo(montevideo, asuncion, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
-		Tramo asuncionLima  = new Tramo(asuncion, lima, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
-		Tramo limaSantiagoDeChile  = new Tramo(lima, santiagoDeChile, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
-		Tramo santiagoDeChileLaPaz  = new Tramo(santiagoDeChile, laPaz, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
-		
-		
-		// Lista de tramos del circuito.
-		List<Tramo>listaTramosNro1 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
-		(
-				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
-				(
-						bsAsSaoPablo, saoPabloMontevideo, montevideoAsuncion, asuncionLima, limaSantiagoDeChile, santiagoDeChileLaPaz
-				)
-		);
-		
-
-		// Circuitos
-		Circuito circuito1 = new Circuito( listaTramosNro1, LocalDateTime.of(2023, 11, 18, 11, 00) );
-		
-		
-		// Lista de tramos reducida y lista esperada
-		List<Tramo> tramosEsperados = Arrays.asList(montevideoAsuncion, asuncionLima, limaSantiagoDeChile);
-		Circuito montevideoChile = circuito1.construirCircuitoDesdeHasta(saoPablo, laPaz);
-		List<Tramo> tramosDelNuevoCircuito = montevideoChile.getListaDeTramo();
-		
-		/*
-		for( Tramo tramo: circuito1.getListaDeTramo() )
-		{
-			System.out.printf( "%s\t\t\t%s%n", tramo.getPuertoOrigen().getNombre(), tramo.getPuertoDestino().getNombre() );
-		}
-		*/
-		
-		System.out.printf("%n%n");
-		
-		for( Tramo tramo: tramosDelNuevoCircuito )
-		{
-			System.out.printf( "%s\t\t\t%s%n", tramo.getPuertoOrigen().getNombre(), tramo.getPuertoDestino().getNombre() );
-		}
-		
-		/*
-		System.out.printf( "%s\t\t\t%s", circuito1.obtenerTramoPorPuertoDestino(santiagoDeChile).getPuertoOrigen().getNombre(),
-				circuito1.obtenerTramoPorPuertoDestino(santiagoDeChile).getPuertoDestino().getNombre());
-		*/
-	}
+//	public static void main(String[] args)
+//	{
+//		// return this.fechaYHoraSalida.plus(this.duracionTramo, ChronoUnit.HOURS);
+//		
+//	
+//		
+//		TerminalPortuaria bsAs = new TerminalPortuaria( "Buenos Aires", new Point2D.Double(-34.61315, -58.37723) );
+//		TerminalPortuaria saoPablo = new TerminalPortuaria( "Sao Pablo", new Point2D.Double(-23.5475, -46.63611) );
+//		TerminalPortuaria montevideo = new TerminalPortuaria( "Montevideo", new Point2D.Double(-34.90328, -56.18816) );
+//		TerminalPortuaria asuncion = new TerminalPortuaria( "Asuncion", new Point2D.Double(-25.28646, -57.647) );
+//		TerminalPortuaria lima = new TerminalPortuaria( "Lima", new Point2D.Double(-12.04318, -77.02824) );
+//		TerminalPortuaria santiagoDeChile = new TerminalPortuaria( "Santiago de Chile", new Point2D.Double(-33.45694, -70.64827) );
+//		TerminalPortuaria laPaz = new TerminalPortuaria( "La Paz", new Point2D.Double(-16.5, -68.15) );
+//
+//		Tramo bsAsSaoPablo = new Tramo(bsAs, saoPablo, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10);
+//		Tramo saoPabloMontevideo  = new Tramo(saoPablo, montevideo, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
+//		Tramo montevideoAsuncion  = new Tramo(montevideo, asuncion, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
+//		Tramo asuncionLima  = new Tramo(asuncion, lima, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
+//		Tramo limaSantiagoDeChile  = new Tramo(lima, santiagoDeChile, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
+//		Tramo santiagoDeChileLaPaz  = new Tramo(santiagoDeChile, laPaz, LocalDateTime.of(1980, 12, 18, 13, 00), 10.0, 10 );
+//		
+//		
+//		// Lista de tramos del circuito.
+//		List<Tramo>listaTramosNro1 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
+//		(
+//				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
+//				(
+//						bsAsSaoPablo, saoPabloMontevideo, montevideoAsuncion, asuncionLima, limaSantiagoDeChile, santiagoDeChileLaPaz
+//				)
+//		);
+//		
+//
+//		// Circuitos
+//		Circuito circuito1 = new Circuito( listaTramosNro1, LocalDateTime.of(2023, 11, 18, 11, 00) );
+//		
+//		
+//		// Lista de tramos reducida y lista esperada
+//		List<Tramo> tramosEsperados = Arrays.asList(montevideoAsuncion, asuncionLima, limaSantiagoDeChile);
+//		Circuito montevideoChile = circuito1.construirCircuitoDesdeHasta(saoPablo, laPaz);
+//		List<Tramo> tramosDelNuevoCircuito = montevideoChile.getListaDeTramo();
+//		
+//		/*
+//		for( Tramo tramo: circuito1.getListaDeTramo() )
+//		{
+//			System.out.printf( "%s\t\t\t%s%n", tramo.getPuertoOrigen().getNombre(), tramo.getPuertoDestino().getNombre() );
+//		}
+//		*/
+//		
+//		System.out.printf("%n%n");
+//		
+//		for( Tramo tramo: tramosDelNuevoCircuito )
+//		{
+//			System.out.printf( "%s\t\t\t%s%n", tramo.getPuertoOrigen().getNombre(), tramo.getPuertoDestino().getNombre() );
+//		}
+//		
+//		/*
+//		System.out.printf( "%s\t\t\t%s", circuito1.obtenerTramoPorPuertoDestino(santiagoDeChile).getPuertoOrigen().getNombre(),
+//				circuito1.obtenerTramoPorPuertoDestino(santiagoDeChile).getPuertoDestino().getNombre());
+//		*/
+//	}
 	
 	
 	// Circuitos
