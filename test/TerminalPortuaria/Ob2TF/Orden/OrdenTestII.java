@@ -25,40 +25,6 @@ import TerminalPortuaria.Ob2TF.EmpresaTransportista.*;
 import TerminalPortuaria.Ob2TF.Naviera.*;
 import TerminalPortuaria.Ob2TF.Servicios.*;
 
-
-//public Orden(Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa, boolean servicioLavado)
-//{
-//	this.cliente = cliente;
-//	this.viaje = viaje;
-//	this.container = container;
-//	this.transporteAsignado = empresa.asignarTransporte(this);
-//	this.servicioLavado = servicioLavado;
-//	this.evaluarServicioLavado();
-//	this.evaluarServicioReefer();
-//	this.codigoUnico = UUID.randomUUID();
-//}
-
-//public OrdenExportacion( Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa, boolean servicioLavado)
-//{
-//	super( cliente, viaje, container, empresa, servicioLavado );
-//	servicios.add( new Pesado() );
-//	this.salidaContainer = viaje.getFechaDeSalida();
-//}
-
-//public OrdenImportacion( Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa, boolean servicioLavado)
-//{
-//	super( cliente, viaje, container, empresa, servicioLavado );
-//	servicios.add( new AlmacenamientoExcedente() );
-//	this.entregaContainer = viaje.getFechaDeLlegada();
-//}
-
-/*
-		Dependencias:
-		Cliente y sus atributos... entre otras cosas el turno que debería ser en realidad de la propia orden.
-		Empresa transportista, camiones, choferes y transporte asignado...
- */
-
-
 class OrdenTestII 
 {
 	EmpresaTransportista expresoLider;
@@ -69,7 +35,7 @@ class OrdenTestII
 	Chofer homeroSimpson;
 	
 	
-	Cliente albertoFernandez;
+	Consignee albertoFernandez;
 	
 	
 	// Declaraciones tramos, circuitos y viajes.
@@ -149,9 +115,6 @@ class OrdenTestII
 //		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 		// TRAMOS
 		
-
-// public Tramo(TerminalPortuaria puertoOrigen, TerminalPortuaria puertoDestino, LocalDateTime fechaYHoraSalida, double costoDetramo,  double duracionTramo)
-		
 		// Spy de los tramos del circuito 1°
 		bsAsSaoPablo = spy( new Tramo( bsAs, saoPablo, LocalDateTime.now(), 100, 1) );
 		saoPabloMontevideo = spy( new Tramo( saoPablo, montevideo, LocalDateTime.now(), 100, 1) );
@@ -178,27 +141,52 @@ class OrdenTestII
 		// VIAJES
 		
 		viajePrincipal = spy( new Viaje( buqueBus, circuitoPrincipal, LocalDateTime.now() ) );
-		
-		// 	public Viaje( Buque buqueViaje, Circuito circuitoViaje, LocalDateTime fechaDeSalida)
-		// 	public Buque(Point2D posicionActual, GPS miGps, Viaje viajeActual)
+
 	
 	
 //		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 		// BUQUES
 		
-		// 	public Buque(Point2D posicionActual, GPS miGps, Viaje viajeActual)
 		buqueBus = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), viajePrincipal ) );
 		titanic = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), viajePrincipal ) );
 		araSanJuan = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), viajePrincipal ) );
 		
 		
 		
+//		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+		// CONTAINERS
+		
+		containerDry = spy( new Dry( 5, 5, 5, 5 ) );
+		containerReefer = spy( new Reefer( 5, 5, 5, 5 ) );
+		containerTanque = spy( new Tanque( 5, 5, 5, 5 ) );
+		
+		
+		
+//		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+		// EMPRESA TRANSPORTISTA
+		
+		expresoLider = spy( new EmpresaTransportista() );
+		expresoLider.agregarNuevoCamion(scaniaI);
+		expresoLider.agregarNuevoCamion(scaniaII);
+		expresoLider.agregarNuevoChofer(homeroSimpson);
+		expresoLider.agregarNuevoChofer(redBarclay);
 	
-	
-	
-	
-	
-	
+		
+		
+//		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+		// CLIENTES
+		
+		albertoFernandez = spy( new Consignee("Alberto", 5) );
+
+		
+		
+//		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+		// ORDENES
+		
+		ordenImportacion = new OrdenImportacion( albertoFernandez, viajePrincipal, containerReefer, expresoLider, true );
+		
+		ordenExportacion = new OrdenExportacion( albertoFernandez, viajePrincipal, containerTanque, expresoLider, false );
+			
 	}
 
 	@Test
