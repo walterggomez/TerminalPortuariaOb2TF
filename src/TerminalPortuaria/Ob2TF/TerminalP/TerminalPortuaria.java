@@ -33,6 +33,7 @@ public class TerminalPortuaria
 	// private List<Viaje> viajes;
 	private Set<Orden> ordenes = new HashSet<Orden>();
 	private MejorRuta estrategia;
+	private Componente filtro;
 
 	
 	public TerminalPortuaria() {}
@@ -139,6 +140,15 @@ public class TerminalPortuaria
 		// Orden debe establecer llegada del container
 	}
 	
+	public void setComponeteFiltro( Componente filtroUso)
+	{
+	    this.filtro = filtroUso;
+	}
+	
+	public Componente getComponente()
+	{
+	    return this.filtro;
+	}
 	
 	
 	public void entregaTerrestreExp(Orden orden, Camion camion, Chofer chofer) throws Exception 

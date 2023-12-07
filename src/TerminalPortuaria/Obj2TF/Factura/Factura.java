@@ -10,12 +10,12 @@ import TerminalPortuaria.Ob2TF.Orden.*;
 public class Factura
 {
 	private Orden ordenFacturada;
-	private Set<Concepto> conceptos; 
+	private Set<Concepto> conceptos;
 	
 	public Factura( Orden ordenFacturada )
 	{
 		conceptos = new HashSet<Concepto>();
-		this.conceptos.add( new Concepto( "Monto totoal a pagar:", LocalDateTime.now(), ordenFacturada.precioTotal() ) );
+		this.conceptos.add( new Concepto( "Monto total a pagar:", LocalDateTime.now(), ordenFacturada.precioTotal() ) );
 		this.agregarCostoCircuito();
 		this.agregarConceptosServicios();	
 	}
@@ -27,7 +27,7 @@ public class Factura
 			this.conceptos.add( new Concepto( "Monto total del circuito", ordenFacturada.getSalidaContainer(), ordenFacturada.getViaje().costoViaje() ) );
 		}
 	}
-	
+	 
 	private void agregarConceptosServicios()
 	{
 		for( Servicios servicio: this.ordenFacturada.getServicios() )
@@ -36,27 +36,34 @@ public class Factura
 		}
 	}
 	
+	
+//	public void imprimirCostoPorCadaServicio()
+//	{
+//		for (Servicios servicio : this.ordenFacturada.getServicios())
+//		{
+//			this.imprimirCostoServicio(servicio);
+//		}
+//	}
+//
+//		
+//	public String imprimirCostoServicio(Servicios servicio)
+//	{
+//		return servicio.toString() + ":" + " " + servicio.costoServicio(this.ordenFacturada) + "\n";
+//	}
+
+	
 	@Override
 	public String toString()
 	{
 		String mensajeFactura = "Aquí está la factura de su orden N°: " + this.ordenFacturada.codigoUnico.toString();
-		{
 			for( Concepto c: this.conceptos )
 			{
 				mensajeFactura += c.toString() + "/n";
 			}
-		}
 		return mensajeFactura;
 	}
 	
+	
+	
 }
 
-//public void imprimirCostoPorCadaServicio() {
-//for (Servicios servicio : this.ordenFacturada.getServicios()) {
-//	this.imprimirCostoServicio(servicio);
-//}
-//}
-//
-//public String imprimirCostoServicio(Servicios servicio) {
-//return servicio.toString() + ":" + " " + servicio.costoServicio(this.ordenFacturada) + "\n";
-//}

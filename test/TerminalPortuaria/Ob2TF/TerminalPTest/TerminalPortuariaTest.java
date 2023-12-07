@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import TerminalPortuaria.Ob2TF.Buque.Buque;
 import TerminalPortuaria.Ob2TF.Buque.Buque.*;
+import TerminalPortuaria.Ob2TF.BusquedaMaritima.Componente;
 import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.Circuito.Tramo;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
@@ -149,6 +150,8 @@ class TerminalPortuariaTest
 	Consignee meJodes;	
 	Shipper meJodes2;
 	
+	
+	Componente busquedaMaritima;
 	
 	@BeforeEach
 	void setUp() throws Exception 
@@ -425,7 +428,7 @@ class TerminalPortuariaTest
 
 
 		
-		
+		busquedaMaritima = mock(Componente.class);
 
 		
 		
@@ -717,6 +720,13 @@ class TerminalPortuariaTest
 		bsAs.darAvisoShippers(viajeLunaNueva);
 		verify(meJodes2, times(1) ).recibirMail("Su carga está llegando");
 		}
+	
+    @Test
+    void validarSetYGetDeBusquedaMaritima()
+    {
+        bsAs.setComponeteFiltro(busquedaMaritima);
+        assertEquals(busquedaMaritima,bsAs.getComponente());
+    }
 }	
 
 

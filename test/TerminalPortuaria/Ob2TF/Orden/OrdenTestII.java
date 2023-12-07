@@ -177,7 +177,7 @@ class OrdenTestII
 //		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 		// VIAJES
 		
-		viajePrincipal = spy( new Viaje(  ) );
+		viajePrincipal = spy( new Viaje( buqueBus, circuitoPrincipal, LocalDateTime.now() ) );
 		
 		// 	public Viaje( Buque buqueViaje, Circuito circuitoViaje, LocalDateTime fechaDeSalida)
 		// 	public Buque(Point2D posicionActual, GPS miGps, Viaje viajeActual)
@@ -186,7 +186,12 @@ class OrdenTestII
 //		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 		// BUQUES
 		
-		buqueBus = mock( Buque.class);
+		// 	public Buque(Point2D posicionActual, GPS miGps, Viaje viajeActual)
+		buqueBus = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), viajePrincipal ) );
+		titanic = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), viajePrincipal ) );
+		araSanJuan = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), viajePrincipal ) );
+		
+		
 		
 	
 	

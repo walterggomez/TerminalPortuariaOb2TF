@@ -184,9 +184,13 @@ public abstract class Orden
 	            .orElse(null);
 	}
 
-	public void enviarFacturaPorMail()
+	public Factura generarFactura()
 	{
-		Factura factura = new Factura(this);
+		return new Factura(this);
+	}
+	
+	public void enviarFacturaPorMail(Factura factura)
+	{
 		cliente.recibirMail( factura.toString() );
 	}
 	
