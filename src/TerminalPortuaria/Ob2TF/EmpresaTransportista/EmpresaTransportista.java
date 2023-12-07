@@ -1,13 +1,17 @@
 package TerminalPortuaria.Ob2TF.EmpresaTransportista;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import TerminalPortuaria.Ob2TF.Cliente.*;
 import TerminalPortuaria.Ob2TF.Orden.*;
 
 public class EmpresaTransportista
 {
-	private List<Camion> camiones = new ArrayList<Camion>();
-	private List<Chofer> choferes = new ArrayList<Chofer>();
+	private Set<Camion> camiones = new HashSet<Camion>();
+	private Set<Chofer> choferes = new HashSet<Chofer>();
 	
 	
 	public TransporteAsignado asignarTransporte(Orden orden)

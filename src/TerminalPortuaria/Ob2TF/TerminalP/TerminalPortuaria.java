@@ -16,7 +16,6 @@ import TerminalPortuaria.Ob2TF.BusquedaMaritima.*;
 import TerminalPortuaria.Ob2TF.Circuito.Circuito;
 import TerminalPortuaria.Ob2TF.Circuito.Viaje;
 import TerminalPortuaria.Ob2TF.Cliente.Cliente;
-import TerminalPortuaria.Ob2TF.Cliente.Suscriptor;
 import TerminalPortuaria.Ob2TF.Container.Container;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Camion;
 import TerminalPortuaria.Ob2TF.EmpresaTransportista.Chofer;
@@ -160,14 +159,15 @@ public class TerminalPortuaria
 	
 	public void validarHorarioDeEntrega(Orden orden) throws Exception 
 	{
-		if ( Math.abs (orden.getCliente().getTurno().getHour() - LocalDateTime.now().getHour()) > 3 ) 
+		if ( Math.abs (orden.getCliente().getTurno().getHour() - LocalDateTime.now().getHour()) > 3 )
+			// Está mal que el cliente tenga el horario de entrega. Debería tenerlo la propia orden porque un cliente puede tener multiples ordenes.
 		{
 			throw new Exception ("Llegaste tarde");
 		}
 	}
 	
 	public void validarChofer(Chofer chofer, Orden orden) throws Exception {
-		if ( chofer.getNombre() != orden.getTransporteAsignado().getChoferAsignado().getNombre() ) 
+		if ( chofer.getNombre() != orden.getChoferAsignado().getNombre() ) 
 		{
 			throw new Exception ("El chofer no coincide");
 		}
@@ -175,7 +175,7 @@ public class TerminalPortuaria
 	
 	public void validarCamion(Camion camion, Orden orden) throws Exception 
 	{
-		if ( camion.getPatente() != orden.getTransporteAsignado().getCamionAsignado().getPatente() ) 
+		if ( camion.getPatente() != orden.getCamionAsignado().getPatente() ) 
 		{
 			throw new Exception ("El camión no coincide");
 		}

@@ -28,9 +28,7 @@ public abstract class Orden
 	protected LocalDateTime salidaContainer;
     public UUID codigoUnico;
 	 
-    public Orden() {
-    	
-    }
+    public Orden() {}
 
 	public Orden(Cliente cliente, Viaje viaje, Container container, EmpresaTransportista empresa, boolean servicioLavado)
 	{
@@ -122,6 +120,18 @@ public abstract class Orden
 	{
 		return transporteAsignado;
 	}
+	
+	public Camion getCamionAsignado()
+	{
+		return this.transporteAsignado.getCamionAsignado();
+	}
+	
+	
+	public Chofer getChoferAsignado()
+	{
+		return this.transporteAsignado.getChoferAsignado();
+	}
+	
 	
 	public double precioTotal()
 	{
