@@ -94,6 +94,10 @@ public class Viaje
 		return this.circuitoViaje.validarSiPuertoOrigenEstaAntesQuePuertoDestino(origen, destino);
 	}
 	
+	public long tiempoDeViajeDesdeHasta(TerminalPortuaria puertoOrigen, TerminalPortuaria puertoDestino) {
+        return this.circuitoViaje.conocerDuracionDeCircuitoDesdeHasta(puertoOrigen, puertoDestino);
+    }
+	
 	public Viaje generarViajeConTramosDeInteres( TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino )
 	{
 		Circuito nuevoCircuito = circuitoViaje.construirCircuitoDesdeHasta(terminalOrigen, terminalDestino);

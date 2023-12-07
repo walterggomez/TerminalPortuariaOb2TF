@@ -216,6 +216,10 @@ public class TerminalPortuaria
 	 {
 		return ordenes;
 	}
+	 
+	 public long tiempoHasta(Viaje viaje, TerminalPortuaria puertoDestino) {
+         return viaje.tiempoDeViajeDesdeHasta(this, puertoDestino);
+     }
 
 	 
 }
