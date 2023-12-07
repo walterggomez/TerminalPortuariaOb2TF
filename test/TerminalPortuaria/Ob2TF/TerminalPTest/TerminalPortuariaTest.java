@@ -87,10 +87,16 @@ class TerminalPortuariaTest
 	List<Tramo> listaTramosNro3;
 	List<Tramo> listaTramosNro4;
 	List<Tramo> listaTramosReducida;
+	List<Tramo> listaTramosSinDefinir;
 	
 	// Listas de circuitos
 	List<Circuito> listaCircuitosNaviera1;
 	List<Circuito> listaCircuitosNaviera2;
+	List<Circuito> listaCircuitosSinDefinir;
+	
+	// Lista naviera
+	List<Naviera> listaNaviera;
+	List<Naviera> listaNavierasSinDefinir;
 	
 	
 	
@@ -222,31 +228,42 @@ class TerminalPortuariaTest
 		when( laPazAsuncion.getPuertoDestino() ).thenReturn(asuncion);
 		
 		
-		// Puertos de los tramos
-		when( bsAsSaoPablo.getPuertoOrigen() ).thenReturn(bsAs);
-		when( bsAsSaoPablo.getPuertoDestino() ).thenReturn(saoPablo);
-		when( saoPabloMontevideo.getPuertoOrigen() ).thenReturn(saoPablo);
-		when( saoPabloMontevideo.getPuertoDestino() ).thenReturn(montevideo);
-		when( montevideoAsuncion.getPuertoOrigen() ).thenReturn(montevideo);
-		when( montevideoAsuncion.getPuertoDestino() ).thenReturn(asuncion);
-		when( asuncionLima.getPuertoOrigen() ).thenReturn(asuncion);
-		when( asuncionLima.getPuertoDestino() ).thenReturn(lima);
-		when( limaSantiagoDeChile.getPuertoOrigen() ).thenReturn(lima);
-		when( limaSantiagoDeChile.getPuertoDestino() ).thenReturn(santiagoDeChile);
-		when( santiagoDeChileLaPaz.getPuertoOrigen() ).thenReturn(santiagoDeChile);
-		when( santiagoDeChileLaPaz.getPuertoDestino() ).thenReturn(laPaz);
 
 		
-		// Duración de los tramos
+		
+
+//		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+		
+		// Comportamiento de los tramos circuito 1°
+		
+		// Puertos
+		when( bsAsSaoPablo.getPuertoOrigen() ).thenReturn(bsAs);
+		when( bsAsSaoPablo.getPuertoDestino() ).thenReturn(saoPablo);
+		
+		when( saoPabloMontevideo.getPuertoOrigen() ).thenReturn(saoPablo);
+		when( saoPabloMontevideo.getPuertoDestino() ).thenReturn(montevideo);
+		
+		when( montevideoAsuncion.getPuertoOrigen() ).thenReturn(montevideo);
+		when( montevideoAsuncion.getPuertoDestino() ).thenReturn(asuncion);
+		
+		when( asuncionLima.getPuertoOrigen() ).thenReturn(asuncion);
+		when( asuncionLima.getPuertoDestino() ).thenReturn(lima);
+		
+		when( limaSantiagoDeChile.getPuertoOrigen() ).thenReturn(lima);
+		when( limaSantiagoDeChile.getPuertoDestino() ).thenReturn(santiagoDeChile);
+		
+		when( santiagoDeChileLaPaz.getPuertoOrigen() ).thenReturn(santiagoDeChile);
+		when( santiagoDeChileLaPaz.getPuertoDestino() ).thenReturn(laPaz);
+		
+		// Duración de los tramos del circuito 1°
 		when( bsAsSaoPablo.getDuracionTramo() ).thenReturn(1.0);
 		when( saoPabloMontevideo.getDuracionTramo() ).thenReturn(1.0);
 		when( montevideoAsuncion.getDuracionTramo() ).thenReturn(1.0);
 		when( asuncionLima.getDuracionTramo() ).thenReturn(1.0);
 		when( limaSantiagoDeChile.getDuracionTramo() ).thenReturn(1.0);
-		when( santiagoDeChileLaPaz.getDuracionTramo() ).thenReturn(1.0);
-		
-		
-		// Costos de los tramos
+		when( santiagoDeChileLaPaz.getDuracionTramo() ).thenReturn(1.0);		
+
+		// Costos de los tramos del circuito 1°
 		when( bsAsSaoPablo.getCostoDetramo() ).thenReturn(1.0);
 		when( saoPabloMontevideo.getCostoDetramo() ).thenReturn(1.0);
 		when( montevideoAsuncion.getCostoDetramo() ).thenReturn(1.0);
@@ -254,65 +271,137 @@ class TerminalPortuariaTest
 		when( limaSantiagoDeChile.getCostoDetramo() ).thenReturn(1.0);
 		when( santiagoDeChileLaPaz.getCostoDetramo() ).thenReturn(1.0);
 		
-		// TerminalPortuaria montevideo = new TerminalPortuaria( new Point2D.Double(-34.90328, -56.18816) );
-		// TerminalPortuaria santiagoDeChile = new TerminalPortuaria( new Point2D.Double(-33.45694, -70.64827) );
+//					╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 		
+		// Comportamiento de los tramos circuito 2°
+		
+		// Puertos
+		when( saoPabloLima.getPuertoOrigen() ).thenReturn(saoPablo);
+		when( saoPabloLima.getPuertoDestino() ).thenReturn(lima);
+		
+//		when( limaSantiagoDeChile.getPuertoOrigen() ).thenReturn(lima);
+//		when( limaSantiagoDeChile.getPuertoDestino() ).thenReturn(santiagoDeChile);
+		
+		when( santiagoDeChileMontevideo.getPuertoOrigen() ).thenReturn(santiagoDeChile);
+		when( santiagoDeChileMontevideo.getPuertoDestino() ).thenReturn(montevideo);
+		
+		when( montevideoBsAs.getPuertoOrigen() ).thenReturn(montevideo);
+		when( montevideoBsAs.getPuertoDestino() ).thenReturn(bsAs);
+		
+		when( bsAsLaPaz.getPuertoOrigen() ).thenReturn(bsAs);
+		when( bsAsLaPaz.getPuertoDestino() ).thenReturn(laPaz);
+		
+		when( laPazAsuncion.getPuertoOrigen() ).thenReturn(laPaz);
+		when( laPazAsuncion.getPuertoDestino() ).thenReturn(asuncion);
+		
+		// Duración
+		when( saoPabloLima.getDuracionTramo() ).thenReturn(1.0);
+//		when( limaSantiagoDeChile.getDuracionTramo() ).thenReturn(1.0);
+		when( santiagoDeChileMontevideo.getDuracionTramo() ).thenReturn(1.0);
+		when( montevideoBsAs.getDuracionTramo() ).thenReturn(1.0);
+		when( bsAsLaPaz.getDuracionTramo() ).thenReturn(1.0);
+		when( laPazAsuncion.getDuracionTramo() ).thenReturn(1.0);
+		
+		// Costos
+		when( saoPabloLima.getCostoDetramo() ).thenReturn(1.0);
+//		when( limaSantiagoDeChile.getCostoDetramo() ).thenReturn(1.0);
+		when( santiagoDeChileMontevideo.getCostoDetramo() ).thenReturn(1.0);
+		when( montevideoBsAs.getCostoDetramo() ).thenReturn(1.0);
+		when( bsAsLaPaz.getCostoDetramo() ).thenReturn(1.0);
+		when( laPazAsuncion.getCostoDetramo() ).thenReturn(1.0);
+		
+//					╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+		
+		// Comportamiento de los tramos circuito 3°
+		
+		// Puertos
+		when( limaBsAs.getPuertoOrigen() ).thenReturn(lima);
+		when( limaBsAs.getPuertoDestino() ).thenReturn(bsAs);
+		
+		when( bsAsSantiagoDeChile.getPuertoOrigen() ).thenReturn(bsAs);
+		when( bsAsSantiagoDeChile.getPuertoDestino() ).thenReturn(santiagoDeChile);
+		
+		when( santiagoDeChileAsuncion.getPuertoOrigen() ).thenReturn(santiagoDeChile);
+		when( santiagoDeChileAsuncion.getPuertoDestino() ).thenReturn(asuncion);
+		
+		when( asuncionSaoPablo.getPuertoOrigen() ).thenReturn(asuncion);
+		when( asuncionSaoPablo.getPuertoDestino() ).thenReturn(saoPablo);
+		
+//		when( saoPabloMontevideo.getPuertoOrigen() ).thenReturn(saoPablo);
+//		when( saoPabloMontevideo.getPuertoDestino() ).thenReturn(montevideo);
+		
+		when( montevideoLaPaz.getPuertoOrigen() ).thenReturn(montevideo);
+		when( montevideoLaPaz.getPuertoDestino() ).thenReturn(laPaz);		
+
+		// Duración
+		when( limaBsAs.getDuracionTramo() ).thenReturn(1.0);
+		when( bsAsSantiagoDeChile.getDuracionTramo() ).thenReturn(1.0);
+		when( santiagoDeChileAsuncion.getDuracionTramo() ).thenReturn(1.0);
+		when( asuncionSaoPablo.getDuracionTramo() ).thenReturn(1.0);
+//		when( saoPabloMontevideo.getDuracionTramo() ).thenReturn(1.0);
+		when( montevideoLaPaz.getDuracionTramo() ).thenReturn(1.0);
+		
+		// Costos
+		when( bsAsSaoPablo.getCostoDetramo() ).thenReturn(1.0);
+		when( saoPabloMontevideo.getCostoDetramo() ).thenReturn(1.0);
+		when( montevideoAsuncion.getCostoDetramo() ).thenReturn(1.0);
+		when( asuncionLima.getCostoDetramo() ).thenReturn(1.0);
+		when( limaSantiagoDeChile.getCostoDetramo() ).thenReturn(1.0);
+		when( santiagoDeChileLaPaz.getCostoDetramo() ).thenReturn(1.0);
+		
+//					╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+		
+		// *** Listas ***
 		
 		// Lista de tramos 1°
-		listaTramosNro1 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
-		(
-				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
-				(
+		// Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
+		listaTramosNro1 = new ArrayList<Tramo>(Arrays.asList
+				( 
 						bsAsSaoPablo, saoPabloMontevideo, montevideoAsuncion, asuncionLima, limaSantiagoDeChile, santiagoDeChileLaPaz
 				)
 		);
 		
-
-		// Lista de tramos 2°
-		listaTramosNro2 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
-		(
-				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
-				(
+		
+		listaTramosNro2 = new ArrayList<Tramo>(Arrays.asList
+				( 
 						saoPabloLima, limaSantiagoDeChile, santiagoDeChileMontevideo, montevideoBsAs, bsAsLaPaz, laPazAsuncion
 				)
 		);
 		
 		
-		// Lista de tramos 3°
-		listaTramosNro3 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
-		(
-				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
-				(
+		listaTramosNro3 = new ArrayList<Tramo>(Arrays.asList
+				( 
 						limaBsAs, bsAsSantiagoDeChile, santiagoDeChileAsuncion, asuncionSaoPablo, saoPabloMontevideo, montevideoLaPaz
 				)
 		);
 		
-		
-		// Lista de tramos 4° no contiene a bsAs
-		listaTramosNro4 = new ArrayList<Tramo>
-		(
-				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
-				(
+
+		listaTramosNro4 = new ArrayList<Tramo>(Arrays.asList
+				( 
 						santiagoDeChileAsuncion, asuncionSaoPablo, saoPabloMontevideo, montevideoLaPaz
 				)
 		);
 		
+
 		
+			
 		// Lista de tramos nro 1° reducida a dos tramos
-		listaTramosReducida = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
+		listaTramosReducida = new ArrayList<Tramo>
 		(
 				Arrays.asList // Arrays.asList crea una vista de la lista, pero no permite modificaciones.
 				(
 						montevideoAsuncion, asuncionLima
 				)
 		);
+		
+		
 
 	
 		// Spy de los circuitos
 		circuito1 = spy( new Circuito(listaTramosNro1, LocalDateTime.now()) );
 		circuito2 = spy( new Circuito(listaTramosNro2, LocalDateTime.now()) );
 		circuito3 = spy( new Circuito(listaTramosNro3, LocalDateTime.now()) );
-		circuito4 = spy( new Circuito( listaTramosNro4, LocalDateTime.now() ) ); // No contiene a bsAs
+		circuito4 = spy( new Circuito( listaTramosNro4, LocalDateTime.now()) ); // No contiene a bsAs
 		
 		
 		listaCircuitosNaviera1 = new ArrayList<Circuito>
@@ -331,6 +420,12 @@ class TerminalPortuariaTest
 						circuito3
 				)
 		);
+		
+
+
+		
+		
+
 		
 		
 		// Set de los buques
@@ -395,18 +490,6 @@ class TerminalPortuariaTest
 		assertEquals(circuito1, bsAs.getMejorCircuito(asuncion));
 	}
 	
-	
-//	 public void setMejorCircuito( MejorRuta estrategia )
-//	 {
-//	 	this.estrategia = estrategia;
-//	 }
-//	 
-//	 
-//	 public Circuito getMejorCircuito(TerminalPortuaria terminalDestino)
-//	 {
-//	 	return this.estrategia.mejorCircuito(this, terminalDestino);
-//	 }
-	
 	@Test
 	void errorAlValidarBuque()
 	{
@@ -442,7 +525,9 @@ class TerminalPortuariaTest
 	@Test
 	void validarSiTerminalEstaEnCircuitoDeNaviera()
 	{
-		assertTrue( circuito1.validarSiTerminalExisteEnCircuito(bsAs) );
+		naviera1.agregarCircuito(circuito1);
+		assertTrue( bsAs.estoyEnUnCircuitoDeLaNaviera(naviera1) );
+		// assertTrue( circuito1.validarSiTerminalExisteEnCircuito(bsAs) );
 	}
 	
 	@ Test
@@ -453,7 +538,7 @@ class TerminalPortuariaTest
 		assertEquals( 1, bsAs.getMisNavieras().size() );
 	}
 
-	//Este test devuelve el mensaje de que la terminal no esta en ningun viaje de la naviera
+
 	@Test
 	void alAgregarNavieraQueNoContieneATerminalNoOcurreNada()
 	{
@@ -479,20 +564,46 @@ class TerminalPortuariaTest
 	@Test
 	void corroboroQueTerminalGestionadaContengaViajesDeSusNavieras() throws Exception
 	{
-
+		// Corroboro la existencia o no de bsAs en los circuitos
+		assertTrue( circuito1.validarSiTerminalExisteEnCircuito(bsAs) );
+		assertTrue( circuito2.validarSiTerminalExisteEnCircuito(bsAs) );
+		assertTrue( circuito3.validarSiTerminalExisteEnCircuito(bsAs) );
+		assertFalse( circuito4.validarSiTerminalExisteEnCircuito(bsAs) );
+		
+		listaCircuitosSinDefinir = new ArrayList<Circuito>(Arrays.asList
+				( 
+						circuito1, circuito2, circuito3, circuito4
+				)
+		);
+		
+		
 		naviera1.agregarCircuito(circuito1);
 		naviera1.agregarCircuito(circuito2);
 		naviera1.agregarCircuito(circuito3);
 		naviera1.agregarCircuito(circuito4);
+		assertEquals( 4, naviera1.getMisCircuitos().size() );
+		assertEquals( listaCircuitosSinDefinir, naviera1.getMisCircuitos() );
+		
+		
+		// Comprobar que naviera registre bien los viajes.
 		naviera1.establecerViaje(buque1, LocalDateTime.now(), circuito1);
 		naviera1.establecerViaje(buque1, LocalDateTime.now(), circuito2);
 		naviera1.establecerViaje(buque1, LocalDateTime.now(), circuito3);
 		naviera1.establecerViaje(buque1, LocalDateTime.now(), circuito4);
-		bsAs.registrarNuevaNaviera(naviera1);
-		assertEquals( 1, bsAs.getMisViajes().size() );
+		assertEquals( 4, naviera1.getViajes().size() );
 		
-
+		
+		// Comprobar que registre bien la naviera.
+		listaNaviera = new ArrayList<Naviera>(Arrays.asList( naviera1 ));
+		bsAs.registrarNuevaNaviera(naviera1);
+		assertEquals( 1, bsAs.getMisNavieras().size() );
+		assertEquals( listaNaviera, bsAs.getMisNavieras() );
+		
+		
+		// Compruebo que bsAs tenga 3 viajes, correspondientes a los 3 viajes cuyos circuitos contienen a bsAs ...
+		assertEquals( 3, bsAs.getMisViajes().size() );
 	}
+	
 	
 	@Test
 	void validarHorarioDeEntregaFueTarde() {
@@ -541,7 +652,8 @@ class TerminalPortuariaTest
 	@Test
 	void validarQueCumpleLosRequisitos() throws Exception {
 		TransporteAsignado transporte = mock(TransporteAsignado.class);
-		LocalDateTime turno = LocalDateTime.of(1980, 12, 18, 01, 00);
+		// LocalDateTime turno = LocalDateTime.of(1980, 12, 18, 01, 00);
+		LocalDateTime turno = LocalDateTime.now();
 		when(cliente.getTurno()).thenReturn(turno);
 		Chofer chofer1 = mock(Chofer.class);
 		when(chofer1.getNombre()).thenReturn("Carlos");

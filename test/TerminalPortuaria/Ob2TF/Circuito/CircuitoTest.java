@@ -99,6 +99,7 @@ class CircuitoTest
 	Circuito circuito1;
 	Circuito circuito2;
 	Circuito circuito3;
+	Circuito circuito4;
 	
 	// Puertos
 	TerminalPortuaria bsAs;
@@ -138,31 +139,8 @@ class CircuitoTest
 	List<Tramo> listaTramosNro1;
 	List<Tramo> listaTramosNro2;
 	List<Tramo> listaTramosNro3;
+	List<Tramo> listaTramosNro4;
 	
-	
-	/*
-	 		bsAs = mock(TerminalPortuaria.class);
-			saoPablo = mock(TerminalPortuaria.class);
-			montevideo = mock(TerminalPortuaria.class);
-			asuncion = mock(TerminalPortuaria.class);
-			lima = mock(TerminalPortuaria.class);
-			santiagoDeChile = mock(TerminalPortuaria.class);
-			laPaz = mock(TerminalPortuaria.class);
-	 */
-
-/*
-	List<Naviera> navieras;
-
-	List<Circuito> circuitosN1;
-	List<Circuito> circuitosN2;
-	List<Circuito> circuitosN3;
-
-	List<Circuito> todoCircuito;
-
-	List<Tramo> tramosCir1;
-	List<Tramo> tramosCir2;
-	List<Tramo> tramosCir3;
-*/
 
 	@BeforeEach
 	void setUp() throws Exception 
@@ -230,10 +208,6 @@ class CircuitoTest
 		when( limaSantiagoDeChile.getDuracionTramo() ).thenReturn(10.0);
 		when( santiagoDeChileLaPaz.getDuracionTramo() ).thenReturn(10.0);
 		
-		// TerminalPortuaria montevideo = new TerminalPortuaria( new Point2D.Double(-34.90328, -56.18816) );
-		// TerminalPortuaria santiagoDeChile = new TerminalPortuaria( new Point2D.Double(-33.45694, -70.64827) );
-		
-		
 		// Lista de tramos usada
 		listaTramosNro1 = new ArrayList<Tramo> // Al instanciar un ArrayList permito utilizar las operaciones de manejo de arrays.
 		(
@@ -246,6 +220,7 @@ class CircuitoTest
 		// Lista de tramos vacía
 		listaTramosNro2 = new ArrayList<Tramo>();
 		
+		
 		// Lista de tramos 3
 		listaTramosNro3 = new ArrayList<Tramo>
 				(
@@ -257,6 +232,7 @@ class CircuitoTest
 		
 		// Circuitos
 		circuito1 = new Circuito( listaTramosNro1, LocalDateTime.of(2023, 11, 18, 11, 00) );
+		
 		
 		
 		
@@ -398,6 +374,8 @@ class CircuitoTest
 		
 		assertEquals(tramosEsperados, tramosDelNuevoCircuito); // Comparamos las dos listas para corroborar que sean iguales
     }
+    
+
     
     
     

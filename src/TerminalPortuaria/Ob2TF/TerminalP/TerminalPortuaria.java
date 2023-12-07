@@ -58,12 +58,12 @@ public class TerminalPortuaria
 	}
  
 	
-	public Set<Viaje> getMisViajes()
+	public List<Viaje> getMisViajes()
 	{
 	    return this.misNavieras.stream()
 	            .flatMap(n -> n.getViajes().stream()) // Convierte los sets de viajes de todas las navieras en un solo stream
 	            .filter(viaje -> viaje.validarSiTerminalExisteEnViaje(this)) // Filtra los viajes que contienen la terminal
-	            .collect(Collectors.toSet()); // Recolecta los viajes en un conjunto y devuelve el conjunto
+	            .collect( Collectors.toList() ); // Recolecta los viajes en una lista.
 	}
 	
 
@@ -111,14 +111,10 @@ public class TerminalPortuaria
 	
 	public void registrarNuevaNaviera(Naviera nav)
 	{
-		if ( !this.estoyEnUnCircuitoDeLaNaviera(nav) ) 
-		{
-			System.out.println("Naviera no valida para registrar");	
-		}
-		else
+		if ( this.estoyEnUnCircuitoDeLaNaviera(nav) ) 
 		{
 			this.misNavieras.add(nav);		
-		}	
+		}
 	}
 	
 

@@ -291,6 +291,8 @@ public class ViajeTest
 	void validarQueTerminalExistaEnViaje()
 	{
 		assertTrue( viajeCircuito1PrimeraFecha.validarSiTerminalExisteEnViaje(montevideo) );
+		assertTrue( viajeCircuito1PrimeraFecha.validarSiTerminalExisteEnViaje(bsAs) );
+		assertTrue( viajeCircuito1PrimeraFecha.validarSiTerminalExisteEnViaje(santiagoDeChile) );
 	}
 	
 	
