@@ -617,6 +617,7 @@ class TerminalPortuariaTest
 		assertEquals( "Llegaste tarde", error.getMessage() );
 	}
 	
+	
 	@Test
 	void validarQueChoferNoCoincide() {
 		TransporteAsignado transporte = mock(TransporteAsignado.class);

@@ -16,7 +16,6 @@ public class TransporteAsignado
 		this.choferAsignado = choferAsignado;
 	}
 	
-	
 	public Camion getCamionAsignado() 
 	{
 		return camionAsignado;
@@ -33,11 +32,5 @@ public class TransporteAsignado
 	}
 
 
-
-	
-	
-
-	
-	
 
 }

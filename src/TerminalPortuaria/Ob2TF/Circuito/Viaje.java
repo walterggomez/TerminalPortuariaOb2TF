@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import TerminalPortuaria.Ob2TF.Buque.Buque;
 import TerminalPortuaria.Ob2TF.Cliente.Cliente;
-import TerminalPortuaria.Ob2TF.Cliente.Suscriptor;
 import TerminalPortuaria.Ob2TF.TerminalP.TerminalPortuaria;
 
 public class Viaje

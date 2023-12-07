@@ -6,16 +6,6 @@ public class Consignee extends Cliente{
 		super(nombre, codigoCliente);
 	}
 	
-
-	@Override
-	public boolean soyConsignee() {
-		return true;
-	}
-	
-	@Override
-	public boolean soyShipper() {
-		return false;
-	}
 	
 
 }
