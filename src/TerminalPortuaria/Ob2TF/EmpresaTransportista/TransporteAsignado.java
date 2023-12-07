@@ -9,9 +9,8 @@ public class TransporteAsignado
 	private Cliente cliente;
 	
 	
-	public TransporteAsignado( Orden ordenAsignada, Camion camionasignado, Chofer choferAsignado )
+	public TransporteAsignado(Camion camionasignado, Chofer choferAsignado )
 	{
-		this.cliente = ordenAsignada.getCliente();
 		this.camionAsignado = camionasignado;
 		this.choferAsignado = choferAsignado;
 	}

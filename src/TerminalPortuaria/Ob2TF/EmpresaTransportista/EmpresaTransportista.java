@@ -17,15 +17,12 @@ public class EmpresaTransportista
 	public TransporteAsignado asignarTransporte(Orden orden)
 	{
 		// Asigna un chofer y un camión al transporte asignado para el cliente
-		Camion camionAsignado = camiones.stream().filter( c -> ! c.tieneOrdenAsignada() ).findFirst().orElse(null);
-		Chofer choferAsignado = choferes.stream().filter( c -> ! c.tieneOrdenAsignada() ).findFirst().orElse(null);
-		
-		// Asigna la orden al chofer y camión asignados
-		camionAsignado.setOrdenAsignada(orden);
-		choferAsignado.setOrdenAsignada(orden);
+		Camion camionAsignado = camiones.get(0);
+		Chofer choferAsignado = choferes.get(0);
+	
 		
 		// Genera el transporte asignado
-		return new TransporteAsignado( orden, camionAsignado, choferAsignado );
+		return new TransporteAsignado( camionAsignado, choferAsignado );
 	}
 
 

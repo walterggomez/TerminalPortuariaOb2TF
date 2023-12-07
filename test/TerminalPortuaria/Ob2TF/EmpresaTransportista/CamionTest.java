@@ -31,17 +31,7 @@ class CamionTest {
 		
 	}
 	
-	@Test
-	void verificaQueCamionNoTieneOrdenAsignada() {
-		assertFalse (camion.tieneOrdenAsignada());
-	}
-	
-	@Test
-	void setOrdenEnCamion() {
-		assertFalse (camion.tieneOrdenAsignada());
-		camion.setOrdenAsignada(orden1);
-		assertTrue (camion.tieneOrdenAsignada());
-	}
+
 	
 	@Test
 	void patenteDeCamion() {

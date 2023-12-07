@@ -59,7 +59,7 @@ class TransporteAsignadoTest {
 		
 		
 		// TransporteAsignado
-		transporte1 = new TransporteAsignado(orden1, camion2, chofer);
+		transporte1 = new TransporteAsignado(camion2, chofer);
 
 	}
 
@@ -67,7 +67,6 @@ class TransporteAsignadoTest {
 	void seTesteanLosSetters() {
 		assertEquals(transporte1.getCamionAsignado(), camion2);
 		assertEquals(transporte1.getChoferAsignado(), chofer);
-		assertEquals(transporte1.getCliente(), orden1.getCliente());
 	}
 
 }

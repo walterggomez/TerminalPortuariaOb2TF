@@ -14,11 +14,21 @@ public class Factura
 	
 	public Factura( Orden ordenFacturada )
 	{
+		this.ordenFacturada = ordenFacturada;
 		conceptos = new HashSet<Concepto>();
 		this.conceptos.add( new Concepto( "Monto total a pagar:", LocalDateTime.now(), ordenFacturada.precioTotal() ) );
 		this.agregarCostoCircuito();
 		this.agregarConceptosServicios();	
 	}
+	
+	
+
+	public Set<Concepto> getConceptos() 
+	{
+		return conceptos;
+	}
+
+
 
 	public void agregarCostoCircuito()
 	{
@@ -27,7 +37,7 @@ public class Factura
 			this.conceptos.add( new Concepto( "Monto total del circuito", ordenFacturada.getSalidaContainer(), ordenFacturada.getViaje().costoViaje() ) );
 		}
 	}
-	 
+	  
 	private void agregarConceptosServicios()
 	{
 		for( Servicios servicio: this.ordenFacturada.getServicios() )

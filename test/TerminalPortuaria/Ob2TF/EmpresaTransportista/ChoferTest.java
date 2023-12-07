@@ -32,17 +32,7 @@ class ChoferTest {
 		
 	}
 	
-	@Test
-	void verificaQueChoferNoTieneOrdenAsignada() {
-		assertFalse (chofer.tieneOrdenAsignada());
-	}
-	
-	
-	@Test
-	void seAgregaOrden() {
-		chofer.setOrdenAsignada(orden1);
-		assertTrue(chofer.tieneOrdenAsignada());
-	}
+
 	
 	@Test
 	void seVerificaElNombre() {

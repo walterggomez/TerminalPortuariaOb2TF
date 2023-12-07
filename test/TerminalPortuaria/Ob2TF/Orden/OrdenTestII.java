@@ -2,13 +2,17 @@ package TerminalPortuaria.Ob2TF.Orden;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.awt.geom.Point2D;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -60,18 +64,28 @@ class OrdenTestII
 	
 	
 	Circuito circuitoPrincipal;
+	Circuito circuitoMock;
 	
 	
 	Viaje viajePrincipal;
+	Viaje viajeMock;
 
 	
 	// Listas
 	List<Tramo> listaDeTramosPrincipal;
 	
 	
+	// Servicios
+	Lavado lavado;
+	Pesado pesado;
+	Electricidad electricidad;
+	Set<Servicios> setServicios;
+	
+	
 	// Ordenes
 	OrdenExportacion ordenExportacion;
 	OrdenImportacion ordenImportacion;
+	OrdenImportacion ordenSpy;
 	
 	
 	// Containers
@@ -79,11 +93,16 @@ class OrdenTestII
 	Reefer containerReefer;
 	Tanque containerTanque;
 	
+	Reefer containerReeferMock;
+	
 	
 	// Buques
 	Buque buqueBus;
 	Buque titanic;
 	Buque araSanJuan;
+	
+	// Facturas
+	Factura facturaI;
 	
 	
 	
@@ -137,21 +156,54 @@ class OrdenTestII
 		
 		circuitoPrincipal = spy( new Circuito( listaDeTramosPrincipal, LocalDateTime.now() ) );
 		
+		circuitoMock = mock( Circuito.class );
+		when( circuitoMock.costoTotalDelCircuito() ).thenReturn(0.0);
+		
 		
 		
 //		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 		// VIAJES
 		
 		viajePrincipal = spy( new Viaje( buqueBus, circuitoPrincipal, LocalDateTime.of(2023, 12, 01, 13, 00) ) );
+		
+		
+		viajeMock = mock( Viaje.class );
+		when( viajeMock.cantidadEscalas() ).thenReturn(1);
+		when( viajeMock.costoViaje() ).thenReturn(50.0);
+		when( viajeMock.getCircuito() ).thenReturn(circuitoMock);
+		
 
-	
-	
 //		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 		// BUQUES
 		
 		buqueBus = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), new GPS(), viajePrincipal ) );
 		titanic = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), new GPS(), viajePrincipal ) );
 		araSanJuan = spy( new Buque( new Point2D.Double(-23.5475, -46.63611), new GPS(), viajePrincipal ) );
+		
+		
+//		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+		// SERVICIOS
+		
+
+
+		lavado = mock( Lavado.class );
+		when( lavado.costoServicio(ordenSpy) ).thenReturn(100.0);
+		
+		
+		pesado = mock( Pesado.class );
+		when( pesado.costoServicio(ordenSpy) ).thenReturn(100.0);
+		
+		electricidad = mock( Electricidad.class );
+		when( electricidad.costoServicio(ordenSpy) ).thenReturn(100.0);
+		
+		setServicios = Set.of(lavado, pesado, electricidad);
+		
+//		setServicios = new HashSet<Servicios>();
+//		// 	protected Set<Servicios> servicios = new HashSet<Servicios>();
+//		setServicios.add(electricidad);
+//		setServicios.add(pesado);
+//		setServicios.add(lavado);
+		
 		
 		
 		
@@ -162,6 +214,8 @@ class OrdenTestII
 		containerReefer = spy( new Reefer( 5, 5, 5, 5 ) );
 		containerTanque = spy( new Tanque( 5, 5, 5, 5 ) );
 		
+		containerReeferMock = mock( Reefer.class );
+
 		
 		
 //		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
@@ -170,6 +224,7 @@ class OrdenTestII
 		expresoLider = spy( new EmpresaTransportista() );
 		expresoLider.agregarNuevoCamion(scaniaI);
 		expresoLider.agregarNuevoCamion(scaniaII);
+		
 		expresoLider.agregarNuevoChofer(homeroSimpson);
 		expresoLider.agregarNuevoChofer(redBarclay);
 	
@@ -178,8 +233,16 @@ class OrdenTestII
 //		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 		// TRANSPORTE ASIGNADO
 		transporteAsignadoI = spy( new TransporteAsignado() );
-		transporteAsignadoII;
-		// TransporteAsignado( orden, camionAsignado, choferAsignado );
+		when( transporteAsignadoI.getChoferAsignado() ).thenReturn(homeroSimpson);
+		when( transporteAsignadoI.getCamionAsignado() ).thenReturn(scaniaI);
+		when( transporteAsignadoI.getCliente() ).thenReturn(albertoFernandez);
+		
+		
+		transporteAsignadoII = spy( new TransporteAsignado() );
+		when( transporteAsignadoII.getChoferAsignado() ).thenReturn(redBarclay);
+		when( transporteAsignadoII.getCamionAsignado() ).thenReturn(scaniaII);
+		when( transporteAsignadoII.getCliente() ).thenReturn(albertoFernandez);
+		
 		
 //		╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 		// CLIENTES
@@ -192,15 +255,27 @@ class OrdenTestII
 		// ORDENES
 		
 		ordenImportacion = new OrdenImportacion( albertoFernandez, viajePrincipal, containerReefer, expresoLider, true );
-		when( ordenImportacion.getSalidaContainer() ).thenReturn( LocalDateTime.now() );
+		ordenImportacion.registrarSalidaContainer();
+
+		// when( ordenImportacion.getTransporteAsignado() ).thenReturn(transporteAsignadoI);
+		
 		
 		
 		ordenExportacion = new OrdenExportacion( albertoFernandez, viajePrincipal, containerTanque, expresoLider, false );
-		when( ordenExportacion.getEntregaContainer() ).thenReturn( LocalDateTime.now() );
-		
-		
-		
+		ordenExportacion.registrarEntregaContainer();
 
+		
+		ordenSpy = spy ( new OrdenImportacion( albertoFernandez, viajeMock, containerReeferMock, expresoLider, false ) );
+		// when( ordenSpy.getViaje() ).thenReturn(viajePrincipal);
+		
+		ordenSpy.registrarEntregaContainer();
+		ordenSpy.registrarSalidaContainer();
+		
+		
+		// when( ordenSpy.getViaje().costoViaje() ).thenReturn(100.0);
+		// when( ordenSpy.viaje.getCircuito().costoTotalDelCircuito() ).thenReturn(100.0);
+		
+		
 
 
 		
@@ -219,12 +294,31 @@ class OrdenTestII
 		
 	}
 
+
+	
 	@Test
-	void precioTotalDeOrdenImportacionEs()
+	void precioTotalDeOrdenSpy()
 	{
+
+		when( lavado.costoServicio(ordenSpy) ).thenReturn(100.0);
+		when( pesado.costoServicio(ordenSpy) ).thenReturn(100.0);
+		when( electricidad.costoServicio(ordenSpy) ).thenReturn(100.0);
 		
-		assertEquals( 100.0, ordenImportacion.precioTotal() );
+		setServicios = Set.of(lavado, pesado, electricidad);
+		ordenSpy.setServicios(setServicios);
+	
+		assertEquals( 300, ordenSpy.precioTotal() );
+		assertEquals( 3, ordenSpy.getServicios().size() );
 	}
+	
+	@Test
+	void generoFacturaOrdenImportacion()
+	{
+		Factura facturaI = ordenImportacion.generarFactura();
+		// verify(facturaI, times(1) ).agregarCostoCircuito();
+		assertTrue( facturaI instanceof Factura );
+	}
+	
 
 }
 

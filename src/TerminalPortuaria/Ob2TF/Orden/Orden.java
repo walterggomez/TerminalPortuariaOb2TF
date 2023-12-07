@@ -48,6 +48,12 @@ public abstract class Orden
 	
 	
 	
+	
+	public void setServicios(Set<Servicios> servicios) 
+	{
+		this.servicios = servicios;
+	}
+
 	public Set<Servicios> getServicios()
 	{
 		return servicios;

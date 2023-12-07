@@ -5,9 +5,7 @@ import TerminalPortuaria.Ob2TF.Orden.*;
 
 public class Chofer 
 {
-
 	String nombre;
-	private Orden ordenAsignada = null;
 
 	public Chofer(String nombre) 
 	{
@@ -17,16 +15,6 @@ public class Chofer
 	public String getNombre() 
 	{
 		return nombre;
-	}
-	
-	public boolean tieneOrdenAsignada()
-	{
-		return ordenAsignada != null;
-	}
-	
-	public void setOrdenAsignada( Orden orden )
-	{
-		ordenAsignada = orden;
 	}
 	
 	
