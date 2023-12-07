@@ -10,8 +10,8 @@ import TerminalPortuaria.Ob2TF.Orden.*;
 
 public class EmpresaTransportista
 {
-	private Set<Camion> camiones = new HashSet<Camion>();
-	private Set<Chofer> choferes = new HashSet<Chofer>();
+	private List<Camion> camiones = new ArrayList<Camion>();
+	private List<Chofer> choferes = new ArrayList<Chofer>();
 	
 	
 	public TransporteAsignado asignarTransporte(Orden orden)
@@ -44,15 +44,15 @@ public class EmpresaTransportista
 	}
 
 
-	public Object getCamiones() {
-		// TODO Auto-generated method stub
-		return camiones;
+	public List<Camion> getCamiones()
+	{
+		return this.camiones;
 	}
 
 
-	public Object getChoferes() {
-		// TODO Auto-generated method stub
-		return choferes;
+	public List<Chofer> getChoferes()
+	{
+		return this.choferes;
 	}
 
 	
