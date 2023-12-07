@@ -561,23 +561,22 @@ class TerminalPortuariaTest
 		
 	}
 	@Test
-	void darAvisoShippersTest() {
+	void darAvisoConsignees() {
 		//ordenExp1 = mock(OrdenExportacion.class);
 		//ordenExp2 = mock(OrdenExportacion.class);
 		//ordenImp2 = mock(OrdenImportacion.class);
 		//ordenImp1 = mock(OrdenImportacion.class);
 		
 		ordenExp1 = spy(new OrdenExportacion());
-		when(ordenExp1.esOrdenImportacion()).thenReturn(false);
-		
 		ordenExp2 = spy(new OrdenExportacion());
-		when(ordenExp2.esOrdenImportacion()).thenReturn(false);
-		
 		ordenImp1 = spy(new OrdenImportacion());
-		when(ordenImp1.esOrdenImportacion()).thenReturn(true);
-		
 		ordenImp2 = spy(new OrdenImportacion());
+		
+		when(ordenExp1.esOrdenImportacion()).thenReturn(false);
+		when(ordenExp2.esOrdenImportacion()).thenReturn(false);
+		when(ordenImp1.esOrdenImportacion()).thenReturn(true);
 		when(ordenImp2.esOrdenImportacion()).thenReturn(true);
+		
 		ordenes = Arrays.asList(ordenExp1,ordenImp1,ordenExp2,ordenImp2);
 		viajeLunaNueva = mock(Viaje.class);
 		when(ordenImp1.getViaje()).thenReturn(viajeLunaNueva);
